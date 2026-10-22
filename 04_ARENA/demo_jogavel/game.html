@@ -1,0 +1,499 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Arena DBZ Jogável</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: palco fixo 1280x720 escalado para caber na tela; heróis à esquerda, tabuleiro ao centro, gavetas retráteis nas laterais (energia à esquerda, sinergias à direita). */
+:root{--bg:#090d1b;--panel:rgba(12,18,38,.78);--line:rgba(255,190,70,.38);--gold:#ffd45a;--orange:#ff9a2a;--blue:#46b5ff;--red:#e8433a;--green:#3fd07a;--purple:#a35cff;--ink:#f4f6ff;--mute:#9aa6c8;--display:'Russo One','Impact',sans-serif;--body:'Rubik',system-ui,sans-serif;color-scheme:dark}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:none}
+button{font-family:var(--body);cursor:pointer;color:var(--ink)}
+#app{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#18224a,#05070f)}
+#stage{width:1280px;height:720px;position:relative;flex:none;transform-origin:center center;overflow:clip;background:#05070f}
+#field{position:absolute;inset:0;overflow:clip}
+#bg{position:absolute;left:0;right:0;top:-64px;height:800px;background-size:cover;background-position:center;filter:saturate(1.05)}
+#shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,20,.55) 0,rgba(5,8,20,.12) 30%,rgba(5,8,20,.18) 60%,rgba(5,8,20,.82) 100%)}
+.abs{position:absolute}
+.panel{background:var(--panel);border:1.5px solid var(--line);border-radius:12px;backdrop-filter:blur(3px)}
+.u{position:absolute;background-size:100% 100%;border-radius:7px;box-shadow:0 4px 10px rgba(0,0,0,.6);transition:left .3s,top .3s,width .3s,height .3s,box-shadow .2s;will-change:transform}
+.u.new{animation:surge .5s ease-out both}
+.u.hurt{animation:hurt .45s ease-out}
+.u.ready{box-shadow:0 0 0 2px #6dff9a,0 0 16px 5px rgba(80,255,140,.7)}
+.u.entry{box-shadow:0 0 0 2px var(--gold),0 0 18px 6px rgba(255,212,90,.85);animation:entryP 1s ease-in-out infinite}
+.u.sel{box-shadow:0 0 0 3px #fff,0 0 22px 8px rgba(255,255,255,.8)!important;transform:translateY(-8px)}
+.u.syn{animation:synP 1.8s ease-in-out infinite}
+.u.tgt,.hero.tgt .pt{box-shadow:0 0 0 3px #ff5a4a,0 0 20px 7px rgba(255,70,50,.9)!important;cursor:crosshair;animation:tgtP .7s ease-in-out infinite}
+.u .bdA,.u .bdH{position:absolute;bottom:1.2%;width:30%;height:12.5%;font:700 calc(var(--cw)*.17) var(--display);display:flex;align-items:center;justify-content:center;border-radius:6px;font-style:normal;text-shadow:0 1px 2px #000;pointer-events:none}
+.u .bdA{left:2%;background:linear-gradient(180deg,#e4492f,#8f2112);border:1px solid #2a0a05}
+.u .bdH{right:2%;background:linear-gradient(180deg,#34b862,#17673a);border:1px solid #06210f}
+.u .bdA.up{color:var(--gold)}.u .bdH.low{color:#ffb0a8}
+.u .zz{position:absolute;top:3%;right:4%;font:700 calc(var(--cw)*.15) var(--body);background:rgba(10,14,30,.8);border-radius:8px;padding:0 5px;color:#9fd0ff;pointer-events:none}
+.u .pr{position:absolute;top:3%;left:3%;width:22%;height:22%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8ad0ff,#2a74c8);border:2px solid #dff0ff;display:flex;align-items:center;justify-content:center;font-size:calc(var(--cw)*.13);pointer-events:none}
+.hc{position:absolute;background-size:100% 100%;border-radius:9px;box-shadow:0 6px 14px rgba(0,0,0,.7);transition:transform .22s cubic-bezier(.2,.8,.3,1.1),left .25s,top .25s;transform-origin:50% 100%;cursor:grab}
+.hc:hover{transform:translateY(-70px) scale(1.18) rotate(0)!important;z-index:50!important}
+.hc.ok{box-shadow:0 0 0 2px #6dff9a,0 0 18px 6px rgba(80,255,140,.65),0 6px 14px rgba(0,0,0,.7)}
+.hc.no{filter:brightness(.55) saturate(.6)}
+.cb{position:absolute;width:62px;height:88px;border-radius:9px;border:3px solid #ffd45a;background:radial-gradient(circle,#ff9a3a,#d4540f 70%,#8a2c06);box-shadow:0 3px 8px rgba(0,0,0,.5)}
+.hero{position:absolute;width:170px}
+.hero .pt{width:150px;height:150px;border-radius:9px;background-size:cover;box-shadow:0 0 0 3px #ffb03a,0 0 0 7px #c4281a,0 0 0 9px #5a0f0a,0 0 20px 7px rgba(255,110,20,.5);position:relative;margin-left:8px}
+.hero .nm{font:400 15px var(--display);margin:11px 0 4px 8px;letter-spacing:.5px;text-shadow:0 2px 3px #000}
+.hpb{margin-left:8px;width:150px;height:18px;border-radius:9px;background:rgba(0,0,0,.6);overflow:hidden;position:relative;border:1px solid #000}
+.hpb i{position:absolute;inset:0 auto 0 0;display:block;transition:width .5s}
+.hpb b{position:absolute;inset:0;text-align:center;font:700 12px/18px var(--body);text-shadow:0 1px 2px #000}
+.abtn{position:relative;width:60px;height:60px;border-radius:50%;border:3px solid #7fd7ff;background:radial-gradient(circle at 40% 35%,#3fa8e8,#123c70);padding:0;overflow:hidden}
+.abtn img{width:100%;height:100%;object-fit:cover;display:block}
+.abtn.off{filter:grayscale(.8) brightness(.6)}
+.abtn.sel{box-shadow:0 0 0 3px #fff,0 0 22px 8px #fff}
+.abtn small{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);font:700 10px/14px var(--body);text-align:center}
+.tbtn{position:relative;width:66px;height:60px;border:0;background:none;padding:0}
+.tbtn img{width:100%;height:100%;object-fit:contain}
+.tbtn.on{animation:zP 1s ease-in-out infinite}
+.tbtn.off{filter:grayscale(1) brightness(.55)}
+.chip{font:700 12px var(--body);padding:2px 8px;border-radius:10px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.2)}
+.drawer{position:absolute;top:70px;height:590px;z-index:20;overflow:hidden;transition:width .3s}
+.drawer .in{padding:10px 10px;width:100%;box-sizing:border-box;height:100%;overflow:auto}
+.drawer .tab{position:absolute;top:0;bottom:0;width:30px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font:400 12px var(--display);letter-spacing:2px;color:var(--gold);background:rgba(255,190,70,.1);cursor:pointer}
+#ldr .tab{right:0}#rdr .tab{left:0}
+#ldr .in{padding-right:36px}#rdr .in{padding-left:36px}
+#ldr.closed .in,#rdr.closed .in{display:none}
+.sph{position:relative;width:42px;height:42px;margin:2px auto;transition:filter .3s,opacity .3s,transform .3s}
+.sph img{width:100%;height:100%;display:block}
+.sph.nk img{filter:hue-rotate(95deg) saturate(1.1)}
+.sph.sp{filter:grayscale(.9) brightness(.45)}
+.sph.lk{opacity:.22;filter:grayscale(1)}
+.sph.fill{animation:fillP .9s ease-out}
+.sph .lb{position:absolute;right:-2px;bottom:-2px;font:700 10px var(--body);background:#000a;border-radius:6px;padding:0 4px}
+.syn-c{border-radius:9px;padding:6px 8px;margin-bottom:8px;background:rgba(255,255,255,.05);border-left:4px solid var(--cc)}
+.syn-c h4{margin:0 0 3px;font:400 13px var(--display);display:flex;justify-content:space-between;color:var(--cc)}
+.syn-c .lv{font:400 11px var(--body);color:var(--mute);display:flex;gap:6px;margin:1px 0}
+.syn-c .lv.on{color:#fff}.syn-c .lv i{font-style:normal;width:14px}
+.dim{opacity:.55}
+.btn{font:400 15px var(--display);letter-spacing:.5px;padding:9px 18px;border-radius:10px;border:2px solid #ffcf5a;background:linear-gradient(180deg,#ff9a2a,#c4281a);text-shadow:0 2px 2px #0008;box-shadow:0 3px 0 #5a0f0a}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #5a0f0a}
+.btn.off{filter:grayscale(.9) brightness(.6);pointer-events:none}
+.btn.sm{font-size:12px;padding:5px 10px}
+#fx{position:absolute;inset:0;pointer-events:none;z-index:40}
+#arrow{position:absolute;inset:0;pointer-events:none;z-index:45}
+.fl{position:absolute;z-index:50;font:400 30px var(--display);pointer-events:none;text-shadow:0 0 6px #000,0 2px 0 #000;animation:fl 1s ease-out forwards;transform:translate(-50%,-50%)}
+#insp{position:absolute;z-index:60;width:250px;padding:10px;display:none}
+#insp .row{display:flex;justify-content:space-between;font-size:13px;margin:2px 0}
+#insp h3{margin:0 0 6px;font:400 15px var(--display)}
+#insp img{width:70px;float:left;margin-right:10px;border-radius:5px}
+#toast{position:absolute;left:50%;top:92px;transform:translateX(-50%);z-index:70;padding:7px 16px;border-radius:20px;background:#000c;border:1.5px solid var(--gold);font:500 14px var(--body);display:none;white-space:nowrap}
+#log{position:absolute;z-index:15;font:500 13px var(--body);color:#fff;text-shadow:0 1px 3px #000;pointer-events:none}
+#scene{position:absolute;inset:0;z-index:90;background:#000;display:none}
+#scene video{width:100%;height:100%;object-fit:contain;background:#000}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:95;pointer-events:none}
+#menu,#over{position:absolute;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(circle at 50% 35%,rgba(30,40,90,.92),rgba(4,6,14,.97))}
+#over{display:none;z-index:110;background:rgba(3,5,12,.82)}
+#menu h1{margin:0;font:400 54px var(--display);letter-spacing:2px;color:var(--gold);text-shadow:0 4px 0 #8a2c06,0 0 30px rgba(255,154,42,.5)}
+#menu p,#over p{margin:0;color:var(--mute);font-size:14px;text-align:center;max-width:760px;line-height:1.45}
+.pick{display:flex;gap:26px}
+.pk{width:250px;padding:12px;border-radius:14px;border:2px solid var(--line);background:rgba(10,16,34,.85);text-align:center;transition:transform .2s,box-shadow .2s}
+.pk:hover,.pk.on{transform:translateY(-6px);box-shadow:0 0 0 3px var(--gold),0 0 30px rgba(255,200,80,.5)}
+.pk img{width:190px;height:190px;border-radius:10px;object-fit:cover}
+.pk h3{margin:8px 0 4px;font:400 22px var(--display)}
+.pk div{font-size:12px;color:var(--mute);line-height:1.4;text-align:left}
+#tools{position:absolute;right:8px;top:6px;z-index:80;display:flex;gap:6px;align-items:flex-start}
+#tpanel{display:none;position:absolute;right:0;top:34px;width:230px;padding:10px;flex-direction:column;gap:6px}
+#rot{display:none;position:fixed;inset:0;z-index:999;background:#05070f;color:#fff;align-items:center;justify-content:center;text-align:center;font:400 20px var(--display);padding:30px}
+@media (orientation:portrait) and (max-width:700px){#rot{display:flex}}
+@keyframes surge{0%{opacity:0;transform:translateY(30px) scale(.8);filter:brightness(2.4)}60%{opacity:1;transform:translateY(-4px) scale(1.05);filter:brightness(1.5)}100%{opacity:1;transform:none;filter:none}}
+@keyframes hurt{0%{filter:brightness(3) saturate(0)}30%{transform:translate(-5px,2px)}60%{transform:translate(4px,-2px)}100%{filter:none;transform:none}}
+@keyframes entryP{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+@keyframes synP{0%,100%{box-shadow:0 0 6px 1px var(--g),0 4px 10px rgba(0,0,0,.6)}50%{box-shadow:0 0 20px 7px var(--g),0 4px 10px rgba(0,0,0,.6)}}
+@keyframes tgtP{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
+@keyframes zP{0%,100%{transform:scale(1);filter:drop-shadow(0 0 4px #ffd45a)}50%{transform:scale(1.12);filter:drop-shadow(0 0 16px #ffd45a)}}
+@keyframes fillP{0%{transform:scale(.4);filter:brightness(4)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes fl{0%{opacity:0;transform:translate(-50%,-30%) scale(.5)}15%{opacity:1;transform:translate(-50%,-60%) scale(1.25)}100%{opacity:0;transform:translate(-50%,-190%) scale(1)}}
+@keyframes flash{0%{opacity:0}12%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.u,.hc{animation:none!important}}
+</style>
+
+<div id="rot">Gire o aparelho para a horizontal para jogar</div>
+<div id="app"><div id="stage">
+ <div id="field">
+  <div id="bg"></div><div id="shade"></div>
+  <div id="ehand"></div>
+  <div class="abs" id="baba" style="width:130px;height:128px;z-index:12"><img src="a/heroes/baba.webp" style="position:absolute;left:20px;top:0;width:70px;height:108px"><div id="tm" style="position:absolute;left:0;top:78px;width:110px;text-align:center;font:400 22px var(--display);text-shadow:0 0 8px #7fffd0,0 2px 2px #000;color:#eafff6">60</div></div>
+  <div id="turnchip" class="chip abs" style="z-index:12"></div>
+  <div id="eboard" class="abs"></div>
+  <div id="mid" class="abs" style="height:16px;border-radius:8px;background:rgba(0,0,0,.5);border:2px solid #3a1a12;overflow:hidden;z-index:6"><div id="bast" style="height:100%;width:100%;background:linear-gradient(180deg,#ff6a4a,#c4281a 60%,#8a1a10)"></div></div>
+  <div id="pboard" class="abs"></div>
+  <div id="ehero" class="hero" data-hero="1"></div>
+  <div id="phero" class="hero" data-hero="0"></div>
+  <div id="hand"></div>
+  <button id="endbtn" class="btn abs" style="z-index:14">FIM DO TURNO</button>
+  <div id="log"></div>
+ </div>
+ <div id="ldr" class="drawer panel" style="left:0;border-radius:0 12px 12px 0"><div class="tab" data-tab="l">ENERGIA</div><div class="in" id="ldrin"></div></div>
+ <div id="rdr" class="drawer panel" style="right:0;border-radius:12px 0 0 12px"><div class="tab" data-tab="r">SINERGIAS</div><div class="in" id="rdrin"></div></div>
+ <canvas id="fx" width="1280" height="720"></canvas>
+ <svg id="arrow" width="1280" height="720"><path id="arrp" d="" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="10 8" stroke-linecap="round" style="filter:drop-shadow(0 0 5px #ff5a4a)"/><circle id="arrc" r="14" fill="none" stroke="#ff5a4a" stroke-width="4" cx="-50" cy="-50"/></svg>
+ <div id="insp" class="panel"></div>
+ <div id="toast"></div>
+ <div id="tools"><button class="btn sm" id="bsnd">SOM: LIGADO</button><button class="btn sm" id="btl">TESTE</button><div id="tpanel" class="panel"></div></div>
+ <div id="scene"><video id="vid" playsinline></video><button class="btn sm abs" id="skip" style="right:14px;bottom:14px">PULAR</button></div>
+ <div id="flash"></div>
+ <div id="over"><h1 id="ovt" style="margin:0;font:400 64px var(--display);color:var(--gold);text-shadow:0 4px 0 #8a2c06"></h1><p id="ovp"></p><button class="btn" id="again">JOGAR DE NOVO</button></div>
+ <div id="menu">
+  <h1>ARENA DBZ</h1>
+  <p>Demo jogável contra o Bot. Escolha seu herói. As regras são as dos PDFs; o que ainda é proposta está marcado no painel TESTE.</p>
+  <div class="pick" id="pick"></div>
+  <button class="btn" id="go" style="font-size:22px;padding:12px 34px">JOGAR CONTRA O BOT</button>
+  <p style="font-size:12px">Toque ou clique numa carta da mão para jogar. Toque numa unidade sua e depois no alvo, ou arraste até o alvo. Segure uma carta para ver o ATQ detalhado. Arraste a habilidade do herói até o alvo.</p>
+ </div>
+</div></div>
+
+<script>
+const DECKS={"goku":[{"id":"GK01","n":"Son Goku","c":["Saiyajin"],"kw":"Atingir","cost":5,"atk":6,"hp":4,"st":"lendaria"},{"id":"GK02","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":3,"atk":4,"hp":3,"st":"comum"},{"id":"GK03","n":"Son Goku","c":["Saiyajin"],"kw":"Protetor","cost":3,"atk":2,"hp":4,"st":"comum"},{"id":"GK04","n":"Son Goku","c":["Saiyajin"],"kw":"Veloz","cost":4,"atk":5,"hp":3,"st":"comum"},{"id":"GK05","n":"Son Goku","c":["Saiyajin"],"kw":"Veloz","cost":1,"atk":2,"hp":1,"st":"comum"},{"id":"GK06","n":"Son Goku","c":["Saiyajin"],"kw":"Investida","cost":5,"atk":6,"hp":3,"st":"super"},{"id":"GK07","n":"Son Goku","c":["Saiyajin"],"kw":"Protetor","cost":1,"atk":1,"hp":2,"st":"comum"},{"id":"GK08","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":1,"atk":2,"hp":1,"st":"comum"},{"id":"GK09","n":"Son Goku","c":["Saiyajin"],"kw":"Investida","cost":4,"atk":5,"hp":2,"st":"comum"},{"id":"GK10","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":2,"atk":3,"hp":2,"st":"comum"},{"id":"GK11","n":"Son Goku Criança","c":["Saiyajin"],"kw":"Veloz","cost":1,"atk":2,"hp":1,"st":"comum"},{"id":"GK12","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":6,"atk":7,"hp":6,"st":"comum"},{"id":"GK13","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":1,"atk":2,"hp":1,"st":"comum"},{"id":"GK14","n":"Son Goku","c":["Saiyajin"],"kw":"Protetor","cost":2,"atk":1,"hp":3,"st":"comum"},{"id":"GK15","n":"Son Goku","c":["Saiyajin"],"kw":"Veloz","cost":2,"atk":3,"hp":1,"st":"comum"},{"id":"GK16","n":"Bastão Mágico","c":["Saiyajin"],"kw":"Protetor","cost":1,"atk":1,"hp":2,"st":"comum"},{"id":"GK17","n":"Son Goku","c":["Saiyajin"],"kw":"Investida","cost":2,"atk":2,"hp":1,"st":"comum"},{"id":"GK18","n":"Son Goku","c":["Saiyajin"],"kw":"Protetor","cost":4,"atk":3,"hp":5,"st":"comum"},{"id":"GK19","n":"Oozaru Son Goku","c":["Saiyajin"],"kw":"Investida","cost":8,"atk":9,"hp":6,"st":"comum"},{"id":"GK20","n":"Son Goku Criança","c":["Saiyajin"],"kw":"Protetor","cost":2,"atk":1,"hp":3,"st":"comum"},{"id":"GK21","n":"Son Goku","c":["Saiyajin"],"kw":"Veloz","cost":7,"atk":9,"hp":5,"st":"comum"},{"id":"GK22","n":"Son Goku","c":["Saiyajin"],"kw":"Investida","cost":3,"atk":3,"hp":2,"st":"comum"},{"id":"GK23","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":3,"atk":4,"hp":3,"st":"comum"},{"id":"GK24","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":4,"atk":5,"hp":4,"st":"comum"},{"id":"GK25","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":1,"atk":2,"hp":1,"st":"comum"},{"id":"GK26","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":2,"atk":3,"hp":2,"st":"comum"},{"id":"GK27","n":"A Dupla Mais Forte","c":["Saiyajin"],"kw":"Veloz","cost":6,"atk":8,"hp":4,"st":"comum"},{"id":"GK28","n":"Son Goku","c":["Saiyajin"],"kw":"Veloz","cost":3,"atk":4,"hp":2,"st":"super"},{"id":"GK29","n":"Son Goku","c":["Saiyajin"],"kw":"Atacar","cost":5,"atk":6,"hp":5,"st":"premium"},{"id":"GK30","n":"Son Goku","c":["Saiyajin"],"kw":"Investida","cost":6,"atk":7,"hp":4,"st":"comum"}],"vegeta":[{"id":"VG01","n":"Vegeta","c":["Saiyajin"],"kw":"Protetor","cost":3,"atk":2,"hp":4,"st":"comum"},{"id":"VG02","n":"Vegeta","c":["Saiyajin"],"kw":"Veloz","cost":4,"atk":5,"hp":3,"st":"comum"},{"id":"VG03","n":"Nappa","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":1,"atk":1,"hp":1,"st":"comum"},{"id":"VG04","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Investida","cost":5,"atk":5,"hp":3,"st":"comum"},{"id":"VG05","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Protetor","cost":4,"atk":2,"hp":5,"st":"super"},{"id":"VG06","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":3,"atk":3,"hp":3,"st":"comum"},{"id":"VG07","n":"Vegeta Oozaru","c":["Saiyajin","Vilão"],"kw":"Investida","cost":7,"atk":8,"hp":4,"st":"comum"},{"id":"VG08","n":"Vegeta Oozaru","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":7,"atk":7,"hp":7,"st":"super"},{"id":"VG09","n":"Raditz","c":["Saiyajin","Vilão"],"kw":"Protetor","cost":4,"atk":2,"hp":5,"st":"comum"},{"id":"VG10","n":"Vegeta","c":["Saiyajin"],"kw":"Investida","cost":3,"atk":3,"hp":2,"st":"comum"},{"id":"VG11","n":"Nappa","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":6,"atk":6,"hp":6,"st":"comum"},{"id":"VG12","n":"Nappa","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":6,"atk":6,"hp":6,"st":"comum"},{"id":"VG13","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Protetor","cost":4,"atk":2,"hp":5,"st":"comum"},{"id":"VG14","n":"Vegeta","c":["Saiyajin"],"kw":"Veloz","cost":3,"atk":4,"hp":2,"st":"comum"},{"id":"VG15","n":"Vegeta","c":["Saiyajin"],"kw":"Veloz","cost":4,"atk":5,"hp":3,"st":"comum"},{"id":"VG16","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":5,"atk":5,"hp":5,"st":"comum"},{"id":"VG17","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Investida","cost":4,"atk":4,"hp":2,"st":"comum"},{"id":"VG18","n":"Nappa","c":["Saiyajin","Vilão"],"kw":"Investida","cost":1,"atk":1,"hp":1,"st":"comum"},{"id":"VG19","n":"Nappa","c":["Saiyajin","Vilão"],"kw":"Protetor","cost":5,"atk":3,"hp":6,"st":"comum"},{"id":"VG20","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Protetor","cost":9,"atk":6,"hp":10,"st":"comum"},{"id":"VG21","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Veloz","cost":3,"atk":3,"hp":2,"st":"comum"},{"id":"VG22","n":"Vegeta","c":["Saiyajin"],"kw":"Protetor","cost":3,"atk":2,"hp":4,"st":"comum"},{"id":"VG23","n":"Nappa","c":["Saiyajin","Vilão"],"kw":"Protetor","cost":5,"atk":3,"hp":6,"st":"comum"},{"id":"VG24","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Investida","cost":4,"atk":4,"hp":2,"st":"comum"},{"id":"VG25","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Protetor","cost":3,"atk":2,"hp":3,"st":"comum"},{"id":"VG26","n":"Vegeta","c":["Saiyajin"],"kw":"Atacar","cost":3,"atk":4,"hp":3,"st":"comum"},{"id":"VG27","n":"Vegeta","c":["Saiyajin"],"kw":"Protetor","cost":2,"atk":1,"hp":3,"st":"comum"},{"id":"VG28","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":4,"atk":4,"hp":4,"st":"premium"},{"id":"VG29","n":"Raditz","c":["Saiyajin","Vilão"],"kw":"Atacar","cost":4,"atk":4,"hp":4,"st":"comum"},{"id":"VG30","n":"Vegeta","c":["Saiyajin","Vilão"],"kw":"Atingir","cost":5,"atk":6,"hp":3,"st":"lendaria"}]};
+const SCENES=["s09.jpg", "s25.jpg", "s31.jpg"];
+/* ================= DADOS ================= */
+const CAT={'Saiyajin':'#ff9a2a','Humano':'#ffffff','Vilão':'#a35cff','Namekuseijin':'#3fd07a','Androide':'#4aa3ff'};
+const SYN={
+ 'Saiyajin':{n:['','','Instinto de Batalha','Orgulho dos Saiyajins','Adrenalina Saiyajin','Instinto de Sobrevivência','Ascensão dos Guerreiros','Investida Saiyajin'],
+  d:['','','+1 ATQ nos Saiyajins','+1 ATQ (total +2)','Saiyajins vivos curam 1 PV no início do turno','Saiyajin com PV ≤ metade do máximo: +1 ATQ','+2 ATQ (níveis 2, 3 e 6 = +4)','Arrastar um Saiyajin ao herói inimigo causa exatamente 1 PV (ignora Protetor)']},
+ 'Humano':{n:['','','Ataque Coordenado','Espírito de Equipe','Recuperação Aprimorada','Poder de União','Vitalidade Humana','Despertar Heroico'],
+  d:['','','+1 ATQ nos Humanos','Humanos curam 1 PV no início do turno','Cura vira 2 PV','+1 ATQ (total +2)','Cura vira 3 PV','Dano letal deixa 1 PV (1x por carta); todos +1 ATQ no turno']},
+ 'Vilão':{n:['','','Poder da Maldade','Dominação Vilanesca','Aura da Destruição','Supremacia Maligna','Poder Absoluto','Apogeu da Destruição'],
+  d:['','','Habilidade ativa do herói causa +1 de dano','+2 de dano','+3 de dano','+4 de dano','+5 de dano','+6 de dano; ao atingir unidades, o herói inimigo perde 1 PV direto']}};
+const KW={Atacar:'Ataque normal. Não ataca no turno em que entra.',Protetor:'Enquanto existir, os ataques diretos ao herói ficam bloqueados.',Veloz:'Ao entrar, ataca 1 unidade inimiga (não o herói).',Investida:'Ao entrar, ataca 1 unidade ou o herói (se não houver Protetor).',Atingir:'Ao entrar, atinge 1 unidade inimiga com energia (sem contra-ataque).'};
+const HERO={
+ goku:{name:'Goku',img:'goku',imgT:'goku_t',col:'#46b5ff',icon:'ab_goku',tName:'Kaioken',
+  ab:{n:'Kamehameha',cost:1,dmg:2},abT:{n:'Kamehameha Kaioken',cost:2,dmg:5},
+  ficha:['Kamehameha: 1 esfera, 2 de dano energético','Kaioken (TRANSFORMAÇÃO): Kamehameha 5 de dano, 2 esferas; perde 1 PV por turno','Comeback aos 10 PV: Kaioken x3 Kamehameha, 10 de dano direto']},
+ vegeta:{name:'Vegeta',img:'vegeta',imgT:'vegeta_t',col:'#a35cff',icon:'ab_vegeta',tName:'Oozaru',
+  ab:{n:'Galick Gun',cost:1,dmg:2},abT:{n:'Rajada pela Boca',cost:2,dmg:3},
+  ficha:['Galick Gun: 1 esfera, 2 de dano energético','Oozaru (TRANSFORMAÇÃO): 3 de dano dividido nas unidades inimigas (grátis); ativa vira Rajada pela Boca, 2 esferas, 3 de dano','Comeback aos 10 PV: Oozaru solta a Rajada pela Boca, 10 de dano direto e recupera 10 PV']}};
+const VOZ_PARA=n=>/Oozaru/.test(n)?(/Vegeta/.test(n)?'oozaru':null):/Vegeta/.test(n)?'vegeta':/Nappa/.test(n)?'nappa':/Raditz/.test(n)?'raditz':/Goku/.test(n)?'goku':null;
+/* ================= MOTOR (regras) ================= */
+let G=null,UID=1;
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const E=(t,o={})=>{G.ev.push({t,...o})};
+const opp=s=>1-s;
+function newPlayer(side,key){return{side,key,hero:{hp:50,max:50,tf:false,cb:false,abUsed:false},deck:shuffle(DECKS[key].map(c=>({...c}))),hand:[],board:[],turns:0,energyMax:0,energy:0,boost:-1}}
+function draw(p,n){for(let i=0;i<n;i++){if(!p.deck.length)return;const c=p.deck.pop();if(p.hand.length<10){p.hand.push(c);E('draw',{side:p.side})}else E('burn',{side:p.side})}}
+function newGame(hp,hb){G={p:[newPlayer(0,hp),newPlayer(1,hb)],turn:0,n:0,over:null,ev:[],scenes:[],pending:null,first:Math.random()<.5?0:1};
+ const f=G.first;draw(G.p[f],3);draw(G.p[opp(f)],4);startTurn(f,true);return G}
+function startTurn(side,first){const p=G.p[side];G.turn=side;G.n++;p.turns++;p.energyMax=Math.min(10,p.turns);p.energy=p.energyMax;p.hero.abUsed=false;
+ p.board.forEach(u=>{u.sick=false;u.atkd=false;u.entry=null;u.entryUsed=false;u.justPlayed=false});
+ E('turn',{side});
+ if(p.hero.tf&&p.key==='goku'){E('log',{m:'Kaioken: Goku perde 1 PV'});dmgHero(side,1,true);if(G.over)return}
+ const sy=synLv(p);
+ if(sy.Saiyajin>=4)p.board.forEach(u=>{if(u.cats.includes('Saiyajin'))healUnit(u,1)});
+ const hh=sy.Humano>=6?3:sy.Humano>=4?2:sy.Humano>=3?1:0;
+ if(hh)p.board.forEach(u=>{if(u.cats.includes('Humano'))healUnit(u,hh)});
+ if(!first)draw(p,1)}
+function cnt(p,c){return p.board.filter(u=>u.cats.includes(c)).length}
+function synLv(p){const o={};for(const c of ['Saiyajin','Humano','Vilão']){const n=cnt(p,c);o[c]=n>=2?Math.min(n,7):0}return o}
+function atkParts(p,u){const sy=synLv(p),parts=[];
+ if(u.cats.includes('Saiyajin')){const l=sy.Saiyajin;
+  if(l>=2)parts.push(['Instinto de Batalha',1]);if(l>=3)parts.push(['Orgulho dos Saiyajins',1]);
+  if(l>=5&&u.hp<=Math.ceil(u.max/2))parts.push(['Instinto de Sobrevivência',1]);if(l>=6)parts.push(['Ascensão dos Guerreiros',2])}
+ if(u.cats.includes('Humano')){const l=sy.Humano;if(l>=2)parts.push(['Ataque Coordenado',1]);if(l>=5)parts.push(['Poder de União',1]);if(l===7&&p.boost===G.n)parts.push(['Despertar Heroico',1])}
+ return parts}
+function finalAtk(p,u){return Math.max(0,u.atk0+atkParts(p,u).reduce((a,x)=>a+x[1],0))}
+function hasProt(p){return p.board.some(u=>u.kw==='Protetor')}
+function healUnit(u,n){const b=u.hp;u.hp=Math.min(u.max,u.hp+n);if(u.hp>b)E('heal',{uid:u.uid,n:u.hp-b})}
+function healHero(s,n){const h=G.p[s].hero,b=h.hp;h.hp=Math.min(h.max,h.hp+n);if(h.hp>b)E('hheal',{side:s,n:h.hp-b})}
+function dmgUnit(side,u,n){const p=G.p[side];u.hp-=n;E('hit',{uid:u.uid,n});
+ if(u.hp<=0&&u.cats.includes('Humano')&&synLv(p).Humano===7&&!u.saved){u.hp=1;u.saved=true;p.boost=G.n;E('save',{uid:u.uid})}}
+function sweep(){for(const p of G.p){const dead=p.board.filter(u=>u.hp<=0);dead.forEach(u=>E('die',{uid:u.uid,side:p.side}));p.board=p.board.filter(u=>u.hp>0)}}
+function dmgHero(side,n,self){if(n<=0||G.over)return;const h=G.p[side].hero;h.hp=Math.max(0,h.hp-n);E('hhit',{side,n,self});
+ if(h.hp<=0){G.over={win:opp(side)};return}
+ if(!h.cb&&h.hp<=10){h.cb=true;comeback(side)}}
+function comeback(side){const p=G.p[side];G.scenes.push({t:'comeback',side,key:p.key});E('log',{m:'COMEBACK de '+HERO[p.key].name+'!'});
+ E('beam',{from:'h'+side,to:'h'+opp(side),col:HERO[p.key].col,big:1});
+ dmgHero(opp(side),10);if(p.key==='vegeta')healHero(side,10)}
+function canTransform(side){const p=G.p[side];return !G.over&&p.energyMax>=10&&!p.hero.tf}
+function transform(side){if(!canTransform(side))return false;const p=G.p[side],o=G.p[opp(side)];p.hero.tf=true;G.scenes.push({t:'transf',side,key:p.key});E('log',{m:HERO[p.key].name+' transforma: '+HERO[p.key].tName});
+ if(p.key==='vegeta'){const us=o.board.slice();if(!us.length)dmgHero(opp(side),3);else{const hit={};for(let i=0;i<Math.min(3,Math.max(3,us.length));i++){if(us.length>=3&&i>=3)break;const u=us[i%us.length];hit[u.uid]=(hit[u.uid]||0)+1}
+   Object.entries(hit).forEach(([id,n])=>{const u=us.find(x=>x.uid==id);E('beam',{from:'h'+side,to:'u'+id,col:'#a35cff'});dmgUnit(opp(side),u,n)});sweep()}}
+ return true}
+function curAb(p){return p.hero.tf?HERO[p.key].abT:HERO[p.key].ab}
+function vilBonus(p){const l=synLv(p)['Vilão'];return l>=2?l-1:0}
+function abTargets(side){const o=G.p[opp(side)];return{units:o.board.map(u=>u.uid),hero:!hasProt(o)}}
+function abReason(side){const p=G.p[side],a=curAb(p);if(G.over)return'Fim de jogo';if(G.turn!==side)return'Não é o seu turno';if(p.hero.abUsed)return'A habilidade já foi usada neste turno';if(p.energy<a.cost)return'Faltam esferas ('+a.cost+' necessárias)';return null}
+function useAbility(side,tgt){if(abReason(side))return false;const p=G.p[side],o=G.p[opp(side)],a=curAb(p),T=abTargets(side);
+ if(tgt.hero&&!T.hero)return false;if(tgt.uid&&!T.units.includes(tgt.uid))return false;
+ p.energy-=a.cost;p.hero.abUsed=true;const d=a.dmg+vilBonus(p);E('log',{m:HERO[p.key].name+' usa '+a.n+' ('+d+')'});
+ E('ab',{side,name:a.n});
+ if(tgt.hero){E('beam',{from:'h'+side,to:'h'+opp(side),col:HERO[p.key].col});dmgHero(opp(side),d)}
+ else{const u=o.board.find(x=>x.uid===tgt.uid);E('beam',{from:'h'+side,to:'u'+u.uid,col:HERO[p.key].col});dmgUnit(opp(side),u,d);if(synLv(p)['Vilão']===7)dmgHero(opp(side),1);sweep()}
+ return true}
+function canAct(p,u){return !u.atkd&&(!u.sick||(u.entry&&!u.entryUsed))}
+function legalTargets(side,u){const o=G.p[opp(side)],p=G.p[side];const t={units:o.board.map(x=>x.uid),hero:false};
+ if(u.sick&&u.entry==='veloz')return t;
+ if(!hasProt(o))t.hero=true;else if(!u.sick&&synLv(p).Saiyajin>=7&&u.cats.includes('Saiyajin'))t.hero=true;
+ return t}
+function atkReason(side,u,tgt){const o=G.p[opp(side)];if(G.over)return'Fim de jogo';if(G.turn!==side)return'Não é o seu turno';if(G.pending)return'Resolva o Atingir primeiro';
+ if(u.atkd)return'Esta unidade já atacou neste turno';if(u.sick&&!(u.entry&&!u.entryUsed))return'Unidade recém-jogada não ataca neste turno (sem Veloz/Investida)';
+ if(tgt.hero){if(u.sick&&u.entry==='veloz')return'Veloz na entrada só ataca unidades';if(!legalTargets(side,u).hero)return'Protetor bloqueia o ataque direto ao herói'}return null}
+function attack(side,uid,tgt){const p=G.p[side],o=G.p[opp(side)],a=p.board.find(x=>x.uid===uid);if(!a||atkReason(side,a,tgt))return false;
+ const ad=finalAtk(p,a);
+ if(tgt.hero){const sy7=synLv(p).Saiyajin>=7&&a.cats.includes('Saiyajin')&&!a.sick;const d=sy7?1:ad;E('atk',{from:'u'+uid,to:'h'+opp(side),kind:a.kw});dmgHero(opp(side),d)}
+ else{const t=o.board.find(x=>x.uid===tgt.uid);if(!t)return false;const td=finalAtk(o,t);E('atk',{from:'u'+uid,to:'u'+t.uid,kind:a.kw});dmgUnit(opp(side),t,ad);dmgUnit(side,a,td);sweep()}
+ a.atkd=true;if(a.sick)a.entryUsed=true;return true}
+function playReason(side,i){const p=G.p[side],c=p.hand[i];if(G.over)return'Fim de jogo';if(G.turn!==side)return'Não é o seu turno';if(G.pending)return'Resolva o Atingir primeiro';if(!c)return'Carta inválida';if(c.cost>p.energy)return'Faltam esferas ('+c.cost+' necessárias, você tem '+p.energy+')';if(p.board.length>=7)return'Campo cheio (máximo 7 unidades)';return null}
+function play(side,i){if(playReason(side,i))return null;const p=G.p[side],o=G.p[opp(side)],c=p.hand.splice(i,1)[0];p.energy-=c.cost;
+ const u={uid:UID++,id:c.id,name:c.n,cats:c.c,kw:c.kw,cost:c.cost,atk0:c.atk,hp:c.hp,max:c.hp,st:c.st,sick:true,atkd:false,entry:c.kw==='Veloz'?'veloz':c.kw==='Investida'?'investida':null,entryUsed:false,saved:false,justPlayed:true};
+ p.board.push(u);E('play',{uid:u.uid,side});E('log',{m:(side?'Bot':'Você')+' jogou '+u.name+' ('+u.kw+')'});
+ if(u.kw==='Atingir'&&o.board.length)G.pending={side,uid:u.uid};return u}
+function atingir(side,tuid){const pd=G.pending;if(!pd||pd.side!==side)return false;const p=G.p[side],o=G.p[opp(side)],u=p.board.find(x=>x.uid===pd.uid),t=o.board.find(x=>x.uid===tuid);if(!u||!t)return false;
+ E('beam',{from:'u'+u.uid,to:'u'+t.uid,col:'#ffd45a'});dmgUnit(opp(side),t,finalAtk(p,u));sweep();G.pending=null;E('log',{m:u.name+' usa Atingir'});return true}
+function endTurn(side){if(G.over||G.turn!==side||G.pending)return false;startTurn(opp(side));return true}
+/* ================= BOT ================= */
+function aiNext(side){const p=G.p[side],o=G.p[opp(side)];
+ if(G.pending&&G.pending.side===side){const t=o.board.slice().sort((a,b)=>(finalAtk(o,b)+b.cost)-(finalAtk(o,a)+a.cost))[0];return{type:'atingir',uid:t.uid}}
+ if(canTransform(side)&&(p.key==='vegeta'||p.hero.hp>20||o.hero.hp<=25))return{type:'transform'};
+ let best=null,bs=-1;
+ p.hand.forEach((c,i)=>{if(c.cost<=p.energy&&p.board.length<7){let s=c.cost+(c.kw==='Investida'?1.2:0)+(c.kw==='Atingir'?2:0)+(c.kw==='Veloz'&&o.board.length?.8:0)+(c.kw==='Protetor'&&(p.hero.hp<30||o.board.length>p.board.filter(u=>u.kw==='Protetor').length)?1.4:0)+Math.random()*.5;if(s>bs){bs=s;best=i}}});
+ if(best!==null)return{type:'play',idx:best};
+ let ba=null,bsc=1.5;
+ for(const u of p.board){if(!canAct(p,u))continue;const T=legalTargets(side,u),ad=finalAtk(p,u);if(ad<=0)continue;
+  for(const tid of T.units){const t=o.board.find(x=>x.uid===tid),td=finalAtk(o,t);const kills=ad>=t.hp,dies=td>=u.hp;
+   let s=(kills?t.cost+3+(t.kw==='Protetor'?3:0):Math.min(ad,t.hp)*.5)-(dies?u.cost+2:td*.35)+(kills&&!dies?4:0);if(u.sick)s+=1;
+   if(s>bsc){bsc=s;ba={type:'attack',uid:u.uid,target:{uid:tid}}}}
+  if(T.hero){const sy7=synLv(p).Saiyajin>=7&&u.cats.includes('Saiyajin')&&!u.sick;const d=sy7?1:ad;let s=d*.9+(d>=o.hero.hp?50:0)+(o.hero.hp<=15?2:0)+(u.sick?1:0);
+   if(s>bsc){bsc=s;ba={type:'attack',uid:u.uid,target:{hero:true}}}}}
+ if(ba)return ba;
+ if(!abReason(side)){const T=abTargets(side),a=curAb(p),d=a.dmg+vilBonus(p);let bt=null,bv=-1;
+  for(const tid of T.units){const t=o.board.find(x=>x.uid===tid);const v=(d>=t.hp?t.cost+4+(t.kw==='Protetor'?3:0):d*.4);if(v>bv){bv=v;bt={uid:tid}}}
+  if(T.hero&&(bv<4||d>=o.hero.hp))bt={hero:true};
+  if(bt)return{type:'ability',target:bt}}
+ return{type:'end'}}
+/* ================= ÁUDIO ================= */
+let SOUND=true,AC=null,VMAP=null;const BUF={};let lastVoice=0;
+function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC}
+async function loadBuf(p){if(BUF[p])return BUF[p];const r=await fetch(p);const b=await ac().decodeAudioData(await r.arrayBuffer());return BUF[p]=b}
+function snd(path,vol=1,echo=false){if(!SOUND||!ac())return;loadBuf(path).then(b=>{const A=ac(),s=A.createBufferSource();s.buffer=b;const g=A.createGain();g.gain.value=vol;s.connect(g);g.connect(A.destination);
+ if(echo){const lp=A.createBiquadFilter();lp.type='lowpass';lp.frequency.value=3200;g.connect(lp);[[.167,.4],[.334,.16]].forEach(([d,v])=>{const dl=A.createDelay(1);dl.delayTime.value=d;const gg=A.createGain();gg.gain.value=v;lp.connect(dl);dl.connect(gg);gg.connect(A.destination)})}
+ s.start()}).catch(()=>{})}
+const sfx=(n,v=.8)=>snd('a/sfx/'+n+'.mp3',v);
+const voice=(n,v=1)=>snd('a/voz/'+n+'.mp3',v,true);
+function voiceEv(unitName,ev,force){if(!VMAP)return;const k=VOZ_PARA(unitName);if(!k||!VMAP[k]||!VMAP[k][ev]||!VMAP[k][ev].length)return;const now=performance.now();if(!force&&(now-lastVoice<900||Math.random()>.55))return;lastVoice=now;voice(rnd(VMAP[k][ev]))}
+const ATKSFX={Atacar:['soco1','soco2','soco3','chute1','chute2'],Veloz:['rush','rush2'],Investida:['invest'],Protetor:['soco3'],Atingir:['ki']};
+/* ================= EFEITOS VISUAIS ================= */
+const cv=document.getElementById('fx'),cx=cv.getContext('2d');const FX={parts:[],beams:[],rings:[],on:false};
+function fxLoop(){if(!FX.on)return;cx.clearRect(0,0,1280,720);cx.globalCompositeOperation='lighter';const now=performance.now();
+ FX.beams=FX.beams.filter(b=>now-b.t0<b.life);
+ for(const b of FX.beams){const a=(now-b.t0)/b.life,head=Math.min(1,a/.35),fade=a<.5?1:1-(a-.5)/.5;const hx=b.x1+(b.x2-b.x1)*head,hy=b.y1+(b.y2-b.y1)*head;
+  const w=(b.big?34:20)*fade;cx.lineCap='round';
+  for(const [lw,al,col] of [[w*1.8,.18,b.col],[w,.45,b.col],[w*.45,.95,'#fff']]){cx.strokeStyle=col;cx.globalAlpha=al*fade;cx.lineWidth=lw;cx.beginPath();cx.moveTo(b.x1,b.y1);cx.lineTo(hx,hy);cx.stroke()}
+  cx.globalAlpha=fade;const g=cx.createRadialGradient(hx,hy,2,hx,hy,w*1.8);g.addColorStop(0,'#fff');g.addColorStop(.4,b.col);g.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=g;cx.beginPath();cx.arc(hx,hy,w*1.8,0,7);cx.fill()}
+ FX.rings=FX.rings.filter(r=>now-r.t0<r.life);
+ for(const r of FX.rings){const a=(now-r.t0)/r.life;cx.globalAlpha=1-a;cx.strokeStyle=r.col;cx.lineWidth=6*(1-a)+1;cx.beginPath();cx.arc(r.x,r.y,10+r.r*a,0,7);cx.stroke()}
+ FX.parts=FX.parts.filter(p=>p.l>0);
+ for(const p of FX.parts){p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.vx*=.98;p.l-=1;cx.globalAlpha=Math.max(0,p.l/p.L);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.s*(p.l/p.L)+1,0,7);cx.fill()}
+ cx.globalAlpha=1;cx.globalCompositeOperation='source-over';
+ if(FX.beams.length||FX.parts.length||FX.rings.length)requestAnimationFrame(fxLoop);else{FX.on=false;cx.clearRect(0,0,1280,720)}}
+function fxStart(){if(!FX.on){FX.on=true;requestAnimationFrame(fxLoop)}}
+function burst(x,y,col,n=28,sp=7,g=.12){for(let i=0;i<n;i++){const a=Math.random()*6.28,v=Math.random()*sp+1;FX.parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g,s:2+Math.random()*4,c:Math.random()<.35?'#fff':col,l:30+Math.random()*25,L:55})}fxStart()}
+function ring(x,y,col,r=90){FX.rings.push({x,y,col,r,t0:performance.now(),life:520});fxStart()}
+function beam(x1,y1,x2,y2,col,big){FX.beams.push({x1,y1,x2,y2,col,big,t0:performance.now(),life:big?900:620});fxStart()}
+function float(x,y,txt,col){const d=document.createElement('div');d.className='fl';d.textContent=txt;d.style.left=x+'px';d.style.top=y+'px';d.style.color=col;stage.appendChild(d);setTimeout(()=>d.remove(),1000)}
+function shake(mag=8){const f=document.getElementById('field');f.animate([{transform:'translate(0,0)'},{transform:`translate(${-mag}px,${mag/2}px)`},{transform:`translate(${mag}px,${-mag/2}px)`},{transform:`translate(${-mag/2}px,${-mag/2}px)`},{transform:'translate(0,0)'}],{duration:320,easing:'ease-out'})}
+/* ================= INTERFACE ================= */
+const stage=document.getElementById('stage');const $=s=>document.querySelector(s);
+const UI={sel:null,lOpen:true,rOpen:true,busy:false,mode:'menu',heroPick:'goku',snapR:{},tleft:60,tmark:0,toastT:0,fill:false};
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+let SC=1;function fit(){SC=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform=`scale(${SC})`}
+addEventListener('resize',fit);fit();
+function rectOf(el){const r=el.getBoundingClientRect(),s=stage.getBoundingClientRect();const x=(r.left-s.left)/SC,y=(r.top-s.top)/SC,w=r.width/SC,h=r.height/SC;return{x,y,w,h,cx:x+w/2,cy:y+h/2}}
+function snap(){const m={};document.querySelectorAll('[data-rk]').forEach(e=>{m[e.dataset.rk]=rectOf(e)});UI.snapR=m;return m}
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(UI.toastT);UI.toastT=setTimeout(()=>t.style.display='none',2200)}
+function geo(){const L=UI.lOpen?150:32,Rw=UI.rOpen?262:32;const hx=L+8,bx=hx+178,bw=1280-bx-Rw-8;return{L,Rw,hx,bx,bw}}
+function unitHTML(p,u,mine,cw,i){const parts=atkParts(p,u),fa=finalAtk(p,u),h=Math.round(cw*430/300);
+ const sy=synLv(p);const act=u.cats.find(c=>sy[c]>=2);const cls=['u',mine?'mine':'theirs'];
+ if(u.justPlayed&&!u.shown){cls.push('new');u.shown=true}
+ if(UI.hurt&&UI.hurt.has(u.uid))cls.push('hurt');
+ if(mine&&G.turn===0&&!G.over&&canAct(p,u)&&!G.pending){cls.push(u.sick?'entry':'ready')}
+ if(UI.sel&&UI.sel.k==='u:'+u.uid)cls.push('sel');
+ if(act)cls.push('syn');
+ const tg=UI.tg||{};if(!mine&&tg.units&&tg.units.includes(u.uid))cls.push('tgt');
+ return `<div class="${cls.join(' ')}" data-k="u:${u.uid}" data-rk="u${u.uid}" style="left:${i}px;top:0;width:${cw}px;height:${h}px;--cw:${cw}px;--g:${act?CAT[act]:'#fff'};background-image:url(a/cards/${u.id}.webp)">
+ <i class="bdA${fa>u.atk0?' up':''}">${fa}</i><i class="bdH${u.hp<u.max?' low':''}">${u.hp}</i>${u.sick&&!u.entry?'<span class="zz">Zz</span>':''}${u.kw==='Protetor'?'<span class="pr">&#9632;</span>':''}</div>`}
+function boardHTML(p,mine,bw){const n=p.board.length;if(!n)return'';const cw=Math.min(104,Math.floor((bw-(n-1)*8)/n)),tot=n*cw+(n-1)*8,x0=(bw-tot)/2;
+ return p.board.map((u,i)=>unitHTML(p,u,mine,cw,x0+i*(cw+8))).join('')}
+function heroHTML(side){const p=G.p[side],H=HERO[p.key],hp=p.hero,a=curAb(p),mine=side===0;const img=hp.tf?H.imgT:H.img;
+ const tg=UI.tg||{};const isT=!mine&&tg.hero;const pct=Math.max(0,hp.hp/hp.max*100);
+ let btns='';
+ const ar=abReason(side);const canA=!ar&&G.turn===side&&mine;
+ btns=`<div style="display:flex;gap:8px;margin:8px 0 0 8px;align-items:center"><button class="abtn${mine&&canA?'':' off'}${UI.sel&&UI.sel.k==='ab'?' sel':''}" ${mine?'data-k="ab"':''} title="${a.n}"><img src="a/heroes/${H.icon}.webp"><small>${a.cost} esf · ${a.dmg+vilBonus(p)}</small></button>`;
+ if(mine){const tf=canTransform(0)&&G.turn===0&&!UI.busy;btns+=`<button class="tbtn ${tf?'on':'off'}" data-k="tf" title="Transformação: ${H.tName}"><img src="a/heroes/${hp.tf?'z_gold':tf?'z_cheio':'z_vazio'}.webp"></button>`}
+ btns+='</div>';
+ const info=`<div style="margin:6px 0 0 8px;font:500 11px var(--body);color:#dfe6ff;text-shadow:0 1px 2px #000;line-height:1.25"><b>${a.n}</b>${hp.abUsed?' (usada)':''}<br>${hp.tf?H.tName+' ativo':'Base'}${hp.cb?' · Comeback usado':''}</div>`;
+ return `<div class="pt${isT?'':''}" data-rk="h${side}" ${mine?'':'data-k="eh"'} style="background-image:url(a/heroes/${img}.jpg)"></div><div class="nm">${H.name.toUpperCase()}${mine?'  (VOCÊ)':'  (BOT)'}</div>
+ <div class="hpb"><i style="width:${pct}%;background:${hp.hp<=10?'linear-gradient(90deg,#e8222a,#ff7a5a)':mine?'linear-gradient(90deg,#1fb35c,#6dffa0)':'linear-gradient(90deg,#d63a3a,#ff7a5a)'}"></i><b>${hp.hp} / ${hp.max}</b></div>${btns}${info}`}
+function handHTML(g){const p=G.p[0],n=p.hand.length;if(!n)return'';const cw=118,ch=Math.round(cw*430/300);const step=Math.min(cw*.78,(g.bw-cw-20)/Math.max(1,n-1)),tot=cw+(n-1)*step,x0=g.bx+(g.bw-tot)/2;
+ return p.hand.map((c,i)=>{const mid=(n-1)/2,rot=(i-mid)*(n>7?2.2:3),dy=Math.abs(i-mid)*(n>7?3:5);const ok=c.cost<=p.energy&&G.turn===0&&!G.over&&p.board.length<7&&!G.pending;
+  return `<div class="hc ${ok?'ok':'no'}" data-k="h:${i}" style="left:${x0+i*step}px;top:${720-ch*.82+dy}px;width:${cw}px;height:${ch}px;background-image:url(a/cards/${c.id}.webp);transform:rotate(${rot}deg);z-index:${10+i}"></div>`}).join('')}
+function ldrHTML(){const p=G.p[0],em=p.energyMax,e=p.energy;let h=`<div style="font:400 13px var(--display);color:var(--gold);text-align:center;margin-bottom:6px">ENERGIA</div><div style="text-align:center;font:700 20px var(--body)">${e}<span style="color:var(--mute);font-size:14px"> / ${em}</span></div><div style="text-align:center;font-size:10px;color:var(--mute);margin-bottom:6px">${em>=10?'Transformação disponível':'Turno '+p.turns+' · máx. '+em}</div>`;
+ for(let i=10;i>=1;i--){const st=i<=e?'':i<=em?' sp':' lk';const nk=i>7?' nk':'';h+=`<div class="sph${nk}${st}${UI.fill&&i===em?' fill':''}"><img src="a/heroes/esfera_${i}.webp"><span class="lb">${i>7?'N':'T'}${i>7?i-7:i}</span></div>`}
+ return h}
+function rdrHTML(){let h='';for(const s of [0,1]){const p=G.p[s],sy=synLv(p);h+=`<div style="font:400 12px var(--display);margin:2px 0 6px;color:${s?'#ff9a8a':'#9fffc0'}">${s?'INIMIGO (BOT)':'VOCÊ'}</div>`;let any=false;
+ for(const c of ['Saiyajin','Humano','Vilão']){const n=cnt(p,c);if(!n)continue;any=true;const lv=sy[c],S=SYN[c];
+  h+=`<div class="syn-c" style="--cc:${CAT[c]}"><h4><span>${c}</span><span>${n>=2?n+' un.':'1 un.'}</span></h4>`;
+  for(let l=2;l<=7;l++){h+=`<div class="lv${lv>=l?' on':''}${lv<l&&l>lv+1?' dim':''}"><i>${l}</i><span><b>${S.n[l]}</b>${lv>=l||l===lv+1?' · '+S.d[l]:''}</span></div>`}
+  h+='</div>'}
+ if(!any)h+='<div style="font-size:11px;color:var(--mute);margin-bottom:8px">Sem categorias no campo.</div>'}
+ return h}
+function render(){if(!G)return;const g=geo();
+ const L=$('#ldr'),R=$('#rdr');L.style.width=g.L+'px';R.style.width=g.Rw+'px';L.classList.toggle('closed',!UI.lOpen);R.classList.toggle('closed',!UI.rOpen);
+ $('#ldrin').innerHTML=ldrHTML();$('#rdrin').innerHTML=rdrHTML();
+ const eh=$('#ehero'),ph=$('#phero');eh.style.cssText=`left:${g.hx}px;top:10px`;ph.style.cssText=`left:${g.hx}px;top:352px`;eh.innerHTML=heroHTML(1);ph.innerHTML=heroHTML(0);
+ const tg=UI.tg||{};eh.classList.toggle('tgt',!!tg.hero);
+ const eb=$('#eboard'),pb=$('#pboard');eb.style.cssText=`left:${g.bx}px;top:96px;width:${g.bw}px;height:152px`;pb.style.cssText=`left:${g.bx}px;top:300px;width:${g.bw}px;height:152px`;
+ eb.innerHTML=boardHTML(G.p[1],false,g.bw);pb.innerHTML=boardHTML(G.p[0],true,g.bw);
+ $('#mid').style.cssText=`left:${g.bx}px;top:264px;width:${g.bw-150}px`;
+ const eb2=$('#endbtn');eb2.style.left=(g.bx+g.bw-140)+'px';eb2.style.top='256px';eb2.classList.toggle('off',!(G.turn===0&&!UI.busy&&!G.over&&!G.pending));eb2.textContent=G.pending&&G.pending.side===0?'ESCOLHA O ALVO':'FIM DO TURNO';
+ $('#baba').style.cssText=`left:${g.bx+g.bw/2-45}px;top:-6px`;
+ const tc=$('#turnchip');tc.style.left=(g.bx+g.bw/2+50)+'px';tc.style.top='24px';tc.textContent=(G.turn===0?'SEU TURNO':'TURNO DO BOT')+' · '+G.n;tc.style.borderColor=G.turn===0?'#6dff9a':'#ff7a6a';
+ const eh2=G.p[1].hand.length;$('#ehand').innerHTML=Array.from({length:Math.min(eh2,10)},(_,i)=>`<div class="cb" style="left:${g.bx+16+i*26}px;top:${-34+Math.abs(i-(eh2-1)/2)*2}px;transform:rotate(${(i-(eh2-1)/2)*3}deg)"></div>`).join('');
+ $('#hand').innerHTML=handHTML(g);
+ $('#log').style.cssText=`left:${g.bx+16}px;top:70px;width:${g.bw-180}px`;
+ UI.hurt=null}
+function setLog(m){$('#log').textContent=m}
+/* seleção / alvos */
+function computeTargets(){UI.tg=null;const s=UI.sel;if(!s||G.over)return;
+ if(s.k==='atingir'){UI.tg={units:G.p[1].board.map(u=>u.uid),hero:false};return}
+ if(s.k==='ab'){UI.tg=abTargets(0);return}
+ if(s.k&&s.k.startsWith('u:')){const u=G.p[0].board.find(x=>x.uid===+s.k.slice(2));if(u)UI.tg=legalTargets(0,u)}}
+function select(sel){UI.sel=sel;computeTargets();render()}
+function posOf(key){const r=UI.snapR[key];return r||{cx:640,cy:360,x:600,y:330,w:80,h:100}}
+function evFx(ev,sn){UI.snapR=Object.assign({},UI.snapR,sn||{});
+ for(const e of ev){
+  if(e.t==='beam'){const a=posOf(e.from),b=posOf(e.to);const big=e.big;beam(a.cx,a.cy,b.cx,b.cy,e.col,big);
+   const ch=e.from[0]==='h'&&e.col;setTimeout(()=>{burst(b.cx,b.cy,e.col,big?70:38,big?12:8);ring(b.cx,b.cy,e.col,big?200:110);sfx(big?'boom':'kiplo',.8);if(big)shake(16)},230)}
+  else if(e.t==='atk'){const b=posOf(e.to);setTimeout(()=>{burst(b.cx,b.cy,'#ffb060',16,6);ring(b.cx,b.cy,'#fff',60);sfx('hit',.7)},120)}
+  else if(e.t==='hit'){const b=posOf('u'+e.uid);if(e.n>0){float(b.cx,b.y+20,'-'+e.n,'#ff5a4a')}else float(b.cx,b.y+20,'0','#ccc');(UI.hurt=UI.hurt||new Set()).add(e.uid)}
+  else if(e.t==='hhit'){const b=posOf('h'+e.side);float(b.cx,b.cy,'-'+e.n,'#ff3a3a');burst(b.cx,b.cy,'#ff6a4a',24,7);shake(e.n>=5?12:6);sfx(e.n>=5?'boom':'hit',.8);
+   const key=HERO[G.p[e.side].key];if(!e.self&&e.n>0)setTimeout(()=>{if(VMAP&&VMAP[G.p[e.side].key]){const d=VMAP[G.p[e.side].key].dmg;if(d&&Math.random()<(e.n>=5?1:.6))voice(rnd(d))}},120)}
+  else if(e.t==='die'){const b=posOf('u'+e.uid);burst(b.cx,b.cy,e.side?'#ff7a3a':'#7ac0ff',46,9,.2);ring(b.cx,b.cy,'#fff',120);sfx('death',.6)}
+  else if(e.t==='heal'||e.t==='hheal'){const b=posOf(e.uid?'u'+e.uid:'h'+e.side);float(b.cx,b.cy,'+'+e.n,'#5dff9a');burst(b.cx,b.cy,'#5dff9a',14,3,-.05)}
+  else if(e.t==='save'){const b=posOf('u'+e.uid);float(b.cx,b.cy,'DESPERTAR!','#ffd45a')}
+  else if(e.t==='log'){setLog(e.m)}
+  else if(e.t==='turn'){}
+ }}
+function lungeEl(key,tkey){const el=document.querySelector(`[data-rk="${key}"]`);if(!el)return Promise.resolve();const a=rectOf(el),b=posOf(tkey);const dx=(b.cx-a.cx)*.7,dy=(b.cy-a.cy)*.7;
+ return el.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${dx*.15}px,${dy*.15}px) scale(1.08)`,offset:.2},{transform:`translate(${dx}px,${dy}px) scale(1.15)`,offset:.55},{transform:'translate(0,0) scale(1)'}],{duration:420,easing:'ease-in-out'}).finished.catch(()=>{})}
+/* ações com animação */
+async function afterAction(sn){const ev=G.ev;G.ev=[];render();evFx(ev,sn);await playScenes();render();checkOver()}
+async function doPlay(side,i){const c=G.p[side].hand[i];if(!c)return false;const r=playReason(side,i);if(r){if(side===0)toast(r);return false}
+ UI.busy=true;const sn=snap();const u=play(side,i);sfx(c.kw==='Veloz'?'rush':c.kw==='Protetor'?'guard':'tele',.7);voiceEv(u.name,'play',side===0);
+ UI.sel=null;UI.tg=null;await afterAction(sn);const ev2=null;
+ const b=document.querySelector(`[data-rk="u${u.uid}"]`);if(b){const r=rectOf(b);burst(r.cx,r.cy,CAT[u.cats[0]]||'#fff',22,6);ring(r.cx,r.cy,CAT[u.cats[0]]||'#fff',80)}
+ await sleep(side===0?120:350);
+ if(G.pending&&G.pending.side===0){select({k:'atingir'});setLog('ATINGIR! Escolha uma unidade inimiga para atingir.')}
+ UI.busy=false;render();return true}
+async function doAttack(side,uid,tgt){const p=G.p[side],a=p.board.find(x=>x.uid===uid);if(!a)return false;const r=atkReason(side,a,tgt);if(r){if(side===0)toast(r);return false}
+ UI.busy=true;const sn=snap();const tkey=tgt.hero?'h'+opp(side):'u'+tgt.uid;UI.sel=null;UI.tg=null;
+ sfx(rnd(ATKSFX[a.kw]||ATKSFX.Atacar),.8);voiceEv(a.name,'atk',side===0);
+ await lungeEl('u'+uid,tkey);attack(side,uid,tgt);await afterAction(sn);await sleep(side===0?80:250);UI.busy=false;render();return true}
+async function doAbility(side,tgt){const r=abReason(side);if(r){if(side===0)toast(r);return false}
+ const T=abTargets(side);if((tgt.hero&&!T.hero)){if(side===0)toast('Protetor bloqueia o ataque direto ao herói');return false}
+ UI.busy=true;const sn=snap();const k=G.p[side].key;UI.sel=null;UI.tg=null;
+ if(k==='goku'){voice('goku_kame',1.0);sfx('kame_charge',.7)}else if(HERO.vegeta&&G.p[side].hero.tf){voice('oozaru_boca',1.0);sfx('charge',.7)}else{if(VMAP&&VMAP.vegeta.mira.length)voice(rnd(VMAP.vegeta.mira));sfx('charge',.7)}
+ await sleep(520);
+ if(k==='vegeta'&&!G.p[side].hero.tf&&VMAP&&VMAP.vegeta.grito.length)voice(rnd(VMAP.vegeta.grito));
+ sfx(k==='goku'?'kame_fire':'beam',.9);
+ useAbility(side,tgt);await afterAction(sn);await sleep(300);UI.busy=false;render();return true}
+async function doTransform(side){if(!canTransform(side))return false;UI.busy=true;const sn=snap();UI.sel=null;UI.tg=null;transform(side);await afterAction(sn);await sleep(200);UI.busy=false;render();return true}
+async function doAtingir(side,tuid){if(!G.pending)return false;UI.busy=true;const sn=snap();atingir(side,tuid);sfx('ki',.9);UI.sel=null;UI.tg=null;await afterAction(sn);await sleep(250);UI.busy=false;render();return true}
+/* cenas (vídeo) */
+async function playScenes(){while(G.scenes.length){const s=G.scenes.shift();await playScene(s)}}
+async function playScene(s){const sc=$('#scene'),v=$('#vid');const f=$('#flash');f.style.animation='none';void f.offsetWidth;f.style.animation='flash .5s ease-out';await sleep(260);
+ sc.style.display='block';v.src=`a/video/${s.key}_${s.t==='transf'?'transf':'comeback'}.mp4`;v.muted=!SOUND;
+ await new Promise(res=>{let done=false;const end=()=>{if(done)return;done=true;res()};v.onended=end;v.onerror=end;$('#skip').onclick=end;v.play().catch(()=>setTimeout(end,1500));setTimeout(end,16000)});
+ v.pause();sc.style.display='none';v.removeAttribute('src');v.load();setLog('')}
+/* fim de jogo */
+function checkOver(){if(!G.over||UI.ended)return;UI.ended=true;const w=G.over.win===0;$('#ovt').textContent=w?'VITÓRIA!':'DERROTA';$('#ovp').textContent=w?'Você derrubou o herói inimigo em '+G.n+' turnos.':'O Bot derrubou o seu herói.';$('#over').style.display='flex';
+ if(w){for(let i=0;i<5;i++)setTimeout(()=>burst(200+Math.random()*880,150+Math.random()*350,rnd(['#ffd45a','#ff9a2a','#46b5ff','#fff']),50,9),i*250)}}
+/* turnos */
+async function turnLoop(){if(!G||G.over)return;
+ if(G.turn===0){UI.tmark=performance.now();UI.tleft=60;UI.fill=true;render();sfx('turn',.7);setTimeout(()=>{UI.fill=false},900);setLog('Seu turno: jogue cartas, ataque e use a habilidade.');return}
+ UI.busy=true;UI.tmark=0;render();setLog('Turno do Bot...');UI.fill=true;await sleep(700);UI.fill=false;
+ for(let guard=0;guard<40&&!G.over;guard++){const a=aiNext(1);await sleep(450);
+  if(a.type==='end')break;
+  if(a.type==='play')await doPlay(1,a.idx);else if(a.type==='attack')await doAttack(1,a.uid,a.target);else if(a.type==='ability')await doAbility(1,a.target);else if(a.type==='transform')await doTransform(1);else if(a.type==='atingir')await doAtingir(1,a.uid);
+  UI.busy=true}
+ UI.busy=false;if(!G.over){endTurn(1);G.ev=[];await sleep(100);render();turnLoop()}}
+async function playerEnd(){if(UI.busy||G.turn!==0||G.over||G.pending)return;UI.sel=null;UI.tg=null;endTurn(0);G.ev=[];render();turnLoop()}
+/* relógio do turno (Uranai Baba + Bastão Mágico) */
+setInterval(()=>{if(!G||G.over||UI.mode!=='game')return;if(G.turn===0&&!UI.busy&&UI.tmark){const left=Math.max(0,60-(performance.now()-UI.tmark)/1000);UI.tleft=left;if(left<=0&&!G.pending){UI.tmark=0;toast('Tempo esgotado');playerEnd()}}
+ $('#tm').textContent=G.turn===0?Math.ceil(UI.tleft):'--';$('#bast').style.width=(G.turn===0?UI.tleft/60*100:0)+'%'},200);
+/* entrada: ponteiro (clicar, arrastar, segurar) */
+let ptr=null;
+function arrow(x1,y1,x2,y2){const mx=(x1+x2)/2,my=Math.min(y1,y2)-60;$('#arrp').setAttribute('d',`M${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`);$('#arrc').setAttribute('cx',x2);$('#arrc').setAttribute('cy',y2)}
+function noArrow(){$('#arrp').setAttribute('d','');$('#arrc').setAttribute('cx',-50)}
+function toStage(e){const s=stage.getBoundingClientRect();return{x:(e.clientX-s.left)/SC,y:(e.clientY-s.top)/SC}}
+function srcValid(k){if(!G||G.over||UI.busy||G.turn!==0)return false;return k==='ab'||k==='tf'||k.startsWith('h:')||(k.startsWith('u:')&&G.p[0].board.some(u=>'u:'+u.uid===k))}
+stage.addEventListener('pointerdown',e=>{if(UI.mode!=='game')return;const el=e.target.closest('[data-k]');closeInsp(e);if(!el)return;
+ ptr={k:el.dataset.k,x:e.clientX,y:e.clientY,moved:false,long:false,el};
+ ptr.timer=setTimeout(()=>{if(ptr&&!ptr.moved){ptr.long=true;inspect(ptr.k,el)}},450)});
+addEventListener('pointermove',e=>{if(!ptr)return;const d=Math.hypot(e.clientX-ptr.x,e.clientY-ptr.y);
+ if(!ptr.moved&&d>10){ptr.moved=true;clearTimeout(ptr.timer);if(srcValid(ptr.k)&&ptr.k!=='tf'){if(ptr.k.startsWith('h:')){}else{const need=ptr.k==='ab'?{k:'ab'}:{k:ptr.k};if(!UI.sel||UI.sel.k!==ptr.k)select(need)}}}
+ if(ptr.moved&&srcValid(ptr.k)&&ptr.k!=='tf'){const a=posOf2(ptr.el),p=toStage(e);arrow(a.cx,a.cy,p.x,p.y)}});
+function posOf2(el){return rectOf(el)}
+addEventListener('pointerup',async e=>{if(!ptr)return;clearTimeout(ptr.timer);const P=ptr;ptr=null;noArrow();if(UI.mode!=='game'||UI.busy)return;
+ if(P.long)return;
+ const under=document.elementsFromPoint(e.clientX,e.clientY).map(x=>x.closest&&x.closest('[data-k]')).filter(Boolean);
+ if(P.moved){
+  if(!srcValid(P.k))return;
+  if(P.k.startsWith('h:')){const p=toStage(e);if(p.y>270&&p.y<560)await doPlay(0,+P.k.slice(2));else render();return}
+  const t=under.find(x=>x!==P.el&&(x.dataset.k==='eh'||(x.dataset.k.startsWith('u:')&&!G.p[0].board.some(u=>'u:'+u.uid===x.dataset.k))));
+  if(t)await perform(UI.sel||{k:P.k},t.dataset.k);else{select(null)}return}
+ // clique
+ const k=P.k;
+ if(UI.sel&&(k==='eh'||(k.startsWith('u:')&&!G.p[0].board.some(u=>'u:'+u.uid===k)))){await perform(UI.sel,k);return}
+ if(k==='tf'){if(G.turn===0&&canTransform(0))await doTransform(0);else toast(G.p[0].energyMax<10?'Transformação disponível com 10 esferas (turno 10)':'Indisponível');return}
+ if(k.startsWith('h:')){await doPlay(0,+k.slice(2));return}
+ if(k==='ab'){if(G.turn!==0)return;const r=abReason(0);if(r){toast(r);return}select(UI.sel&&UI.sel.k==='ab'?null:{k:'ab'});return}
+ if(k.startsWith('u:')){const mine=G.p[0].board.find(u=>'u:'+u.uid===k);if(mine){if(G.pending){toast('Resolva o Atingir primeiro');return}
+   if(!canAct(G.p[0],mine)){toast(mine.sick?'Unidade recém-jogada não ataca neste turno (sem Veloz/Investida)':'Esta unidade já atacou');return}select(UI.sel&&UI.sel.k===k?null:{k})}}});
+async function perform(sel,tk){if(!sel)return;const tgt=tk==='eh'?{hero:true}:{uid:+tk.slice(2)};
+ if(sel.k==='atingir'){if(tgt.hero){toast('Atingir só atinge unidades');return}await doAtingir(0,tgt.uid);return}
+ if(sel.k==='ab'){await doAbility(0,tgt);return}
+ if(sel.k.startsWith('u:'))await doAttack(0,+sel.k.slice(2),tgt)}
+$('#endbtn').addEventListener('click',playerEnd);
+stage.addEventListener('contextmenu',e=>{e.preventDefault();const el=e.target.closest('[data-k]');if(el&&G)inspect(el.dataset.k,el)});
+/* inspeção */
+function closeInsp(e){const i=$('#insp');if(i.style.display!=='none'&&!(e&&e.target.closest&&e.target.closest('#insp')))i.style.display='none'}
+function inspect(k,el){let u=null,p=null,card=null;
+ if(k.startsWith('u:')){for(const pl of G.p){const f=pl.board.find(x=>'u:'+x.uid===k);if(f){u=f;p=pl}}}
+ else if(k.startsWith('h:')){card=G.p[0].hand[+k.slice(2)]}
+ else if(k==='eh'||k==='ab'||k==='tf'){const pl=G.p[k==='eh'?1:0],H=HERO[pl.key],a=curAb(pl);$('#insp').innerHTML=`<h3>${H.name}${pl.hero.tf?' · '+H.tName:''}</h3><div style="font-size:12px;line-height:1.45;color:#dfe6ff">${H.ficha.map(x=>'• '+x).join('<br>')}</div>`;place(el);return}
+ let html='';
+ if(u){const parts=atkParts(p,u),fa=finalAtk(p,u);html=`<img src="a/cards/${u.id}.webp"><h3>${u.name}</h3><div style="font-size:11px;color:var(--mute);margin-bottom:6px">${u.cats.join(' / ')} · ${u.kw}</div><div style="clear:both"></div>
+  <div class="row"><span>ATQ base</span><b>${u.atk0}</b></div>${parts.map(x=>`<div class="row" style="color:#ffd45a"><span>${x[0]}</span><b>+${x[1]}</b></div>`).join('')}<div class="row" style="color:#ff9a8a"><span>Penalidades inimigas</span><b>0</b></div>
+  <div class="row" style="border-top:1px solid #fff3;padding-top:3px"><span><b>ATQ final</b></span><b style="font-size:16px">${fa}</b></div><div class="row"><span>PV</span><b>${u.hp} / ${u.max}</b></div><div style="font-size:11px;color:var(--mute);margin-top:5px">${KW[u.kw]||''}</div>`}
+ else if(card){html=`<img src="a/cards/${card.id}.webp"><h3>${card.n}</h3><div style="font-size:11px;color:var(--mute)">${card.c.join(' / ')} · ${card.kw}</div><div style="clear:both"></div><div class="row"><span>Custo</span><b>${card.cost} esferas</b></div><div class="row"><span>ATQ / PV</span><b>${card.atk} / ${card.hp}</b></div><div style="font-size:11px;color:var(--mute);margin-top:5px">${KW[card.kw]||''}</div>`}
+ else return;$('#insp').innerHTML=html;place(el)}
+function place(el){const i=$('#insp'),r=rectOf(el);i.style.display='block';let x=r.x+r.w+10;if(x+260>1280)x=r.x-260;let y=Math.max(70,Math.min(470,r.y-10));i.style.left=Math.max(4,x)+'px';i.style.top=y+'px'}
+/* gavetas, som, teste */
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(t.dataset.tab==='l')UI.lOpen=!UI.lOpen;else UI.rOpen=!UI.rOpen;render()}));
+$('#bsnd').addEventListener('click',()=>{SOUND=!SOUND;$('#bsnd').textContent='SOM: '+(SOUND?'LIGADO':'DESLIGADO')});
+function tools(){const t=$('#tpanel');t.innerHTML=`<div style="font:400 13px var(--display);color:var(--gold)">ATALHOS DE TESTE</div>
+ <button class="btn sm" data-t="e10">Minha energia máx = 10</button><button class="btn sm" data-t="hp">Meu PV = 12 (Comeback)</button><button class="btn sm" data-t="bot">PV do bot = 12</button><button class="btn sm" data-t="draw">Comprar 3 cartas</button><button class="btn sm" data-t="wake">Acordar minhas unidades</button><button class="btn sm" data-t="menu">Voltar ao menu</button>
+ <div style="font-size:10px;color:var(--mute);line-height:1.35;margin-top:4px">Propostas desta demo (não confirmadas): mão inicial 3/4 cartas, 1 compra por turno, limite 10 cartas, turno de 60 s, 1 uso de habilidade por turno, Atingir ataca 1 unidade ao entrar, Oozaru divide 3 de dano da esquerda para a direita.</div>`}
+$('#btl').addEventListener('click',()=>{const t=$('#tpanel');tools();t.style.display=t.style.display==='flex'?'none':'flex'});
+$('#tpanel').addEventListener('click',async e=>{const b=e.target.closest('[data-t]');if(!b||!G||UI.busy)return;const t=b.dataset.t,p=G.p[0];
+ if(t==='e10'){p.turns=10;p.energyMax=10;p.energy=10;UI.fill=true;render();setTimeout(()=>UI.fill=false,900)}
+ else if(t==='hp'){const sn=snap();dmgHero(0,p.hero.hp-12);await afterAction(sn)}
+ else if(t==='bot'){const sn=snap();dmgHero(1,G.p[1].hero.hp-12);await afterAction(sn)}
+ else if(t==='draw'){draw(p,3);G.ev=[];render()}
+ else if(t==='wake'){p.board.forEach(u=>{u.sick=false;u.atkd=false});render()}
+ else if(t==='menu'){location.reload()}
+ $('#tpanel').style.display='none'});
+/* menu */
+function buildMenu(){$('#pick').innerHTML=['goku','vegeta'].map(k=>{const H=HERO[k];return `<div class="pk${UI.heroPick===k?' on':''}" data-p="${k}"><img src="a/heroes/${H.img}.jpg"><h3 style="color:${H.col}">${H.name.toUpperCase()}</h3><div>${H.ficha.map(x=>'• '+x).join('<br>')}</div></div>`}).join('')}
+$('#pick').addEventListener('click',e=>{const p=e.target.closest('[data-p]');if(!p)return;UI.heroPick=p.dataset.p;buildMenu()});
+async function start(){ac();if(!VMAP){try{VMAP=await (await fetch('a/voz_map.json')).json()}catch(e){VMAP=null}}
+ $('#menu').style.display='none';$('#over').style.display='none';UI.ended=false;UI.mode='game';UI.sel=null;UI.tg=null;UI.busy=false;
+ const bg=rnd(SCENES);$('#bg').style.backgroundImage=`url(a/scenes/${bg})`;
+ const mine=UI.heroPick,bot=mine==='goku'?'vegeta':'goku';newGame(mine,bot);G.ev=[];render();
+ setLog(G.first===0?'Você começa.':'O Bot começa.');await sleep(500);turnLoop()}
+$('#go').addEventListener('click',start);$('#again').addEventListener('click',()=>{UI.mode='menu';$('#over').style.display='none';$('#menu').style.display='flex'});
+buildMenu();
+window.__T={get G(){return G},newGame,aiNext,play,attack,useAbility,transform,atingir,endTurn,canAct,legalTargets,finalAtk,synLv,hasProt,UIx:UI,DECKS};
+</script>

@@ -1,0 +1,6 @@
+DEMO JOGAVEL v2 (Arena DBZ) - game2.html (+ pasta a/ com assets). v1 = game.html (simplificada, substituida).
+Abrir via servidor local (python3 -m http.server). game2.src.html = fonte; build2.sh gera game2.html.
+Layout vem da arena antiga (04_ARENA/projeto): plataformas por sinergia, bastao no meio, esferas a direita, sinergias a esquerda, moeda, Baba.
+Cena de transformacao: escurece -> relampago -> BOOM -> video (mudo) + audio pelo WebAudio (sem icone de video).
+Raio nivel 7 = relampagos procedurais na cor da sinergia. Trilhas: menu (Z Suits), batalha1, batalha2 (de 01_HEROIS/_COMUM/Musicas).
+Regras confirmadas: mao 3 (quem comeca) / 4, 1 compra por turno, limite 10. Propostas: turno 60 s, 1 habilidade por turno, Atingir ao entrar.
