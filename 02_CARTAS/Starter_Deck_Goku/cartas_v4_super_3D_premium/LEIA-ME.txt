@@ -1,0 +1,5 @@
+DECK GOKU v4 (2026-10-19) - fez igual ao Vegeta: 1 super rara + 1 3D + 1 lendaria + 1 premium
+ GK01 LENDARIA (Atingir) | GK06 SUPER RARA (moldura holografica) | GK28 3D (moldura super rara + Goku saltando)
+ GK29 PREMIUM (substituiu a GK29 anterior, cost 5 Protetor 4/6): custo 5, Atacar, 6/5 pela formula (2*5+1-0=11 pts)
+ Premium = animacao do MP4 que ele mandou (Goku Kaioken x Vegeta). cartas/GK29.png tem a janela vazia (hole) para o video; GK29_premium_still.png e um quadro de exemplo.
+ Versao anterior do deck: ../cartas_png_v3_palavras_chave (continua guardada)
