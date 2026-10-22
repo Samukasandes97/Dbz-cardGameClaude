@@ -1,0 +1,4 @@
+MOLDURAS DAS CARTAS (referencia central; copias dos arquivos que tambem estao dentro de cada deck)
+1_comum, 2_rara (prata+gemas), 3_super_rara (holografica arco-iris), 4_lendaria (dourada, Atingir), 5_premium (metalica animada, GIF), 6_efeito_3D (personagem recortado salta da moldura)
+codigo/frame.py + premium_deco.py = gerador das molduras; demos_evolucao = videos comum->rara->super->3D->lendaria
+OBS: nao existe pasta de "skins dos herois premium": nao foi criada nem autorizada ate agora.
