@@ -1,0 +1,4 @@
+HEROI Vegeta_SSJ - Vegeta Super Saiyajin (Super Vegeta). Ativa: Big Bang Attack. Comeback: Final Flash.
+Retrato/Base | Retrato/Transformacao | Skins_retrato (troca pelo jogador) | Efeitos_sonoros/{Socos,Chutes,Rush}
+Efeitos_especiais/{Habilidades_ativas,Golpes_assinatura}/<golpe>/{Voz,Efeitos,Video} | Vozes | Entrada | Transformacao | Comeback | Comeback_Dramatico_Finalizacao | Icone_medalhao
+Retrato/_versoes_anteriores_e_extras = retratos originais (nada apagado)
