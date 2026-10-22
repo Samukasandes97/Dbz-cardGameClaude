@@ -1,0 +1,31 @@
+id,nome,categorias,custo,atk,pv,palavra,fonte
+VG01,Vegeta,Saiyajin,3,2,4,Protetor,FS12-16
+VG02,Vegeta,Saiyajin,4,5,3,Veloz,FS03-11
+VG03,Nappa,Saiyajin / Vilão,1,1,1,Atacar,SB01-024
+VG04,Vegeta,Saiyajin / Vilão,5,5,3,Investida,SB01-025
+VG05,Vegeta,Saiyajin / Vilão,4,2,5,Protetor,FB04-051 L
+VG06,Vegeta,Saiyajin / Vilão,3,3,3,Atacar,FB04-051 L★
+VG07,Vegeta Oozaru,Saiyajin / Vilão,7,8,4,Investida,FB04-052 SR★
+VG08,Vegeta Oozaru,Saiyajin / Vilão,7,7,7,Atacar,FB04-052 SR
+VG09,Raditz,Saiyajin / Vilão,4,2,5,Protetor,SB01-026
+VG10,Vegeta,Saiyajin,3,3,2,Investida,SB02-046
+VG11,Nappa,Saiyajin / Vilão,6,6,6,Atacar,FB04-064
+VG12,Nappa,Saiyajin / Vilão,6,6,6,Atacar,FB04-064★
+VG13,Vegeta,Saiyajin / Vilão,4,2,5,Protetor,FB04-069
+VG14,Vegeta,Saiyajin,3,4,2,Veloz,FB05-063
+VG15,Vegeta,Saiyajin,4,5,3,Veloz,FB09-070
+VG16,Vegeta,Saiyajin / Vilão,5,5,5,Atacar,FB08-089
+VG17,Vegeta,Saiyajin / Vilão,4,4,2,Investida,FB04-069★
+VG18,Nappa,Saiyajin / Vilão,1,1,1,Investida,SB01-024★
+VG19,Nappa,Saiyajin / Vilão,5,3,6,Protetor,FP-046
+VG20,Vegeta,Saiyajin / Vilão,9,6,10,Protetor,FB03-072
+VG21,Vegeta,Saiyajin / Vilão,3,3,2,Veloz,FB07-116
+VG22,Vegeta,Saiyajin,3,2,4,Protetor,FB07-116 manga
+VG23,Nappa,Saiyajin / Vilão,5,3,6,Protetor,FB08-080
+VG24,Vegeta,Saiyajin / Vilão,4,4,2,Investida,FB04-069 manga
+VG25,Vegeta,Saiyajin / Vilão,3,2,3,Protetor,FB04-051 manga
+VG26,Vegeta,Saiyajin,3,4,3,Atacar,FB09-042
+VG27,Vegeta,Saiyajin,2,1,3,Protetor,FB10-037
+VG28,Vegeta,Saiyajin / Vilão,4,4,4,Atacar,GIF premium
+VG29,Raditz,Saiyajin / Vilão,4,4,4,Atacar,SB01-026 manga
+VG30,Vegeta,Saiyajin / Vilão,5,6,3,Atingir,SB01-025★

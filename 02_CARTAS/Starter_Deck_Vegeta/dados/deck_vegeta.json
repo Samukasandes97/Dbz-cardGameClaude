@@ -1,0 +1,594 @@
+[
+ {
+  "id": "VG01",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG01",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/00_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FS12-16",
+  "atk": 2,
+  "pv": 4
+ },
+ {
+  "id": "VG02",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG02",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/01_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FS03-11",
+  "atk": 5,
+  "pv": 3
+ },
+ {
+  "id": "VG03",
+  "nome": "Nappa",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-VG03",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/02_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "SB01-024",
+  "atk": 1,
+  "pv": 1,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG04",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-VG04",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/03_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "SB01-025",
+  "atk": 5,
+  "pv": 3,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG05",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG05",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/04_art.png",
+  "arte_wh": [
+   521,
+   735
+  ],
+  "fonte": "FB04-051 L",
+  "atk": 2,
+  "pv": 5,
+  "tipo2": "Vilão",
+  "tema2": "vilao",
+  "estagio": "super"
+ },
+ {
+  "id": "VG06",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG06",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/05_art.png",
+  "arte_wh": [
+   521,
+   735
+  ],
+  "fonte": "FB04-051 L★",
+  "atk": 3,
+  "pv": 3,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG07",
+  "nome": "Vegeta Oozaru",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 7,
+  "codigo": "DB-VG07",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/06_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB04-052 SR★",
+  "atk": 8,
+  "pv": 4,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG08",
+  "nome": "Vegeta Oozaru",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 7,
+  "codigo": "DB-VG08",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/07_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB04-052 SR",
+  "atk": 7,
+  "pv": 7,
+  "tipo2": "Vilão",
+  "tema2": "vilao",
+  "estagio": "super",
+  "efeito_3d": true,
+  "recorte_3d": "VG08_recorte_3D.png"
+ },
+ {
+  "id": "VG09",
+  "nome": "Raditz",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG09",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/08_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "SB01-026",
+  "atk": 2,
+  "pv": 5,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG10",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG10",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/09_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "SB02-046",
+  "atk": 3,
+  "pv": 2
+ },
+ {
+  "id": "VG11",
+  "nome": "Nappa",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 6,
+  "codigo": "DB-VG11",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/10_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB04-064",
+  "atk": 6,
+  "pv": 6,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG12",
+  "nome": "Nappa",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 6,
+  "codigo": "DB-VG12",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/11_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB04-064★",
+  "atk": 6,
+  "pv": 6,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG13",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG13",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/12_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB04-069",
+  "atk": 2,
+  "pv": 5,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG14",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG14",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/13_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB05-063",
+  "atk": 4,
+  "pv": 2
+ },
+ {
+  "id": "VG15",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG15",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/14_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB09-070",
+  "atk": 5,
+  "pv": 3
+ },
+ {
+  "id": "VG16",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-VG16",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/15_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB08-089",
+  "atk": 5,
+  "pv": 5,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG17",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG17",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/16_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB04-069★",
+  "atk": 4,
+  "pv": 2,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG18",
+  "nome": "Nappa",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-VG18",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/17_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "SB01-024★",
+  "atk": 1,
+  "pv": 1,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG19",
+  "nome": "Nappa",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-VG19",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/18_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FP-046",
+  "atk": 3,
+  "pv": 6,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG20",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 9,
+  "codigo": "DB-VG20",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/19_art_fx.png",
+  "arte_wh": [
+   502,
+   676
+  ],
+  "fonte": "FB03-072",
+  "atk": 6,
+  "pv": 10,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG21",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG21",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/20_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB07-116",
+  "atk": 3,
+  "pv": 2,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG22",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG22",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/21_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB07-116 manga",
+  "atk": 2,
+  "pv": 4
+ },
+ {
+  "id": "VG23",
+  "nome": "Nappa",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-VG23",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/22_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB08-080",
+  "atk": 3,
+  "pv": 6,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG24",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG24",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/23_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB04-069 manga",
+  "atk": 4,
+  "pv": 2,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG25",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG25",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/24_art.png",
+  "arte_wh": [
+   521,
+   735
+  ],
+  "fonte": "FB04-051 manga",
+  "atk": 2,
+  "pv": 3,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG26",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-VG26",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/25_art_fx.png",
+  "arte_wh": [
+   502,
+   676
+  ],
+  "fonte": "FB09-042",
+  "atk": 4,
+  "pv": 3
+ },
+ {
+  "id": "VG27",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 2,
+  "codigo": "DB-VG27",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/26_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "FB10-037",
+  "atk": 1,
+  "pv": 3
+ },
+ {
+  "id": "VG28",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG28",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/27_art.png",
+  "arte_wh": [
+   514,
+   440
+  ],
+  "fonte": "GIF premium",
+  "atk": 4,
+  "pv": 4,
+  "tipo2": "Vilão",
+  "tema2": "vilao",
+  "estagio": "premium",
+  "hole": true,
+  "arte_animada": "VG28_premium_carta.mp4"
+ },
+ {
+  "id": "VG29",
+  "nome": "Raditz",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-VG29",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/28_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "SB01-026 manga",
+  "atk": 4,
+  "pv": 4,
+  "tipo2": "Vilão",
+  "tema2": "vilao"
+ },
+ {
+  "id": "VG30",
+  "nome": "Vegeta",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-VG30",
+  "palavra": "Atingir",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/vegeta/clean/29_art.png",
+  "arte_wh": [
+   502,
+   705
+  ],
+  "fonte": "SB01-025★",
+  "atk": 6,
+  "pv": 3,
+  "tipo2": "Vilão",
+  "tema2": "vilao",
+  "estagio": "lendaria"
+ }
+]
