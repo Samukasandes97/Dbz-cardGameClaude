@@ -1,0 +1,10 @@
+{
+ "regra": "no Teen os golpes vem em PARES (parte 1 + parte 2); juntar",
+ "kamehameha": {
+  "A": "60 (inteiro)",
+  "B": "61+62",
+  "C": "63+64",
+  "D": "65+66 (assumido; ele ditou \"64,65\")"
+ },
+ "nota": "roteiro do Teen difere do Z"
+}
