@@ -1,0 +1,549 @@
+[
+ {
+  "id": "GK01",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-GK01",
+  "palavra": "Atingir",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/00_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FP-001",
+  "atk": 6,
+  "pv": 4,
+  "estagio": "lendaria"
+ },
+ {
+  "id": "GK02",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-GK02",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/01_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "FB10-001 L",
+  "atk": 4,
+  "pv": 3
+ },
+ {
+  "id": "GK03",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-GK03",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/02_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "FS12-01 L",
+  "atk": 2,
+  "pv": 4
+ },
+ {
+  "id": "GK04",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-GK04",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/03_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "FS11-01 L",
+  "atk": 5,
+  "pv": 3
+ },
+ {
+  "id": "GK05",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-GK05",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/04_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "FB04-001 L★",
+  "atk": 2,
+  "pv": 1
+ },
+ {
+  "id": "GK06",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-GK06",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/05_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "FB10-001 L★",
+  "atk": 6,
+  "pv": 3,
+  "estagio": "super"
+ },
+ {
+  "id": "GK07",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-GK07",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/06_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "FB04-001 L",
+  "atk": 1,
+  "pv": 2
+ },
+ {
+  "id": "GK08",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-GK08",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/07_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FS11-04",
+  "atk": 2,
+  "pv": 1
+ },
+ {
+  "id": "GK09",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-GK09",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/08_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FP-001 PR★",
+  "atk": 5,
+  "pv": 2
+ },
+ {
+  "id": "GK10",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 2,
+  "codigo": "DB-GK10",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/09_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "ST01-003",
+  "atk": 3,
+  "pv": 2
+ },
+ {
+  "id": "GK11",
+  "nome": "Son Goku Criança",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-GK11",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/10_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FS09-09",
+  "atk": 2,
+  "pv": 1
+ },
+ {
+  "id": "GK12",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 6,
+  "codigo": "DB-GK12",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/11_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FS12-05",
+  "atk": 7,
+  "pv": 6
+ },
+ {
+  "id": "GK13",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-GK13",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/12_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB11-009 R",
+  "atk": 2,
+  "pv": 1
+ },
+ {
+  "id": "GK14",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 2,
+  "codigo": "DB-GK14",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/13_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB11-008",
+  "atk": 1,
+  "pv": 3
+ },
+ {
+  "id": "GK15",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 2,
+  "codigo": "DB-GK15",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/14_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FS12-06",
+  "atk": 3,
+  "pv": 1
+ },
+ {
+  "id": "GK16",
+  "nome": "Bastão Mágico",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-GK16",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/15_art.png",
+  "arte_wh": [
+   522,
+   694
+  ],
+  "fonte": "FS06-12",
+  "atk": 1,
+  "pv": 2
+ },
+ {
+  "id": "GK17",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 2,
+  "codigo": "DB-GK17",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/16_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB11-009 R★",
+  "atk": 2,
+  "pv": 1
+ },
+ {
+  "id": "GK18",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-GK18",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/17_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB10-010",
+  "atk": 3,
+  "pv": 5
+ },
+ {
+  "id": "GK19",
+  "nome": "Oozaru Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 8,
+  "codigo": "DB-GK19",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/18_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "SB01-017",
+  "atk": 9,
+  "pv": 6
+ },
+ {
+  "id": "GK20",
+  "nome": "Son Goku Criança",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 2,
+  "codigo": "DB-GK20",
+  "palavra": "Protetor",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/19_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "FB06-025 L",
+  "atk": 1,
+  "pv": 3
+ },
+ {
+  "id": "GK21",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 7,
+  "codigo": "DB-GK21",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/20_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB10-052",
+  "atk": 9,
+  "pv": 5
+ },
+ {
+  "id": "GK22",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-GK22",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/21_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB05-053",
+  "atk": 3,
+  "pv": 2
+ },
+ {
+  "id": "GK23",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-GK23",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/22_art.png",
+  "arte_wh": [
+   525,
+   742
+  ],
+  "fonte": "SB02-033 L",
+  "atk": 4,
+  "pv": 3
+ },
+ {
+  "id": "GK24",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 4,
+  "codigo": "DB-GK24",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/23_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB04-035",
+  "atk": 5,
+  "pv": 4
+ },
+ {
+  "id": "GK25",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 1,
+  "codigo": "DB-GK25",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/24_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB10-031",
+  "atk": 2,
+  "pv": 1
+ },
+ {
+  "id": "GK26",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 2,
+  "codigo": "DB-GK26",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/25_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB10-030",
+  "atk": 3,
+  "pv": 2
+ },
+ {
+  "id": "GK27",
+  "nome": "A Dupla Mais Forte",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 6,
+  "codigo": "DB-GK27",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/26_art.png",
+  "arte_wh": [
+   522,
+   694
+  ],
+  "fonte": "SB01-027",
+  "atk": 8,
+  "pv": 4
+ },
+ {
+  "id": "GK28",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 3,
+  "codigo": "DB-GK28",
+  "palavra": "Veloz",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/27_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "FB11-028",
+  "atk": 4,
+  "pv": 2,
+  "estagio": "super",
+  "efeito_3d": true
+ },
+ {
+  "id": "GK29",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 5,
+  "codigo": "DB-GK29",
+  "palavra": "Atacar",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/28_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "MP4 premium",
+  "atk": 6,
+  "pv": 5,
+  "estagio": "premium",
+  "hole": true,
+  "arte_animada": "GK29_premium_carta.mp4"
+ },
+ {
+  "id": "GK30",
+  "nome": "Son Goku",
+  "tema": "saiyajin",
+  "tipo_carta": "unidade",
+  "tipo": "Saiyajin",
+  "custo": 6,
+  "codigo": "DB-GK30",
+  "palavra": "Investida",
+  "arte": "/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/29_art.png",
+  "arte_wh": [
+   510,
+   698
+  ],
+  "fonte": "SB01-023 R★",
+  "atk": 7,
+  "pv": 4
+ }
+]

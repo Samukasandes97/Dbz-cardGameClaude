@@ -1,0 +1,31 @@
+id,nome,custo,atk,pv,palavra,fonte
+GK01,Son Goku,5,6,4,Atingir,FP-001
+GK02,Son Goku,3,4,3,Atacar,FB10-001 L
+GK03,Son Goku,3,2,4,Protetor,FS12-01 L
+GK04,Son Goku,4,5,3,Veloz,FS11-01 L
+GK05,Son Goku,1,2,1,Veloz,FB04-001 L★
+GK06,Son Goku,5,6,3,Investida,FB10-001 L★
+GK07,Son Goku,1,1,2,Protetor,FB04-001 L
+GK08,Son Goku,1,2,1,Atacar,FS11-04
+GK09,Son Goku,4,5,2,Investida,FP-001 PR★
+GK10,Son Goku,2,3,2,Atacar,ST01-003
+GK11,Son Goku Criança,1,2,1,Veloz,FS09-09
+GK12,Son Goku,6,7,6,Atacar,FS12-05
+GK13,Son Goku,1,2,1,Atacar,FB11-009 R
+GK14,Son Goku,2,1,3,Protetor,FB11-008
+GK15,Son Goku,2,3,1,Veloz,FS12-06
+GK16,Bastão Mágico,1,1,2,Protetor,FS06-12
+GK17,Son Goku,2,2,1,Investida,FB11-009 R★
+GK18,Son Goku,4,3,5,Protetor,FB10-010
+GK19,Oozaru Son Goku,8,9,6,Investida,SB01-017
+GK20,Son Goku Criança,2,1,3,Protetor,FB06-025 L
+GK21,Son Goku,7,9,5,Veloz,FB10-052
+GK22,Son Goku,3,3,2,Investida,FB05-053
+GK23,Son Goku,3,4,3,Atacar,SB02-033 L
+GK24,Son Goku,4,5,4,Atacar,FB04-035
+GK25,Son Goku,1,2,1,Atacar,FB10-031
+GK26,Son Goku,2,3,2,Atacar,FB10-030
+GK27,A Dupla Mais Forte,6,8,4,Veloz,SB01-027
+GK28,Son Goku,3,4,2,Veloz,FB11-028
+GK29,Son Goku,5,4,6,Protetor,SB01-023 R
+GK30,Son Goku,6,7,4,Investida,SB01-023 R★

@@ -1,0 +1,778 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+#persp{filter:brightness(1.1) saturate(1.2)}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#05060a;font-family:Inter}
+#bgl{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,var(--bg1,#2a2f4a) 0,#0a0c16 55%,#030407 100%)}
+#persp{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1050px;perspective-origin:50% 45%}
+#rig{position:absolute;left:455px;top:-312px;width:1190px;height:1705px;transform-origin:595px 852px;transform:scale(.58);}
+#tilt{position:absolute;left:0;top:0;width:1190px;height:1705px;transform-style:preserve-3d;transform-origin:595px 852px}
+.L{position:absolute;left:0;top:0;width:1190px;height:1705px}
+.win{position:absolute;left:62px;top:62px;width:1066px;height:1581px;border-radius:22px;overflow:hidden;background:#000}.bd{position:absolute;inset:-60px;background:url('/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/27_art.png') center/cover;filter:blur(38px) brightness(.78) saturate(1.25)}.art{position:absolute;left:11.309455587392563px;top:153px;width:1043.3810888252149px;height:1428px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 80px),linear-gradient(to right,transparent 0,#000 26px,#000 calc(100% - 26px),transparent 100%);-webkit-mask-composite:source-in;mask-composite:intersect}
+.win{left:62px;top:62px}
+.cut{position:absolute;left:73.30945558739256px;top:215.0px;width:1043.3810888252149px;height:1428px;transform-origin:50% 40%;filter:drop-shadow(0 50px 40px rgba(0,0,0,.8))}
+.cut img{width:100%;height:100%;display:block}
+.tp,.bt{filter:drop-shadow(0 22px 20px rgba(0,0,0,.75))}
+.back{position:absolute;left:0;top:0;width:1190px;height:1705px;border-radius:38px;background:#0a0b10;box-shadow:0 60px 140px rgba(0,0,0,.8)}
+.fr{position:absolute;left:0;top:0}
+#sheen{position:absolute;left:0;top:0;width:1190px;height:1705px;border-radius:38px;mix-blend-mode:color-dodge;pointer-events:none}
+#lab{position:absolute;left:80px;top:150px;color:#fff}
+#lab .k{font-size:26px;letter-spacing:6px;color:#9fb0c8;font-weight:700}
+#lab .t{font-size:70px;font-weight:900;line-height:1;margin-top:10px}
+#lab .s{font-size:30px;margin-top:16px;color:#cfd8e6;font-weight:500;max-width:470px;line-height:1.35}
+#pips{position:absolute;left:80px;bottom:110px;display:flex;gap:14px}
+.pip{width:100px;height:10px;border-radius:5px;background:#2a3044}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#ring{position:absolute;left:660px;top:240px;width:600px;height:600px;border-radius:50%;border:12px solid #fff;opacity:0;pointer-events:none}
+#spk{position:absolute;inset:0;pointer-events:none}
+</style></head><body>
+<div id="bgl"></div>
+<div id="lab"><div class="k" id="lk"></div><div class="t" id="lt"></div><div class="s" id="ls"></div></div>
+<div id="pips"><div class="pip"></div><div class="pip"></div><div class="pip"></div><div class="pip"></div></div>
+<div id="persp"><div id="rig"><div id="tilt">
+ <div class="back" style="transform:translateZ(-70px)"></div>
+ <div class="L win" style="transform:translateZ(-40px)"><div class="bd"></div><img class="art" src="/tmp/claude-0/-home-claude/84f3faec-af92-5d88-b151-bbf1e79ccb25/scratchpad/cartas/clean/27_art.png"></div>
+ <div class="L fr" id="f_comum" style="transform:translateZ(55px)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="comum_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="comum_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="comum_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="comum_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="comum_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="comum_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="comum_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="comum_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#comum_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#comum_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#comum_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#comum_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#comum_carbon)" stroke="url(#comum_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#comum_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#comum_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#comum_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#comum_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#comum_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#comum_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#comum_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#comum_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#comum_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#comum_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div>
+ <div class="L fr" id="f_rara" style="transform:translateZ(55px);opacity:0"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="rara_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="rara_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="rara_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="rara_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="rara_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="rara_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="rara_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="rara_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#rara_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#rara_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#rara_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#rara_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="rara_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="rara_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><rect x="9" y="12" width="1172" height="1681" rx="34" fill="none" stroke="url(#rara_silver)" stroke-width="7"/><rect x="53" y="53" width="1084" height="1599" rx="30" fill="none" stroke="url(#rara_silver)" stroke-width="3" opacity=".9"/><g transform="translate(58,58) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(1132,58) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(58,1647) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(1132,1647) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#rara_carbon)" stroke="url(#rara_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#rara_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#rara_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#rara_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#rara_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#rara_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#rara_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#rara_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#rara_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#rara_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#rara_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div>
+ <div class="L fr" id="f_super" style="transform:translateZ(55px);opacity:0"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="super_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="super_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="super_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="super_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="super_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="super_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="super_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="super_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#super_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#super_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#super_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#super_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="super_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="super_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><rect x="8" y="10" width="1174" height="1685" rx="34" fill="none" stroke="url(#super_rainbow)" stroke-width="11" filter="url(#super_glow)"/><rect x="19" y="22" width="1152" height="1661" rx="28" fill="none" stroke="url(#super_silver)" stroke-width="4"/><rect x="52" y="52" width="1086" height="1601" rx="31" fill="none" stroke="url(#super_rainbow)" stroke-width="5" opacity=".95"/><path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#super_rainbow)" opacity=".28" style="mix-blend-mode:screen"/><g transform="translate(58,58) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(1132,58) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(58,1647) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(1132,1647) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><circle cx="595" cy="1649" r="9" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="2"/>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#super_carbon)" stroke="url(#super_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#super_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#super_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#super_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#super_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#super_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#super_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#super_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#super_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#super_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#super_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div>
+ <div class="L fr" id="f_lendaria" style="transform:translateZ(55px);opacity:0"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="lendaria_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="lendaria_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".45" stop-color="#ffd54a"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <linearGradient id="lendaria_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4300"/><stop offset=".5" stop-color="#2e1c00"/><stop offset="1" stop-color="#6b4300"/></linearGradient>
+ <linearGradient id="lendaria_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <linearGradient id="lendaria_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d99a12"/><stop offset="1" stop-color="#6b4300"/></linearGradient>
+ <linearGradient id="lendaria_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffd54a"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <radialGradient id="lendaria_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffe27a"/><stop offset=".6" stop-color="#d08a0c"/><stop offset="1" stop-color="#6a3d00"/></radialGradient>
+ <filter id="lendaria_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#lendaria_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#lendaria_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#lendaria_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#d99a12" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#fff4c0" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#lendaria_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffd54a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="lendaria_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="lendaria_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><defs><linearGradient id="lendaria_goldrich" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7c2"/><stop offset=".2" stop-color="#ffd54a"/><stop offset=".42" stop-color="#b8780a"/><stop offset=".6" stop-color="#ffe27a"/><stop offset=".8" stop-color="#8a5200"/><stop offset="1" stop-color="#fff3a8"/></linearGradient>
+<radialGradient id="lendaria_seal" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#fff7c2"/><stop offset=".5" stop-color="#e8a817"/><stop offset="1" stop-color="#6b4300"/></radialGradient></defs><rect x="6" y="8" width="1178" height="1689" rx="36" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="16" filter="url(#lendaria_glow)"/><rect x="22" y="25" width="1146" height="1655" rx="28" fill="none" stroke="#fff6c8" stroke-width="3"/><rect x="30" y="33" width="1130" height="1639" rx="24" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="2" stroke-dasharray="3 9"/><rect x="50" y="50" width="1090" height="1605" rx="32" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="10" filter="url(#lendaria_glow)"/><rect x="59" y="59" width="1072" height="1587" rx="25" fill="none" stroke="#fff6c8" stroke-width="2.5"/><path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#lendaria_goldrich)" opacity=".30" style="mix-blend-mode:screen"/><path d="M205 96 L55 52.0 L85 112.0 L197 128.0Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.98"/><path d="M205 122 L77 75.4 L107 135.4 L197 138.4Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.9299999999999999"/><path d="M205 148 L101 98.80000000000001 L131 158.8 L197 148.8Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.88"/><path d="M205 174 L125 122.2 L155 182.2 L197 159.2Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.83"/><path d="M985 96 L1135 52.0 L1105 112.0 L993 128.0Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.98"/><path d="M985 122 L1113 75.4 L1083 135.4 L993 138.4Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.9299999999999999"/><path d="M985 148 L1089 98.80000000000001 L1059 158.8 L993 148.8Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.88"/><path d="M985 174 L1065 122.2 L1035 182.2 L993 159.2Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.83"/><g transform="translate(58,58) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(1132,58) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(58,1647) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(1132,1647) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><path d="M40 420 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="350" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 420 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="350" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 720 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="650" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 720 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="650" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 1020 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="950" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 1020 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="950" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 1320 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="1250" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 1320 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="1250" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M365 1623 L445 1579 H745 L825 1623 L745 1649 H445Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><text x="595" y="1621" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" letter-spacing="8" fill="#3a2200">LENDÁRIA</text><g filter="url(#lendaria_glow)"><circle cx="595" cy="1539" r="40" fill="url(#lendaria_seal)" stroke="#fff6c8" stroke-width="5"/><path d="M595 1503 L605 1529 L633 1529 L611 1545 L619 1571 L595 1555 L571 1571 L579 1545 L557 1529 L585 1529Z" fill="#fff" opacity=".92" stroke="#6b4300" stroke-width="2"/></g><path d="M90 296 Q90 330 124 330 Q90 330 90 364 Q90 330 56 330 Q90 330 90 296Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M1100 494 Q1100 520 1126 520 Q1100 520 1100 546 Q1100 520 1074 520 Q1100 520 1100 494Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M120 970 Q120 1000 150 1000 Q120 1000 120 1030 Q120 1000 90 1000 Q120 1000 120 970Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M1090 1204 Q1090 1240 1126 1240 Q1090 1240 1090 1276 Q1090 1240 1054 1240 Q1090 1240 1090 1204Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M600 1478 Q600 1500 622 1500 Q600 1500 600 1522 Q600 1500 578 1500 Q600 1500 600 1478Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#lendaria_carbon)" stroke="url(#lendaria_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#d99a12" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#lendaria_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#lendaria_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffd54a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffd54a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff0a0" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#lendaria_pill)" stroke="#fff0a0" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#lendaria_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#lendaria_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#fff4c0" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#lendaria_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#lendaria_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#lendaria_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#lendaria_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#lendaria_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div>
+ <div class="L fr tp" id="t_comum" style="opacity:0;clip-path:inset(0 0 1440px 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="comum_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="comum_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="comum_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="comum_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="comum_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="comum_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="comum_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="comum_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#comum_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#comum_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#comum_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#comum_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#comum_carbon)" stroke="url(#comum_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#comum_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#comum_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#comum_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#comum_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#comum_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#comum_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#comum_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#comum_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#comum_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#comum_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div><div class="L fr tp" id="t_rara" style="opacity:0;clip-path:inset(0 0 1440px 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="rara_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="rara_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="rara_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="rara_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="rara_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="rara_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="rara_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="rara_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#rara_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#rara_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#rara_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#rara_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="rara_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="rara_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><rect x="9" y="12" width="1172" height="1681" rx="34" fill="none" stroke="url(#rara_silver)" stroke-width="7"/><rect x="53" y="53" width="1084" height="1599" rx="30" fill="none" stroke="url(#rara_silver)" stroke-width="3" opacity=".9"/><g transform="translate(58,58) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(1132,58) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(58,1647) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(1132,1647) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#rara_carbon)" stroke="url(#rara_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#rara_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#rara_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#rara_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#rara_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#rara_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#rara_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#rara_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#rara_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#rara_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#rara_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div><div class="L fr tp" id="t_super" style="opacity:0;clip-path:inset(0 0 1440px 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="super_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="super_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="super_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="super_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="super_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="super_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="super_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="super_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#super_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#super_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#super_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#super_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="super_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="super_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><rect x="8" y="10" width="1174" height="1685" rx="34" fill="none" stroke="url(#super_rainbow)" stroke-width="11" filter="url(#super_glow)"/><rect x="19" y="22" width="1152" height="1661" rx="28" fill="none" stroke="url(#super_silver)" stroke-width="4"/><rect x="52" y="52" width="1086" height="1601" rx="31" fill="none" stroke="url(#super_rainbow)" stroke-width="5" opacity=".95"/><path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#super_rainbow)" opacity=".28" style="mix-blend-mode:screen"/><g transform="translate(58,58) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(1132,58) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(58,1647) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(1132,1647) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><circle cx="595" cy="1649" r="9" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="2"/>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#super_carbon)" stroke="url(#super_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#super_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#super_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#super_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#super_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#super_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#super_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#super_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#super_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#super_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#super_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div><div class="L fr tp" id="t_lendaria" style="opacity:0;clip-path:inset(0 0 1440px 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="lendaria_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="lendaria_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".45" stop-color="#ffd54a"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <linearGradient id="lendaria_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4300"/><stop offset=".5" stop-color="#2e1c00"/><stop offset="1" stop-color="#6b4300"/></linearGradient>
+ <linearGradient id="lendaria_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <linearGradient id="lendaria_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d99a12"/><stop offset="1" stop-color="#6b4300"/></linearGradient>
+ <linearGradient id="lendaria_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffd54a"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <radialGradient id="lendaria_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffe27a"/><stop offset=".6" stop-color="#d08a0c"/><stop offset="1" stop-color="#6a3d00"/></radialGradient>
+ <filter id="lendaria_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#lendaria_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#lendaria_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#lendaria_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#d99a12" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#fff4c0" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#lendaria_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffd54a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="lendaria_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="lendaria_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><defs><linearGradient id="lendaria_goldrich" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7c2"/><stop offset=".2" stop-color="#ffd54a"/><stop offset=".42" stop-color="#b8780a"/><stop offset=".6" stop-color="#ffe27a"/><stop offset=".8" stop-color="#8a5200"/><stop offset="1" stop-color="#fff3a8"/></linearGradient>
+<radialGradient id="lendaria_seal" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#fff7c2"/><stop offset=".5" stop-color="#e8a817"/><stop offset="1" stop-color="#6b4300"/></radialGradient></defs><rect x="6" y="8" width="1178" height="1689" rx="36" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="16" filter="url(#lendaria_glow)"/><rect x="22" y="25" width="1146" height="1655" rx="28" fill="none" stroke="#fff6c8" stroke-width="3"/><rect x="30" y="33" width="1130" height="1639" rx="24" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="2" stroke-dasharray="3 9"/><rect x="50" y="50" width="1090" height="1605" rx="32" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="10" filter="url(#lendaria_glow)"/><rect x="59" y="59" width="1072" height="1587" rx="25" fill="none" stroke="#fff6c8" stroke-width="2.5"/><path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#lendaria_goldrich)" opacity=".30" style="mix-blend-mode:screen"/><path d="M205 96 L55 52.0 L85 112.0 L197 128.0Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.98"/><path d="M205 122 L77 75.4 L107 135.4 L197 138.4Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.9299999999999999"/><path d="M205 148 L101 98.80000000000001 L131 158.8 L197 148.8Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.88"/><path d="M205 174 L125 122.2 L155 182.2 L197 159.2Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.83"/><path d="M985 96 L1135 52.0 L1105 112.0 L993 128.0Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.98"/><path d="M985 122 L1113 75.4 L1083 135.4 L993 138.4Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.9299999999999999"/><path d="M985 148 L1089 98.80000000000001 L1059 158.8 L993 148.8Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.88"/><path d="M985 174 L1065 122.2 L1035 182.2 L993 159.2Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.83"/><g transform="translate(58,58) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(1132,58) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(58,1647) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(1132,1647) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><path d="M40 420 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="350" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 420 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="350" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 720 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="650" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 720 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="650" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 1020 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="950" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 1020 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="950" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 1320 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="1250" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 1320 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="1250" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M365 1623 L445 1579 H745 L825 1623 L745 1649 H445Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><text x="595" y="1621" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" letter-spacing="8" fill="#3a2200">LENDÁRIA</text><g filter="url(#lendaria_glow)"><circle cx="595" cy="1539" r="40" fill="url(#lendaria_seal)" stroke="#fff6c8" stroke-width="5"/><path d="M595 1503 L605 1529 L633 1529 L611 1545 L619 1571 L595 1555 L571 1571 L579 1545 L557 1529 L585 1529Z" fill="#fff" opacity=".92" stroke="#6b4300" stroke-width="2"/></g><path d="M90 296 Q90 330 124 330 Q90 330 90 364 Q90 330 56 330 Q90 330 90 296Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M1100 494 Q1100 520 1126 520 Q1100 520 1100 546 Q1100 520 1074 520 Q1100 520 1100 494Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M120 970 Q120 1000 150 1000 Q120 1000 120 1030 Q120 1000 90 1000 Q120 1000 120 970Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M1090 1204 Q1090 1240 1126 1240 Q1090 1240 1090 1276 Q1090 1240 1054 1240 Q1090 1240 1090 1204Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M600 1478 Q600 1500 622 1500 Q600 1500 600 1522 Q600 1500 578 1500 Q600 1500 600 1478Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#lendaria_carbon)" stroke="url(#lendaria_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#d99a12" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#lendaria_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#lendaria_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffd54a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffd54a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff0a0" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#lendaria_pill)" stroke="#fff0a0" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#lendaria_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#lendaria_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#fff4c0" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#lendaria_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#lendaria_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#lendaria_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#lendaria_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#lendaria_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div>
+ <div class="L fr bt" id="b_comum" style="opacity:0;clip-path:inset(1530px 0 0 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="comum_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="comum_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="comum_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="comum_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="comum_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="comum_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="comum_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="comum_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#comum_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#comum_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#comum_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#comum_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#comum_carbon)" stroke="url(#comum_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#comum_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#comum_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#comum_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#comum_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#comum_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#comum_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#comum_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#comum_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#comum_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#comum_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div><div class="L fr bt" id="b_rara" style="opacity:0;clip-path:inset(1530px 0 0 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="rara_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="rara_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="rara_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="rara_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="rara_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="rara_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="rara_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="rara_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#rara_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#rara_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#rara_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#rara_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="rara_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="rara_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><rect x="9" y="12" width="1172" height="1681" rx="34" fill="none" stroke="url(#rara_silver)" stroke-width="7"/><rect x="53" y="53" width="1084" height="1599" rx="30" fill="none" stroke="url(#rara_silver)" stroke-width="3" opacity=".9"/><g transform="translate(58,58) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(1132,58) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(58,1647) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g><g transform="translate(1132,1647) rotate(45)"><rect x="-15" y="-15" width="30" height="30" fill="url(#rara_silver)" stroke="#1b0d03" stroke-width="3"/><rect x="-6.75" y="-6.75" width="13.5" height="13.5" fill="#fff" opacity=".7"/></g>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#rara_carbon)" stroke="url(#rara_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#rara_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#rara_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#rara_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#rara_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#rara_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#rara_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#rara_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#rara_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#rara_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#rara_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div><div class="L fr bt" id="b_super" style="opacity:0;clip-path:inset(1530px 0 0 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="super_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="super_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="super_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2806"/><stop offset=".5" stop-color="#2a1305"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="super_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd978"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <linearGradient id="super_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08a1c"/><stop offset="1" stop-color="#5a2806"/></linearGradient>
+ <linearGradient id="super_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffc83a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient>
+ <radialGradient id="super_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#c2540a"/><stop offset="1" stop-color="#5e2204"/></radialGradient>
+ <filter id="super_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#super_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#super_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#super_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#ff7a2b" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#super_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffc83a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#ff7a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="super_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="super_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><rect x="8" y="10" width="1174" height="1685" rx="34" fill="none" stroke="url(#super_rainbow)" stroke-width="11" filter="url(#super_glow)"/><rect x="19" y="22" width="1152" height="1661" rx="28" fill="none" stroke="url(#super_silver)" stroke-width="4"/><rect x="52" y="52" width="1086" height="1601" rx="31" fill="none" stroke="url(#super_rainbow)" stroke-width="5" opacity=".95"/><path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#super_rainbow)" opacity=".28" style="mix-blend-mode:screen"/><g transform="translate(58,58) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(1132,58) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(58,1647) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><g transform="translate(1132,1647) rotate(45)"><rect x="-19" y="-19" width="38" height="38" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="3"/><rect x="-8.55" y="-8.55" width="17.1" height="17.1" fill="#fff" opacity=".7"/></g><circle cx="595" cy="1649" r="9" fill="url(#super_rainbow)" stroke="#1b0d03" stroke-width="2"/>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#super_carbon)" stroke="url(#super_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#f08a1c" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#super_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#super_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffc83a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffc83a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#ffd978" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#super_pill)" stroke="#ffd978" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#super_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#super_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#ff7a2b" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#super_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#super_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#super_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#super_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#super_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div><div class="L fr bt" id="b_lendaria" style="opacity:0;clip-path:inset(1530px 0 0 0)"><svg width="1190" height="1705" viewBox="0 0 1190 1705" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="lendaria_carbon" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#101218"/><rect width="7" height="7" fill="#171a21"/><rect x="7" y="7" width="7" height="7" fill="#171a21"/></pattern>
+ <linearGradient id="lendaria_gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".45" stop-color="#ffd54a"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <linearGradient id="lendaria_band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4300"/><stop offset=".5" stop-color="#2e1c00"/><stop offset="1" stop-color="#6b4300"/></linearGradient>
+ <linearGradient id="lendaria_pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <linearGradient id="lendaria_chip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d99a12"/><stop offset="1" stop-color="#6b4300"/></linearGradient>
+ <linearGradient id="lendaria_nameg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c2"/><stop offset=".45" stop-color="#ffd54a"/><stop offset="1" stop-color="#d99a12"/></linearGradient>
+ <radialGradient id="lendaria_orb" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffe27a"/><stop offset=".6" stop-color="#d08a0c"/><stop offset="1" stop-color="#6a3d00"/></radialGradient>
+ <filter id="lendaria_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- moldura (carbono + banda do tema) -->
+<path fill-rule="evenodd" d="M38 0H1152Q1190 0 1190 38V1667Q1190 1705 1152 1705H38Q0 1705 0 1667V38Q0 0 38 0Z M84 62H1106Q1128 62 1128 84V1621Q1128 1643 1106 1643H84Q62 1643 62 1621V84Q62 62 84 62Z" fill="url(#lendaria_carbon)"/>
+<path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#lendaria_band)" opacity=".92"/>
+<rect x="57" y="57" width="1076" height="1591" rx="27" fill="none" stroke="url(#lendaria_gold)" stroke-width="6"/>
+<rect x="48" y="48" width="1094" height="1609" rx="34" fill="none" stroke="#d99a12" stroke-width="2" opacity=".8"/>
+<rect x="22" y="26" width="1146" height="1653" rx="30" fill="none" stroke="#fff4c0" stroke-width="3" opacity=".9"/>
+<!-- cantos tecnologicos -->
+<path d="M1156 150V96L1094 34H940" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#lendaria_glow)"/>
+<path d="M1128 200V120" fill="none" stroke="#ffd54a" stroke-width="5" stroke-linecap="round"/>
+<path d="M34 1485V1585L100 1651" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<path d="M1156 1485V1585L1090 1651" fill="none" stroke="#fff4c0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+<defs>
+ <linearGradient id="lendaria_silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#9fb0c4"/><stop offset=".55" stop-color="#f4f8ff"/><stop offset=".8" stop-color="#7f90a6"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+ <linearGradient id="lendaria_rainbow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a7a"/><stop offset=".17" stop-color="#ffc13a"/><stop offset=".34" stop-color="#7dff7a"/><stop offset=".5" stop-color="#3ae6ff"/><stop offset=".67" stop-color="#6a7aff"/><stop offset=".84" stop-color="#e06aff"/><stop offset="1" stop-color="#ff5a7a"/></linearGradient>
+</defs><defs><linearGradient id="lendaria_goldrich" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff7c2"/><stop offset=".2" stop-color="#ffd54a"/><stop offset=".42" stop-color="#b8780a"/><stop offset=".6" stop-color="#ffe27a"/><stop offset=".8" stop-color="#8a5200"/><stop offset="1" stop-color="#fff3a8"/></linearGradient>
+<radialGradient id="lendaria_seal" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#fff7c2"/><stop offset=".5" stop-color="#e8a817"/><stop offset="1" stop-color="#6b4300"/></radialGradient></defs><rect x="6" y="8" width="1178" height="1689" rx="36" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="16" filter="url(#lendaria_glow)"/><rect x="22" y="25" width="1146" height="1655" rx="28" fill="none" stroke="#fff6c8" stroke-width="3"/><rect x="30" y="33" width="1130" height="1639" rx="24" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="2" stroke-dasharray="3 9"/><rect x="50" y="50" width="1090" height="1605" rx="32" fill="none" stroke="url(#lendaria_goldrich)" stroke-width="10" filter="url(#lendaria_glow)"/><rect x="59" y="59" width="1072" height="1587" rx="25" fill="none" stroke="#fff6c8" stroke-width="2.5"/><path fill-rule="evenodd" d="M30 34H1160V1671H30Z M56 56H1134V1649H56Z" fill="url(#lendaria_goldrich)" opacity=".30" style="mix-blend-mode:screen"/><path d="M205 96 L55 52.0 L85 112.0 L197 128.0Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.98"/><path d="M205 122 L77 75.4 L107 135.4 L197 138.4Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.9299999999999999"/><path d="M205 148 L101 98.80000000000001 L131 158.8 L197 148.8Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.88"/><path d="M205 174 L125 122.2 L155 182.2 L197 159.2Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.83"/><path d="M985 96 L1135 52.0 L1105 112.0 L993 128.0Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.98"/><path d="M985 122 L1113 75.4 L1083 135.4 L993 138.4Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.9299999999999999"/><path d="M985 148 L1089 98.80000000000001 L1059 158.8 L993 148.8Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.88"/><path d="M985 174 L1065 122.2 L1035 182.2 L993 159.2Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2.5" opacity="0.83"/><g transform="translate(58,58) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(1132,58) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(58,1647) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><g transform="translate(1132,1647) rotate(0)"><path d="M0 -44 L12 -12 L44 0 L12 12 L0 44 L-12 12 L-44 0 L-12 -12Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><circle r="9" fill="#fff"/></g><path d="M40 420 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="350" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 420 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="350" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 720 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="650" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 720 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="650" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 1020 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="950" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 1020 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="950" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M40 1320 q26 -34 0 -64 q-14 22 -2 40 q10 14 2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="43" cy="1250" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M1150 1320 q-26 -34 0 -64 q14 22 2 40 q-10 14 -2 24Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="2"/><circle cx="1147" cy="1250" r="7" fill="#fff6c8" stroke="#2e1c00" stroke-width="2"/><path d="M365 1623 L445 1579 H745 L825 1623 L745 1649 H445Z" fill="url(#lendaria_goldrich)" stroke="#2e1c00" stroke-width="3"/><text x="595" y="1621" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" letter-spacing="8" fill="#3a2200">LENDÁRIA</text><g filter="url(#lendaria_glow)"><circle cx="595" cy="1539" r="40" fill="url(#lendaria_seal)" stroke="#fff6c8" stroke-width="5"/><path d="M595 1503 L605 1529 L633 1529 L611 1545 L619 1571 L595 1555 L571 1571 L579 1545 L557 1529 L585 1529Z" fill="#fff" opacity=".92" stroke="#6b4300" stroke-width="2"/></g><path d="M90 296 Q90 330 124 330 Q90 330 90 364 Q90 330 56 330 Q90 330 90 296Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M1100 494 Q1100 520 1126 520 Q1100 520 1100 546 Q1100 520 1074 520 Q1100 520 1100 494Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M120 970 Q120 1000 150 1000 Q120 1000 120 1030 Q120 1000 90 1000 Q120 1000 120 970Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M1090 1204 Q1090 1240 1126 1240 Q1090 1240 1090 1276 Q1090 1240 1054 1240 Q1090 1240 1090 1204Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/><path d="M600 1478 Q600 1500 622 1500 Q600 1500 600 1522 Q600 1500 578 1500 Q600 1500 600 1478Z" fill="#fff" opacity=".95" filter="url(#lendaria_glow)"/>
+<!-- placa do nome -->
+<path d="M250 30H940L985 78V166L925 214H265L205 166V78Z" fill="url(#lendaria_carbon)" stroke="url(#lendaria_gold)" stroke-width="5"/>
+<path d="M262 40H928L968 82V160L918 202H272L222 160V82Z" fill="none" stroke="#d99a12" stroke-width="2" opacity=".9"/>
+<text x="615" y="118" text-anchor="middle" font-family="Inter" font-weight="900" font-size="88" fill="url(#lendaria_nameg)" stroke="#1b0d03" stroke-width="5" paint-order="stroke" letter-spacing="3" filter="url(#lendaria_glow)">SON GOKU</text>
+<text x="615" y="176" text-anchor="middle" font-family="Inter" font-weight="600" font-size="31" fill="#dfe6ef" letter-spacing="2">TIPO <tspan fill="#ffd54a">—</tspan> Saiyajin</text>
+<g transform="translate(629.0,236)">
+ <rect x="-262" y="-27" width="262" height="54" rx="27" fill="#14110c" stroke="#ffd54a" stroke-width="3"/>
+ <text x="-131" y="9" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff0a0" letter-spacing="1">PALAVRA-CHAVE</text>
+ <rect x="14" y="-27" width="180" height="54" rx="27" fill="url(#lendaria_pill)" stroke="#fff0a0" stroke-width="2"/>
+ <text x="104.0" y="10" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#2a1200">VELOZ</text></g>
+<!-- orbe de custo -->
+<g filter="url(#lendaria_glow)"><circle cx="164" cy="164" r="116" fill="#0d0e13" stroke="url(#lendaria_gold)" stroke-width="8"/>
+<circle cx="164" cy="164" r="104" fill="none" stroke="#fff4c0" stroke-width="5"/>
+<circle cx="164" cy="164" r="92" fill="url(#lendaria_orb)" stroke="#fff3" stroke-width="2"/>
+<ellipse cx="140" cy="116" rx="52" ry="24" fill="#fff" opacity=".22"/></g>
+<text x="164" y="108" text-anchor="middle" font-family="Inter" font-weight="800" font-size="25" fill="#fff6dc" letter-spacing="2">ESFERA</text>
+<text x="164" y="206" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#ffffff" stroke="#2a1305" stroke-width="4" paint-order="stroke">3</text>
+
+<g transform="translate(108,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#lendaria_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#lendaria_chip)"/>
+ <g transform="translate(24,16) scale(1.0)"><g fill="#fff6dc" stroke="#2a1305" stroke-width="3" stroke-linejoin="round"><rect x="6" y="22" width="52" height="32" rx="9"/><rect x="6" y="8" width="13" height="22" rx="6"/><rect x="19" y="4" width="13" height="26" rx="6"/><rect x="32" y="4" width="13" height="26" rx="6"/><rect x="45" y="8" width="13" height="22" rx="6"/><path d="M6 42Q-6 36 0 28L10 32Z"/></g></g>
+ <text x="104" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">ATK</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">4</text></g>
+<g transform="translate(786,1596)"><rect x="0" y="0" width="296" height="84" rx="24" fill="#120f0a" stroke="url(#lendaria_gold)" stroke-width="5"/><rect x="6" y="6" width="284" height="72" rx="19" fill="url(#lendaria_chip)"/>
+ <g transform="translate(26,18)"><path d="M32 58C8 40 2 28 2 18C2 8 10 2 19 2C25 2 29 5 32 10C35 5 39 2 45 2C54 2 62 8 62 18C62 28 56 40 32 58Z" fill="#ff7a3a" stroke="#2a1305" stroke-width="4" stroke-linejoin="round"/><path d="M14 14Q18 8 25 9" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/></g>
+ <text x="108" y="58" font-family="Inter" font-weight="900" font-size="38" fill="#fff6dc" letter-spacing="1">PV</text>
+ <text x="262" y="60" text-anchor="end" font-family="Inter" font-weight="900" font-size="62" fill="#ffffff" stroke="#2a1305" stroke-width="2" paint-order="stroke">2</text></g>
+<text x="595" y="1672" text-anchor="middle" font-family="Inter" font-weight="700" font-size="22" fill="#cdd3dc" letter-spacing="3">DB-GK28</text>
+</svg></div>
+ <div class="cut" id="cut" style="opacity:0"><img src="cut_gk28.png"></div>
+ <div id="sheen" style="transform:translateZ(30px)"></div>
+</div></div></div>
+<div id="ring"></div><canvas id="spk" width="1920" height="1080"></canvas><div id="flash"></div>
+<script>
+const ST=[
+ {id:'comum',k:'3 CÓPIAS IGUAIS',t:'COMUM',s:'Moldura base do tipo. A cor segue o tipo da carta (Saiyajin = dourado/laranja).',bg:'#2a2f4a'},
+ {id:'rara',k:'EVOLUÇÃO DA MOLDURA',t:'RARA',s:'A moldura evolui: borda de prata, gemas nos cantos e reflexo metálico.',bg:'#2a4a5a'},
+ {id:'super',k:'EVOLUÇÃO DA MOLDURA',t:'CARTA 3D',s:'Moldura holográfica com brilho que acompanha a inclinação da carta.',bg:'#4a2a5a'},
+ {id:'super',k:'EVOLUÇÃO FINAL',t:'SON GOKU',s:'O Goku salta para fora da moldura e a carta ganha profundidade (estilo Snap).',bg:'#4a2a5a',pop:1},
+ {id:'lendaria',k:'CARTA LENDÁRIA',t:'LENDÁRIA',s:'Carta única: moldura DOURADA com asas, selo e fita de lendária, palavra-chave ATINGIR. Não é evolução, é outra categoria.',bg:'#5a4310',pop:1}
+];
+const DUR=[3.4,3.4,4.2,5.2,8.4], TS=[0,3.4,6.8,11.0,16.2], TOTAL=24.6;
+function ease(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
+const sp=document.getElementById('spk').getContext('2d');
+function rnd(n){let x=Math.sin(n*127.1)*43758.5453;return x-Math.floor(x)}
+function setT(t){
+ let i=0;for(let j=0;j<TS.length;j++) if(t>=TS[j]) i=j;
+ const S=ST[i], lt=t-TS[i];
+ for(const e of ['comum','rara','super','lendaria']){const fe=document.getElementById('f_'+e);fe.style.opacity=(e===S.id)?1:0;fe.style.clipPath=(S.pop&&e===S.id)?'inset(264px 0 175px 0)':'none'}
+ document.getElementById('lk').textContent=S.k;document.getElementById('lt').textContent=S.t;document.getElementById('ls').textContent=S.s;
+ document.getElementById('bgl').style.setProperty('--bg1',S.bg);
+ document.querySelectorAll('.pip').forEach((p,n)=>{const act=(i===0?0:i===1?1:i===2?2:i===3?2:3);p.style.background=n<=act?(n===3?'#ffd54a':'#7fb4ff'):'#2a3044'});
+ // pop (transicao suave)
+ let pop=0; if(S.pop){pop=ease(Math.min(1,lt/1.2))}
+ const cut=document.getElementById('cut');
+ cut.style.opacity=pop;
+ cut.style.transform=`translateZ(${70+pop*300}px) scale(${1+pop*0.22}) translate(${pop*-10}px,${-pop*90}px)`;
+ for(const e of ['comum','rara','super','lendaria']){const on=(e===S.id)?pop:0;for(const p of ['t_','b_']){const el=document.getElementById(p+e);el.style.opacity=on;el.style.transform=`translateZ(${55+on*120}px)`}}
+ // inclinacao
+ const amp=(i<3?1.25:2.1), ry=Math.sin(t*1.25)*15*amp, rx=Math.cos(t*0.95)*9*amp;
+ document.getElementById('tilt').style.transform=`rotateY(${ry}deg) rotateX(${rx}deg)`;
+ // reflexo (sheen)
+ const sh=document.getElementById('sheen'); const px=50+ry*2.6, py=50-rx*3;
+ let col=i===0?'rgba(255,255,255,.0)':i===1?'rgba(210,230,255,.32)':i===4?'rgba(255,220,110,.40)':'rgba(255,255,255,.16)';
+ const rb=(i===2||i===3)?`linear-gradient(${110+ry*4}deg,rgba(255,80,120,.0) ${px-40}%,rgba(255,200,60,.16) ${px-25}%,rgba(80,255,150,.14) ${px-10}%,rgba(60,220,255,.18) ${px+5}%,rgba(160,100,255,.16) ${px+20}%,rgba(255,80,160,.0) ${px+40}%)`:'';
+ sh.style.background=(rb?rb+',':'')+`radial-gradient(ellipse at ${px}% ${py}%,${col} 0,rgba(0,0,0,0) 55%)`;
+ // flash/anel na troca
+ const fl=document.getElementById('flash'),rg=document.getElementById('ring');
+ let f=0,r=0;
+ if(i>0&&lt<0.9){f=(1-lt/0.9)*(S.id==='lendaria'?0.95:0.7); r=lt/0.9}
+ fl.style.opacity=f; fl.style.background=S.id==='lendaria'?'#ffe9a0':S.id==='super'?'#f0d8ff':'#e6f2ff';
+ rg.style.opacity=r>0?(1-r)*.9:0; rg.style.transform=`scale(${0.3+r*2.4})`; rg.style.borderColor=S.id==='lendaria'?'#ffd54a':'#bfe0ff';
+ // faiscas
+ sp.clearRect(0,0,1920,1080);
+ if(i>=2){const n=i===4?46:26;for(let k=0;k<n;k++){const sd=k*7.31,ph=(t*0.35*(0.6+rnd(sd)*0.9)+rnd(sd+1))%1;const x=960+(rnd(sd+2)-.5)*760+Math.sin(t+k)*18,y=980-ph*900;const a=Math.sin(ph*Math.PI);sp.globalAlpha=a*.85;sp.fillStyle=i===4?'#ffe27a':(k%3?'#a8d8ff':'#ffb3f0');sp.beginPath();sp.arc(x,y,2+rnd(sd+3)*4,0,7);sp.fill()}}
+}
+window.setT=setT;window.TOTAL=TOTAL;setT(0);
+(function(){
+const bg=document.getElementById('bgl');
+const mk=(css)=>{const d=document.createElement('div');d.style.cssText='position:absolute;pointer-events:none;'+css;return d};
+const halo=mk('left:0;top:0;width:1920px;height:1080px;mix-blend-mode:screen');bg.after(halo);
+const rays=mk('left:1050px;top:540px;width:2600px;height:2600px;margin:-1300px 0 0 -1300px;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(circle,#000 0,rgba(0,0,0,.6) 30%,transparent 62%)');bg.after(rays);
+const rays2=mk('left:1050px;top:540px;width:2600px;height:2600px;margin:-1300px 0 0 -1300px;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(circle,#000 0,rgba(0,0,0,.5) 35%,transparent 64%)');bg.after(rays2);
+const tilt=document.getElementById('tilt');
+const sweep=mk('left:0;top:0;width:1190px;height:1705px;border-radius:38px;overflow:hidden;mix-blend-mode:screen;transform:translateZ(62px)');
+const sw=mk('top:-300px;left:0;width:300px;height:2400px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0))');sweep.appendChild(sw);tilt.appendChild(sweep);
+const cv=document.createElement('canvas');cv.width=1920;cv.height=1080;cv.style.cssText='position:absolute;left:0;top:0;pointer-events:none;mix-blend-mode:screen';document.body.appendChild(cv);const cx=cv.getContext('2d');
+const back=document.querySelector('.back'),cut=document.getElementById('cut');
+function R(n){let x=Math.sin(n*91.7)*43758.5453;return x-Math.floor(x)}
+function hsl2rgb(h){const f=n=>{const k=(n+h/30)%12;return Math.round(255*(.5-.5*Math.max(-1,Math.min(k-3,9-k,1))))};return [f(0),f(8),f(4)]}
+function col(id,t){return id==='comum'?[255,160,50]:id==='rara'?[170,215,255]:id==='super'?hsl2rgb((t*80)%360):[255,205,60]}
+const C=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
+window.fx=function(t){
+ let i=0;for(let j=0;j<TS.length;j++) if(t>=TS[j]) i=j; const S=ST[i], lt=t-TS[i]; const c=col(S.id,t); const pul=Math.sin(t*4.2);
+ const boost=(i===0?0.55:i===1?0.8:1.0)*(S.pop?1.25:1);
+ halo.style.background=`radial-gradient(ellipse 760px 900px at 1050px 540px,${C(c,.55*boost)} 0,${C(c,.18*boost)} 40%,rgba(0,0,0,0) 70%)`;halo.style.opacity=.7+.3*pul;
+ rays.style.background=`repeating-conic-gradient(from ${t*10}deg at 50% 50%,${C(c,0)} 0deg,${C(c,.22)} 5deg,${C(c,0)} 10deg)`;rays.style.opacity=i===0?.25:i===1?.45:.8;
+ const g1=14+9*pul,g2=44+14*pul;
+ for(const e of ['comum','rara','super','lendaria']){const on=e===S.id;
+  for(const p of ['f_','t_','b_']){const el=document.getElementById(p+e);
+   el.style.filter=(p==='f_'?'':'drop-shadow(0 22px 20px rgba(0,0,0,.75)) ')+`drop-shadow(0 0 ${g1}px ${C(c,.95)}) drop-shadow(0 0 ${g2}px ${C(c,.6)})`}}
+ back.style.boxShadow=`0 0 ${110+50*pul}px ${C(c,.75*boost)},0 0 ${240}px ${C(c,.35*boost)},0 60px 140px rgba(0,0,0,.8)`;
+ const popOn=S.pop?1:0; cut.style.filter=`drop-shadow(0 50px 40px rgba(0,0,0,.8)) drop-shadow(0 0 ${popOn*(18+8*pul)}px ${C(c,.95)}) drop-shadow(0 0 ${popOn*46}px ${C(c,.55)})`;
+ const x=(((t*0.42)%1)*2300)-500; sw.style.transform=`translateX(${x}px) rotate(18deg)`; sweep.style.opacity=i===0?.35:.9;
+ // canvas: brilhos, anel de choque, raios e relampagos
+ cx.clearRect(0,0,1920,1080);
+ const n=i===0?18:i===1?34:60;
+ for(let k=0;k<n;k++){const sd=k*5.17,ph=(t*0.28*(0.5+R(sd)*1.0)+R(sd+1))%1;const px=1050+(R(sd+2)-.5)*980+Math.sin(t*1.3+k)*22,py=1010-ph*960;const a=Math.sin(ph*Math.PI);const r=2.5+R(sd+3)*5;
+  const cc=(k%4===0)?[255,255,255]:c;cx.globalAlpha=a*.95;cx.shadowColor=C(cc,1);cx.shadowBlur=22;cx.fillStyle=C(cc,1);cx.beginPath();cx.arc(px,py,r,0,7);cx.fill();
+  if(k%5===0){cx.shadowBlur=0;cx.globalAlpha=a*.8;cx.strokeStyle=C([255,255,255],1);cx.lineWidth=1.6;cx.beginPath();cx.moveTo(px-r*3,py);cx.lineTo(px+r*3,py);cx.moveTo(px,py-r*3);cx.lineTo(px,py+r*3);cx.stroke()}}
+ cx.shadowBlur=0;cx.globalAlpha=1;
+ if(i>0&&lt<1.1){const u=lt/1.1;
+  cx.strokeStyle=C([255,255,255],1-u);cx.lineWidth=10*(1-u)+2;cx.shadowColor=C(c,1);cx.shadowBlur=30;cx.beginPath();cx.arc(1050,540,80+u*980,0,7);cx.stroke();
+  cx.lineWidth=4;for(let k=0;k<36;k++){const a=k/36*6.2832+R(k)*.2;const r0=120+u*380,r1=r0+90+R(k+9)*320*(1-u);cx.globalAlpha=1-u;cx.beginPath();cx.moveTo(1050+Math.cos(a)*r0,540+Math.sin(a)*r0);cx.lineTo(1050+Math.cos(a)*r1,540+Math.sin(a)*r1);cx.stroke()}
+  cx.globalAlpha=1}
+ if((S.id==='super'||S.id==='lendaria')&&lt<0.9&&i>1&&S.pop!==1){const fl=Math.floor(lt*24);
+  for(let b=0;b<6;b++){let x0=1050,y0=540;const a=R(b*3.1+fl)*6.28;cx.strokeStyle=C([255,255,255],.95);cx.shadowColor=C(c,1);cx.shadowBlur=26;cx.lineWidth=3.5;cx.beginPath();cx.moveTo(x0,y0);
+   for(let s=1;s<=9;s++){const d=s*95;x0=1050+Math.cos(a)*d+(R(b*7+s+fl*3)-.5)*70;y0=540+Math.sin(a)*d+(R(b*5+s+fl*2)-.5)*70;cx.lineTo(x0,y0)}cx.stroke()}
+  cx.shadowBlur=0}
+
+ const rig=document.getElementById('rig');
+ if(S.id==='lendaria'){
+  const z=Math.min(1,lt/3.0); const ez=z*z*(3-2*z);
+  rig.style.transform=`scale(${.58*(1+.09*ez)})`;
+  rays2.style.background=`repeating-conic-gradient(from ${-t*16}deg at 50% 50%,rgba(255,235,150,0) 0deg,rgba(255,235,150,.28) 3.5deg,rgba(255,235,150,0) 7deg)`;rays2.style.opacity=.9;
+  rays.style.opacity=1; sw.style.transform=`translateX(${(((t*0.9)%1)*2300)-500}px) rotate(18deg)`;
+  // chuva de ouro
+  for(let k=0;k<90;k++){const sd=k*3.3,ph=(t*0.22*(0.6+R(sd)*0.9)+R(sd+1))%1;const px=R(sd+2)*1920,py=-40+ph*1160;cx.save();cx.translate(px,py);cx.rotate(t*3*(R(sd+4)-.5)*4+k);cx.globalAlpha=.9;cx.shadowColor='rgba(255,215,80,1)';cx.shadowBlur=14;cx.fillStyle=k%3?'#ffd54a':'#fff4b0';cx.fillRect(-4,-7,8,14*(.5+R(sd+5)));cx.restore()}
+  // lens flare no revelar
+  if(lt<2.4){const u=lt/2.4,a=Math.sin(Math.min(1,u*1.4)*Math.PI);
+   const gr=cx.createLinearGradient(0,540,1920,540);gr.addColorStop(0,'rgba(255,220,120,0)');gr.addColorStop(.5,`rgba(255,248,210,${.95*a})`);gr.addColorStop(1,'rgba(255,220,120,0)');cx.fillStyle=gr;cx.fillRect(0,540-5-14*a,1920,10+28*a);
+   for(let k=0;k<5;k++){const fx_=1050+(k-2)*210*(1+u*.6),r=26+k*16;const rg=cx.createRadialGradient(fx_,540,0,fx_,540,r);rg.addColorStop(0,`rgba(255,240,170,${.55*a})`);rg.addColorStop(1,'rgba(255,200,80,0)');cx.fillStyle=rg;cx.beginPath();cx.arc(fx_,540,r,0,7);cx.fill()}}
+  // pulso dourado cheio na entrada
+  if(lt<0.6){cx.fillStyle=`rgba(255,230,150,${.55*(1-lt/.6)})`;cx.fillRect(0,0,1920,1080)}
+ } else { rig.style.transform='scale(.58)'; rays2.style.opacity=0 }
+};
+const _s=window.setT; window.setT=function(t){_s(t);window.fx(t)};
+})();
+</script></body></html>
