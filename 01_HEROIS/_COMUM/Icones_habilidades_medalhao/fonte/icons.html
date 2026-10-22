@@ -1,0 +1,200 @@
+<!doctype html><html><head><meta charset="utf-8"><style>.o{stroke:var(--r);stroke-width:4;stroke-opacity:.6;stroke-linejoin:round}.ol{fill:none;stroke:var(--r);stroke-opacity:.75;stroke-linecap:round;stroke-linejoin:round}.dk{fill:none;stroke:#07040e;stroke-linecap:round;stroke-linejoin:round}.eye{stroke:none}.ln{fill:none;stroke:var(--r);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+html,body{margin:0;background:transparent}
+svg{display:block}
+</style></head><body><div id="o"></div>
+<script>
+// ---------- utilidades ----------
+let seed=7;function R(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}
+function rs(s){seed=s}
+const P=(pts)=>pts.map(p=>p.join(',')).join(' ');
+const sp=(x,y,s,c,o=1)=>`<path d="M${x} ${y-s}Q${x} ${y} ${x+s*.28} ${y-s*.28}Q${x+s} ${y} ${x+s*.28} ${y+s*.28}Q${x} ${y} ${x} ${y+s}Q${x} ${y} ${x-s*.28} ${y+s*.28}Q${x-s} ${y} ${x-s*.28} ${y-s*.28}Q${x} ${y} ${x} ${y-s}Z" fill="${c}" opacity="${o}"/>`;
+function stars(c,n,seedv){rs(seedv);let s='';for(let i=0;i<n;i++){const a=R()*6.283,r=120+R()*320;const x=500+Math.cos(a)*r,y=480+Math.sin(a)*r*0.95;const z=R();s+= z>.8?sp(x,y,10+R()*16,'#fff',.9):`<circle cx="${x}" cy="${y}" r="${2+R()*6}" fill="${c}" opacity="${.35+R()*.6}"/>`}return s}
+function rays(cx,cy,c,n,r0,r1,seedv,op=.55){rs(seedv);let s='';for(let i=0;i<n;i++){const a=i/n*6.283+R()*.15,w=.03+R()*.05;const l=r1*(.55+R()*.45);
+ s+=`<polygon points="${cx+Math.cos(a-w)*r0},${cy+Math.sin(a-w)*r0} ${cx+Math.cos(a)*l},${cy+Math.sin(a)*l} ${cx+Math.cos(a+w)*r0},${cy+Math.sin(a+w)*r0}" fill="${c}" opacity="${op*(.4+R()*.6)}"/>`}return s}
+function bolt(x1,y1,x2,y2,c,w=5,seg=7,j=40,seedv=1){rs(seedv);let p=[[x1,y1]];for(let i=1;i<seg;i++){const t=i/seg;const dx=x2-x1,dy=y2-y1,l=Math.hypot(dx,dy);p.push([x1+dx*t+(-dy/l)*(R()-.5)*j*2,y1+dy*t+(dx/l)*(R()-.5)*j*2])}p.push([x2,y2]);
+ return `<polyline points="${P(p)}" fill="none" stroke="#fff" stroke-width="${w*.45}" stroke-linejoin="round" stroke-linecap="round"/><polyline points="${P(p)}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round" opacity=".75" filter="url(#gl2)"/>`}
+function orb(x,y,r,c,c2='#fff'){return `<g filter="url(#gl)"><circle cx="${x}" cy="${y}" r="${r*1.5}" fill="${c}" opacity=".35"/><circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/><circle cx="${x}" cy="${y}" r="${r*.62}" fill="${c2}"/></g>`}
+function ring(x,y,rx,ry,rot,c,w=8,op=.9){return `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" transform="rotate(${rot} ${x} ${y})" fill="none" stroke="${c}" stroke-width="${w}" opacity="${op}" filter="url(#gl2)"/>`}
+const L=(pts,w)=>`<path d="M${pts.map(p=>p.join(' ')).join(' L')}" fill="none" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+const hair=(pts)=>`<polygon points="${P(pts)}" stroke-width="10" stroke-linejoin="round"/>`;
+// ---------- silhuetas (traço/preenchimento aplicados no grupo) ----------
+const LL=(pts,w)=>{const d=`M${pts.map(p=>p.join(' ')).join(' L')}`;return `<path class="ol" d="${d}" stroke-width="${w+8}"/><path class="dk" d="${d}" stroke-width="${w}"/>`};
+const eye=(x,y,w,a,c='#fff')=>`<polygon class="eye" points="${x-w},${y-4} ${x+w},${y-4-w*.45} ${x+w*.9},${y+3} ${x-w},${y+5}" fill="${c}" transform="rotate(${a} ${x} ${y})"/>`;
+const ln=(d,o=.65)=>`<path class="ln" d="${d}" style="opacity:${o}"/>`;
+// torso com ombros inclinados e pescoço integrado
+const T=(cx,w,top,sl=60)=>{const l=cx-w/2,r=cx+w/2;return `<path d="M${l-30} 900 L${l} ${top+190} Q${l-4} ${top+40} ${l+sl} ${top+14} L${cx-40} ${top-30} L${cx+40} ${top-30} L${r-sl} ${top+14} Q${r+4} ${top+40} ${r} ${top+190} L${r+30} 900Z"/>`};
+const HD=(cx,cy,w,h,j=1)=>`<path d="M${cx-w} ${cy} Q${cx-w} ${cy-h} ${cx} ${cy-h} Q${cx+w} ${cy-h} ${cx+w} ${cy} Q${cx+w*.92*j} ${cy+h*.78} ${cx+w*.2} ${cy+h*1.02} L${cx-w*.2} ${cy+h*1.02} Q${cx-w*.92*j} ${cy+h*.78} ${cx-w} ${cy}Z"/>`;
+const SIL={
+goku(){return `
+ <g transform="rotate(-8 460 620)">${T(450,290,480)}
+ ${hair([[372,338],[312,276],[362,268],[326,184],[394,236],[408,136],[452,222],[504,148],[514,238],[580,206],[550,294],[610,304],[570,350]])}
+ ${HD(462,362,72,80,.95)}<path d="M524 384 L552 398 L522 414Z"/>
+ <polygon points="392,326 404,398 434,330"/><polygon points="430,318 442,384 472,320"/><polygon points="470,316 486,364 506,316"/></g>
+ ${ln('M420 560 Q450 600 480 560 M450 600 L452 690')}
+ ${LL([[560,545],[650,575],[742,552]],60)}${LL([[540,615],[650,635],[742,562]],54)}<circle cx="748" cy="556" r="36"/>
+ ${eye(490,368,14,10)}${eye(534,368,12,6)}`},
+gokussj(){return `
+ <g transform="rotate(-8 460 620)">${T(450,290,480)}
+ ${hair([[374,342],[296,304],[350,262],[290,186],[372,222],[352,100],[430,190],[452,56],[490,178],[550,88],[554,204],[628,164],[590,264],[650,294],[586,354]])}
+ ${HD(462,362,72,80,.95)}<path d="M524 384 L552 398 L522 414Z"/></g>
+ ${ln('M420 560 Q450 600 480 560 M450 600 L452 690')}
+ ${LL([[560,545],[650,575],[742,552]],60)}${LL([[540,615],[650,635],[742,562]],54)}<circle cx="748" cy="556" r="36"/>
+ ${eye(490,368,14,10,'#9ff')}${eye(534,368,12,6,'#9ff')}`},
+vegeta(){return `
+ ${T(500,290,490)}
+ <path d="M318 540 Q290 450 372 436 Q440 446 444 520 L444 556Z M682 540 Q710 450 628 436 Q560 446 556 520 L556 556Z"/>
+ ${hair([[428,322],[406,252],[446,274],[440,164],[490,240],[510,90],[536,238],[586,154],[578,274],[622,294],[586,336]])}
+ ${HD(500,356,74,82,.9)}
+ ${ln('M440 600 L560 600 M500 520 L500 700 M380 700 L620 700',.55)}
+ ${LL([[626,550],[500,618],[364,598]],60)}${LL([[640,612],[520,680],[374,648]],52)}<circle cx="352" cy="600" r="34"/>
+ ${eye(472,362,16,14)}${eye(528,362,16,-14)}
+ <path class="ln" d="M424 322 L500 352 L576 322" style="opacity:.8"/>`},
+vegetassj(){return `
+ ${T(500,290,490)}
+ <path d="M318 540 Q290 450 372 436 Q440 446 444 520 L444 556Z M682 540 Q710 450 628 436 Q560 446 556 520 L556 556Z"/>
+ ${hair([[426,324],[396,262],[440,262],[416,166],[476,226],[470,80],[520,206],[552,52],[568,206],[632,124],[598,262],[652,266],[588,336]])}
+ ${HD(500,356,74,82,.9)}
+ ${ln('M440 600 L560 600 M500 520 L500 700',.55)}
+ ${LL([[640,530],[690,470],[742,410]],62)}${LL([[330,550],[272,630],[300,710]],54)}<circle cx="752" cy="396" r="40"/>
+ ${eye(472,362,16,14,'#9ff')}${eye(528,362,16,-14,'#9ff')}`},
+piccolo(){return `
+ <path d="M228 900 L300 600 Q300 500 380 478 L430 462 L570 462 L620 478 Q700 500 700 600 L772 900Z"/>
+ <path d="M290 530 Q268 440 362 426 Q436 440 436 512 L436 556Z M710 530 Q732 440 638 426 Q564 440 564 512 L564 556Z"/>
+ <path d="M440 300 L452 226 L548 226 L560 300Z"/><rect x="430" y="294" width="140" height="28" rx="8"/>
+ ${HD(500,376,62,76,.95)}
+ <polygon points="440,356 366,290 438,334"/><polygon points="560,356 634,290 562,334"/>
+ <path d="M474 232 Q440 150 380 164 M526 232 Q560 150 620 164" fill="none" stroke-width="12" stroke-linecap="round"/>
+ ${ln('M500 480 L500 800 M400 600 Q450 560 500 600',.55)}
+ ${LL([[662,530],[744,450],[694,330]],54)}${LL([[372,556],[318,440],[404,336]],54)}
+ <circle cx="412" cy="326" r="30"/><path class="dk" d="M430 318 L492 296 M436 340 L500 326" stroke-width="20" stroke-linecap="round" fill="none"/>
+ ${eye(478,378,14,12)}${eye(528,378,14,-12)}`},
+kuririn(){return `
+ ${T(500,300,520)}
+ <circle cx="500" cy="398" r="96"/><ellipse cx="404" cy="404" rx="16" ry="28"/><ellipse cx="596" cy="404" rx="16" ry="28"/>
+ ${LL([[630,580],[722,506],[742,336]],60)}<rect x="714" y="238" width="58" height="106" rx="26"/>${LL([[372,596],[310,646],[290,726]],56)}
+ ${[[455,324],[500,316],[545,324],[470,354],[500,352],[530,354]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="8" fill="#ffd9a0" class="eye"/>`).join('')}
+ ${eye(466,406,14,8)}${eye(534,406,14,-8)}
+ ${ln('M470 640 Q500 700 530 640 M500 560 L500 700',.5)}`},
+freeza(){return `
+ ${T(500,290,500,50)}
+ <path d="M338 570 Q282 470 292 350 Q356 396 398 470 Q432 504 432 570Z M662 570 Q718 470 708 350 Q644 396 602 470 Q568 504 568 570Z"/>
+ <path d="M426 330 Q326 336 326 226 Q390 270 432 282Z M574 330 Q674 336 674 226 Q610 270 568 282Z"/>
+ <path d="M416 376 Q416 214 500 204 Q584 214 584 376 Q580 440 500 464 Q420 440 416 376Z"/>
+ ${LL([[640,570],[744,486],[780,342]],54)}<rect x="762" y="238" width="34" height="116" rx="16"/>
+ ${eye(468,390,16,10,'#ff8aa8')}${eye(532,390,16,-10,'#ff8aa8')}
+ <path class="ln" d="M446 300 Q500 244 554 300" style="opacity:.9;stroke-width:6"/>
+ ${ln('M440 620 Q500 680 560 620',.6)}`},
+cell(){return `
+ <path d="M326 410 Q220 224 108 252 Q196 300 176 368 Q260 336 300 446Z M674 410 Q780 224 892 252 Q804 300 824 368 Q740 336 700 446Z"/>
+ ${T(500,300,496,56)}
+ <path d="M304 548 Q282 454 374 442 L432 462 L432 566Z M696 548 Q718 454 626 442 L568 462 L568 566Z"/>
+ <path d="M430 322 Q392 202 470 162 Q416 192 360 142 Q372 272 410 342Z M570 322 Q608 202 530 162 Q584 192 640 142 Q628 272 590 342Z"/>
+ <path d="M422 340 Q428 250 500 244 Q572 250 578 340 L574 398 Q560 450 500 458 Q440 450 426 398Z"/>
+ ${LL([[640,570],[762,548],[828,494]],64)}<circle cx="850" cy="482" r="58"/>
+ ${eye(470,358,16,12,'#e6ffe6')}${eye(530,358,16,-12,'#e6ffe6')}
+ ${[[420,570],[470,620],[540,600],[590,650],[440,690],[520,710],[390,630]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="12" class="eye" fill="#5dff7a" opacity=".6"/>`).join('')}
+ ${ln('M440 520 Q500 560 560 520',.7)}`},
+buu(){return `
+ <ellipse cx="500" cy="770" rx="290" ry="250"/>
+ <path d="M310 670 Q298 490 408 470 L592 470 Q702 490 690 670Z"/>
+ <path d="M370 480 Q420 560 500 580 Q580 560 630 480 Q600 440 500 450 Q400 440 370 480Z"/>
+ <circle cx="500" cy="390" r="110"/><ellipse cx="402" cy="396" rx="20" ry="32"/><ellipse cx="598" cy="396" rx="20" ry="32"/>
+ <path d="M500 290 Q500 190 570 170 Q650 150 690 230 Q710 290 690 350" fill="none" stroke-width="34" stroke-linecap="round"/><circle cx="690" cy="360" r="30"/>
+ <path d="M452 394 Q470 412 490 394 M512 394 Q530 412 550 394" fill="none" stroke="#ffd0f0" stroke-width="7" stroke-linecap="round" class="eye"/>
+ <path d="M470 432 Q500 452 530 432" fill="none" stroke="#ffd0f0" stroke-width="6" stroke-linecap="round" class="eye"/>
+ ${ln('M360 600 Q400 720 500 720 Q600 720 640 600',.8)}${ln('M420 650 Q500 700 580 650',.5)}
+ <ellipse cx="500" cy="760" rx="26" ry="14" fill="none" class="ln"/>`},
+gohan(){return `
+ ${T(500,300,640,56)}
+ ${hair([[430,500],[392,444],[432,452],[408,380],[462,430],[476,352],[512,428],[554,362],[558,444],[610,440],[578,506]])}
+ ${HD(500,544,70,76,.95)}
+ ${LL([[392,656],[358,470],[470,324]],56)}${LL([[608,656],[642,470],[530,324]],56)}
+ ${[-34,-12,10,32].map(a=>`<path class="dk" d="M470 324 L${470+a*1.6-34} ${324-80}" stroke-width="20" stroke-linecap="round"/><path class="dk" d="M530 324 L${530+a*1.6+34} ${324-80}" stroke-width="20" stroke-linecap="round"/>`).join('')}
+ ${eye(474,550,14,10,'#fffbd0')}${eye(528,550,14,-10,'#fffbd0')}`},
+furia(){return `
+ ${T(470,300,530,56)}
+ ${hair([[372,374],[308,304],[354,308],[316,216],[390,280],[394,172],[444,254],[480,152],[510,252],[560,204],[560,294],[618,290],[580,364]])}
+ ${HD(465,404,74,80,.95)}
+ ${LL([[620,600],[736,556],[788,494]],68)}<circle cx="810" cy="478" r="64"/>${LL([[380,640],[312,740],[372,820]],56)}
+ ${eye(486,410,14,12,'#9fd0ff')}${eye(530,410,12,8,'#9fd0ff')}
+ ${ln('M420 600 Q470 640 520 600',.7)}`}
+};
+// ---------- cenas: fundo, efeitos atrás e na frente ----------
+const H={
+goku:{name:'KAMEHAMEHA',c:'#46c8ff',c2:'#bfeaff',bg:['#0a2a66','#1b78d8','#0b1840'],
+ back:c=>rays(700,520,'#7fd8ff',26,40,420,3,.45)+ring(520,500,330,330,0,'#46c8ff',6,.4),
+ front:c=>`<g style="mix-blend-mode:screen"><polygon points="760,450 980,380 980,660 760,600" fill="url(#bm)" opacity=".95"/></g>`+ring(740,520,40,150,0,'#bfeaff',10,.9)+ring(820,520,34,120,0,'#46c8ff',8,.8)+ring(900,520,26,95,0,'#46c8ff',7,.7)+orb(716,540,78,'#46c8ff','#fff')+bolt(660,470,860,400,'#9fe0ff',6,6,22,4)+bolt(680,610,880,650,'#9fe0ff',6,6,22,5)},
+gokussj:{name:'KAMEHAMEHA EXPLOSIVO',c:'#ffd23a',c2:'#fff3b0',bg:['#5a2a00','#ff9a1a','#2a1000'],
+ back:c=>rays(720,520,'#ffe27a',40,40,520,8,.6)+ring(700,520,260,260,0,'#ffb000',8,.5)+ring(700,520,360,360,0,'#ffd23a',5,.35),
+ front:c=>orb(722,545,120,'#ffb000','#fffbe0')+ring(722,545,170,170,0,'#fff3b0',8,.8)+`<polygon points="780,470 970,400 970,640 780,600" fill="url(#bmg)" opacity=".9" style="mix-blend-mode:screen"/>`+bolt(500,230,720,420,'#46c8ff',7,6,30,11)+bolt(900,260,760,430,'#46c8ff',7,6,28,12)+bolt(420,560,640,650,'#46c8ff',6,6,30,13)+bolt(880,760,740,640,'#46c8ff',6,6,26,14)},
+vegeta:{name:'GALICK GUN',c:'#b06bff',c2:'#ecd5ff',bg:['#2a0a5a','#7a2fe0','#12042a'],
+ back:c=>rays(330,590,'#c796ff',24,40,420,5,.4)+ring(330,590,230,70,-25,'#b06bff',8,.5),
+ front:c=>orb(316,590,92,'#b06bff','#fff')+ring(316,590,150,150,0,'#d9b8ff',6,.8)+ring(316,590,210,60,-30,'#b06bff',8,.7)+ring(316,590,210,60,30,'#d9b8ff',6,.6)+bolt(230,540,110,430,'#d9b8ff',5,5,20,21)+bolt(250,670,120,740,'#d9b8ff',5,5,20,22)},
+vegetassj:{name:'BIG BANG ATTACK',c:'#ffd23a',c2:'#ffffff',bg:['#3a2a00','#e08a10','#1a0f00'],
+ back:c=>rays(800,380,'#fff1a8',28,60,420,9,.55),
+ front:c=>ring(800,372,230,230,0,'#ffb000',10,.7)+ring(800,372,300,300,0,'#ffd23a',6,.45)+orb(802,372,160,'#ffd23a','#fffdf0')+bolt(560,420,660,400,'#fff',5,4,12,33)+bolt(620,300,740,360,'#fff',5,4,14,31)+bolt(880,520,820,470,'#ffe27a',6,4,16,32)},
+piccolo:{name:'MAKANKOSAPPO',c:'#a855ff',c2:'#f1ddff',bg:['#2a0a58','#7b2fdc','#160430'],
+ back:c=>`<g transform="rotate(26 500 306)"><rect x="506" y="276" width="700" height="60" fill="url(#bp)" opacity=".5" filter="url(#gl)"/></g>`,
+ front:c=>{let s='<g transform="rotate(26 500 306)">';s+=`<rect x="506" y="282" width="640" height="48" rx="24" fill="url(#bp)" filter="url(#gl)" style="mix-blend-mode:screen"/><rect x="506" y="298" width="640" height="16" rx="8" fill="#fff"/>`;for(let i=0;i<5;i++){const x=610+i*120;s+=`<ellipse cx="${x}" cy="306" rx="26" ry="${70+i*6}" fill="none" stroke="#ff9a2a" stroke-width="12" opacity=".95" transform="rotate(-18 ${x} 306)" filter="url(#gl2)"/>`}s+='</g>';return s+orb(506,306,36,'#a855ff','#fff')+bolt(480,290,420,210,'#ffb040',5,4,12,41)}},
+kuririn:{name:'KIENZAN',c:'#ffb02e',c2:'#fff0b8',bg:['#5a2400','#ff8a1a','#240c00'],
+ back:c=>rays(740,170,'#ffd27a',26,40,380,6,.45),
+ front:c=>{let d='';const cx=742,cy=190,rx=210,ry=52;let pts=[];for(let i=0;i<36;i++){const a=i/36*6.283;const rr=i%2?0.84:1;pts.push([cx+Math.cos(a)*rx*rr,cy+Math.sin(a)*ry*rr])}
+  return `<g transform="rotate(-8 ${cx} ${cy})" filter="url(#gl)"><polygon points="${P(pts)}" fill="#ffb02e"/><ellipse cx="${cx}" cy="${cy}" rx="${rx*.7}" ry="${ry*.62}" fill="#fff3c0"/></g>`+ring(742,190,250,70,-8,'#ffe08a',6,.7)+
+  [[404,375],[434,360],[464,352],[536,352],[566,360],[596,375]].slice(0,0).join('')}},
+freeza:{name:'RAIO MORTAL',c:'#ff3d6e',c2:'#ffe0ea',bg:['#3a0a28','#c4204e','#160314'],
+ back:c=>rays(775,215,'#ff8fb0',24,40,420,12,.5),
+ front:c=>`<polygon points="775,215 840,0 810,0 760,215" fill="#ffd0dc" opacity=".9" filter="url(#gl2)"/>`+orb(775,210,52,'#ff3d6e','#fff')+ring(775,210,92,92,0,'#ff9fba',6,.8)+bolt(700,170,640,90,'#ffc0d0',5,4,14,51)+bolt(850,250,930,330,'#ffc0d0',5,4,14,52)},
+cell:{name:'ATAQUE PERFEITO',c:'#5dff7a',c2:'#e6ffe6',bg:['#042a1a','#12a85a','#021408'],
+ back:c=>rays(850,460,'#8dffa8',28,60,420,13,.45),
+ front:c=>{let s=ring(850,460,150,150,0,'#5dff7a',8,.8);rs(61);const b=[];for(let i=0;i<10;i++){const a=i/10*6.283;b.push([850+Math.cos(a)*(i%2?100:190),460+Math.sin(a)*(i%2?100:190)])}
+  return `<polygon points="${P(b)}" fill="#5dff7a" opacity=".8" filter="url(#gl)" style="mix-blend-mode:screen"/>`+s+orb(850,460,60,'#5dff7a','#fff')+[[420,500,32],[560,520,24],[700,540,28],[480,610,22],[620,640,30],[380,660,24]].map(a=>`<circle cx="${a[0]}" cy="${a[1]}" r="${a[2]}" fill="#5dff7a" opacity=".0"/>`).join('')}},
+buu:{name:'SONECA',c:'#ff7ac8',c2:'#ffe0f4',bg:['#1c0a44','#6a2cc8','#0b0422'],
+ back:c=>`<g filter="url(#gl)"><circle cx="760" cy="230" r="95" fill="#ffe9a8" opacity=".9"/><circle cx="800" cy="205" r="88" fill="#4a1ea8"/></g>`+stars('#ffd0f0',24,17)+`<circle cx="500" cy="560" r="300" fill="url(#pg)" opacity=".5"/>`,
+ front:c=>`<g font-family="'DejaVu Sans',sans-serif" font-weight="900" fill="#ffe0f4" stroke="#ff7ac8" stroke-width="5" filter="url(#gl2)"><text x="600" y="260" font-size="110" transform="rotate(10 600 260)">Z</text><text x="690" y="190" font-size="80" transform="rotate(10 690 190)">Z</text><text x="760" y="130" font-size="56" transform="rotate(10 760 130)">z</text></g>`},
+gohan:{name:'MASENKO',c:'#ffe14a',c2:'#fffbd0',bg:['#000','#1a1200','#000'],
+ back:c=>rays(500,260,'#ffe14a',46,60,520,15,.6)+bolt(190,460,330,400,'#ffe14a',6,6,26,71)+bolt(810,460,670,400,'#ffe14a',6,6,26,72)+bolt(240,260,360,220,'#ffe14a',5,5,22,73)+bolt(780,270,640,230,'#ffe14a',5,5,22,74),
+ front:c=>orb(500,212,70,'#ffe14a','#fff')+ring(500,212,112,112,0,'#fff3a0',7,.85)+sp(300,200,26,'#fff')+sp(720,190,22,'#fff')},
+furia:{name:'FÚRIA',c:'#4aa8ff',c2:'#e0f0ff',bg:['#05102e','#1c4fc0','#02061a'],
+ back:c=>[0,1,2,3,4,5,6,7].map(i=>`<polygon points="${130+i*30},${270+i*60} 560,${500} ${130+i*30},${300+i*60}" fill="#9fcaff" opacity=".35"/>`).join(''),
+ front:c=>`<g filter="url(#gl)" style="mix-blend-mode:screen"><polygon points="${P([[820,440],[900,340],[880,430],[960,420],[890,480],[960,540],[870,520],[880,600],[820,520],[760,590],[770,500],[700,480],[780,460],[740,390]])}" fill="#4aa8ff" opacity=".9"/></g>`+bolt(850,380,960,260,'#e0f0ff',7,5,26,81)+bolt(870,560,960,660,'#e0f0ff',7,5,26,82)+bolt(760,330,640,230,'#e0f0ff',6,5,22,83)+bolt(300,300,420,420,'#bfe0ff',5,5,22,84)}
+};
+function build(k,withText=true){
+ const h=H[k];const bg=h.bg;
+ let sil=SIL[k]();
+ const rim=h.c;
+ return `<svg xmlns="http://www.w3.org/2000/svg" style="--r:${h.c}" width="1000" height="1000" viewBox="0 0 1000 1000">
+<defs>
+<radialGradient id="bgr" cx="50%" cy="48%" r="62%"><stop offset="0" stop-color="${bg[1]}"/><stop offset=".6" stop-color="${bg[0]}"/><stop offset="1" stop-color="${bg[2]}"/></radialGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1a0"/><stop offset=".25" stop-color="#e8a823"/><stop offset=".5" stop-color="#fff0a0"/><stop offset=".75" stop-color="#b9740f"/><stop offset="1" stop-color="#ffd860"/></linearGradient>
+<linearGradient id="gold2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe680"/><stop offset=".5" stop-color="#a8680c"/><stop offset="1" stop-color="#ffe680"/></linearGradient>
+<linearGradient id="bm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#7fd8ff"/><stop offset="1" stop-color="#46c8ff" stop-opacity=".0"/></linearGradient>
+<linearGradient id="bmg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#ffd23a"/><stop offset="1" stop-color="#ff9a1a" stop-opacity=".0"/></linearGradient>
+<linearGradient id="bp" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#d9a8ff"/><stop offset="1" stop-color="#a855ff"/></linearGradient>
+<radialGradient id="pg"><stop offset="0" stop-color="#ff7ac8"/><stop offset="1" stop-color="#ff7ac8" stop-opacity="0"/></radialGradient>
+<linearGradient id="rib" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d27a"/><stop offset=".5" stop-color="#c9902a"/><stop offset="1" stop-color="#8a5a12"/></linearGradient>
+<filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="gl2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="rimf" x="-20%" y="-20%" width="140%" height="140%"><feMorphology operator="dilate" radius="3" in="SourceAlpha" result="d"/><feGaussianBlur in="d" stdDeviation="10" result="g"/><feFlood flood-color="${rim}"/><feComposite in2="g" operator="in" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<clipPath id="cl"><circle cx="500" cy="500" r="452"/></clipPath>
+</defs>
+<circle cx="500" cy="500" r="486" fill="#1a0e04"/>
+<g clip-path="url(#cl)">
+<rect width="1000" height="1000" fill="url(#bgr)"/>
+${stars(h.c2,30,k.length*13+5)}
+${h.back(h.c)}
+<g fill="#07040e" stroke="#07040e" filter="url(#rimf)">${sil}</g>
+${h.front(h.c)}
+<circle cx="500" cy="500" r="452" fill="none" stroke="#000" stroke-width="26" opacity=".35"/>
+</g>
+<circle cx="500" cy="500" r="470" fill="none" stroke="url(#gold)" stroke-width="40"/>
+<circle cx="500" cy="500" r="490" fill="none" stroke="url(#gold2)" stroke-width="8"/>
+<circle cx="500" cy="500" r="452" fill="none" stroke="url(#gold2)" stroke-width="8"/>
+<circle cx="500" cy="500" r="470" fill="none" stroke="#7a4a08" stroke-width="5" stroke-dasharray="2 22" stroke-linecap="round"/>
+${[0,90,180,270].map(a=>`<g transform="rotate(${a} 500 500)"><path d="M500 6 l14 24 -14 24 -14 -24z" fill="#fff0a0" stroke="#8a5a12" stroke-width="3"/></g>`).join('')}
+${withText?`<g><path d="M250 842 L750 842 L720 905 L280 905Z" fill="url(#rib)" stroke="#4a2c06" stroke-width="6" stroke-linejoin="round"/><path d="M262 850 L738 850" stroke="#fff0b0" stroke-width="3" opacity=".7"/>
+<text x="500" y="${h.name.length>14?884:886}" text-anchor="middle" font-family="'DejaVu Sans',sans-serif" font-weight="900" font-size="${h.name.length>14?34:44}" fill="#fff6d0" stroke="#3a2004" stroke-width="7" paint-order="stroke" letter-spacing="2">${h.name}</text></g>`:''}
+</svg>`}
+const k=location.hash.slice(1)||'goku';
+document.getElementById('o').innerHTML=build(k);
+window.build=build;
+</script></body></html>

@@ -1,0 +1,5 @@
+ICONES DE HABILIDADE - MEDALHAO (v2)
+Estilo: silhueta da pose assinatura + brilho/efeito na cor do golpe + moldura dourada com faixa de nome.
+2000px/ = maxima resolucao (PNG transparente), 512px/ = versao leve, fonte/icons.html = gerador (editavel).
+Cores (proposta): Kamehameha azul; Kamehameha Explosivo dourado com raios azuis; Galick Gun roxo; Big Bang amarelo; Makankosappo roxo com aneis laranja; Kienzan laranja; Raio Mortal vermelho-rosa; Ataque Perfeito verde; Soneca rosa/noite; Masenko amarelo; Furia azul.
+PROPOSTA aguardando aprovacao dele.
