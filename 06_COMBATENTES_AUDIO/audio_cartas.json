@@ -1,0 +1,316 @@
+{
+ "_leia-me": "Preencha/arraste os audios do Goku aqui. Cada carta pode ter: evolucao (toca quando a carta evolui), jogada (toca ao entrar em campo), ataque (toca ao atacar; ex.: Kamehameha, Kaioken), lendaria_revelar (so lendarias). Claude liga cada arquivo a carta pela identificacao do nome do arquivo ou pela descricao que o Sandes disser. Valores atuais: provisorios.",
+ "sons_provisorios": {
+  "evolucao_rara": "evolucao_som.wav@3.4s",
+  "evolucao_super_rara": "evolucao_som.wav@6.8s",
+  "evolucao_3D": "evolucao_som.wav@11.0s",
+  "lendaria_revelar": "evolucao_som.wav@16.2s"
+ },
+ "cartas": {
+  "GK01": {
+   "nome": "Son Goku",
+   "fonte": "FP-001",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_064_Kamehameha.ogg",
+   "_nota": "PROPOSTA: pose de Kamehameha na arte; aguardando aprovacao",
+   "arte": "Kamehameha: socos/pose de ataque",
+   "fase": "Goku_inicio",
+   "lendaria_revelar": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg"
+  },
+  "GK02": {
+   "nome": "Son Goku",
+   "fonte": "FB10-001 L",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_060_Genkidama.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_060_Genkidama.ogg",
+   "arte": "braço erguido (Genkidama)",
+   "fase": "Goku_inicio"
+  },
+  "GK03": {
+   "nome": "Son Goku",
+   "fonte": "FS12-01 L",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_066_Goku_furioso.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_066_Goku_furioso.ogg",
+   "arte": "aura de fogo, furioso",
+   "fase": "Goku_inicio"
+  },
+  "GK04": {
+   "nome": "Son Goku",
+   "fonte": "FS11-01 L",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "arte": "halo, punhos cerrados",
+   "fase": "Goku_inicio"
+  },
+  "GK05": {
+   "nome": "Son Goku",
+   "fonte": "FB04-001 L★",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "arte": "aura azul explosiva",
+   "fase": "Goku_inicio"
+  },
+  "GK06": {
+   "nome": "Son Goku",
+   "fonte": "FB10-001 L★",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_060_Genkidama.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_060_Genkidama.ogg",
+   "arte": "amigos erguendo os braços (Genkidama)",
+   "fase": "Goku_inicio"
+  },
+  "GK07": {
+   "nome": "Son Goku",
+   "fonte": "FB04-001 L",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_065_Goku_muito_furioso.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_065_Goku_muito_furioso.ogg",
+   "arte": "mandíbula cerrada, raios",
+   "fase": "Goku_inicio"
+  },
+  "GK08": {
+   "nome": "Son Goku",
+   "fonte": "FS11-04",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_014.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_015.ogg",
+   "arte": "postura de luta com halo",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK09": {
+   "nome": "Son Goku",
+   "fonte": "FP-001 PR★",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_016.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_018.ogg",
+   "arte": "esferas do dragão, soco",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK10": {
+   "nome": "Son Goku",
+   "fonte": "ST01-003",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_019.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_020.ogg",
+   "arte": "em pé, sem golpe",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK11": {
+   "nome": "Son Goku Criança",
+   "fonte": "FS09-09",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_064_Kamehameha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_064_Kamehameha.ogg",
+   "arte": "criança com esfera de energia (Kamehameha)",
+   "fase": "Goku_inicio"
+  },
+  "GK12": {
+   "nome": "Son Goku",
+   "fonte": "FS12-05",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_064_Kamehameha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_064_Kamehameha.ogg",
+   "arte": "mão aberta com luz (Kamehameha)",
+   "fase": "Goku_inicio"
+  },
+  "GK13": {
+   "nome": "Son Goku",
+   "fonte": "FB11-009 R",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_022.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_023.ogg",
+   "arte": "traje de leão, sem golpe",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK14": {
+   "nome": "Son Goku",
+   "fonte": "FB11-008",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_067_Goku_com_raiva.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_067_Goku_com_raiva.ogg",
+   "arte": "gritando com fogo, com raiva",
+   "fase": "Goku_inicio"
+  },
+  "GK15": {
+   "nome": "Son Goku",
+   "fonte": "FS12-06",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_061_Kaioken.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_062_Kaioken_raivoso.ogg",
+   "arte": "aura vermelha (Kaioken)",
+   "fase": "Goku_inicio"
+  },
+  "GK16": {
+   "nome": "Bastão Mágico",
+   "fonte": "FS06-12",
+   "evolucao": null,
+   "jogada": null,
+   "ataque": null,
+   "lendaria_revelar": null
+  },
+  "GK17": {
+   "nome": "Son Goku",
+   "fonte": "FB11-009 R★",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_024.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_030.ogg",
+   "arte": "churrasco, sem golpe",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK18": {
+   "nome": "Son Goku",
+   "fonte": "FB10-010",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_065_Goku_muito_furioso.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_065_Goku_muito_furioso.ogg",
+   "arte": "curvado, muito furioso",
+   "fase": "Goku_inicio"
+  },
+  "GK19": {
+   "nome": "Oozaru Son Goku",
+   "fonte": "SB01-017",
+   "evolucao": null,
+   "jogada": null,
+   "ataque": null,
+   "arte": "Oozaru (sem voz do Goku)",
+   "fase": "Goku_inicio"
+  },
+  "GK20": {
+   "nome": "Son Goku Criança",
+   "fonte": "FB06-025 L",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_031.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_032.ogg",
+   "arte": "criança socando",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK21": {
+   "nome": "Son Goku",
+   "fonte": "FB10-052",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "arte": "rugido, grito de batalha",
+   "fase": "Goku_inicio"
+  },
+  "GK22": {
+   "nome": "Son Goku",
+   "fonte": "FB05-053",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_033.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_036.ogg",
+   "arte": "postura de punhos",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK23": {
+   "nome": "Son Goku",
+   "fonte": "SB02-033 L",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_038.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_041.ogg",
+   "arte": "mangá sorrindo, sem golpe",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK24": {
+   "nome": "Son Goku",
+   "fonte": "FB04-035",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_044.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_045.ogg",
+   "arte": "levantando pedra (esforço)",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK25": {
+   "nome": "Son Goku",
+   "fonte": "FB10-031",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_064_Kamehameha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_064_Kamehameha.ogg",
+   "arte": "esfera de energia na mão (Kamehameha)",
+   "fase": "Goku_inicio"
+  },
+  "GK26": {
+   "nome": "Son Goku",
+   "fonte": "FB10-030",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_063_Grito_de_batalha.ogg",
+   "arte": "aura laranja, punhos",
+   "fase": "Goku_inicio"
+  },
+  "GK27": {
+   "nome": "A Dupla Mais Forte",
+   "fonte": "SB01-027",
+   "evolucao": null,
+   "jogada": null,
+   "ataque": null,
+   "lendaria_revelar": null
+  },
+  "GK28": {
+   "nome": "Son Goku",
+   "fonte": "FB11-028",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_049.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_050.ogg",
+   "arte": "braços cruzados, sem golpe",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  },
+  "GK29": {
+   "nome": "Son Goku",
+   "fonte": "SB01-023 R",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_061_Kaioken.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_identificados/Goku_inicio_068_Kaioken_v2.ogg",
+   "arte": "rosa/vermelho (Kaioken)",
+   "fase": "Goku_inicio"
+  },
+  "GK30": {
+   "nome": "Son Goku",
+   "fonte": "SB01-023 R★",
+   "evolucao": null,
+   "jogada": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_014.ogg",
+   "ataque": "Combatentes/Goku/Goku_inicio/_por_tipo/ataque_grito/Goku_inicio_015.ogg",
+   "arte": "montado no dinossauro, sem golpe",
+   "fase": "Goku_inicio",
+   "_nota_audio": "fala de ataque escolhida pela analise do espectrograma (arco de pitch agudo, curta); aguardando confirmacao dele de ouvido"
+  }
+ },
+ "_audios_goku_inicio": "60-70 identificados por ele; demais 2-59 e 71-210 sem nome ainda (aguardando descricao)",
+ "_regra": "por arte: golpe de assinatura explicito -> audio do golpe; sem golpe -> fala curta de ataque; Goku crianca (GK11,GK20) usa pasta Goku_crianca quando chegar",
+ "_pool_ataque_goku_inicio": [
+  14,
+  15,
+  16,
+  18,
+  19,
+  20,
+  22,
+  23,
+  24,
+  30,
+  31,
+  32,
+  33,
+  36,
+  38,
+  41,
+  44,
+  45,
+  49,
+  50
+ ]
+}

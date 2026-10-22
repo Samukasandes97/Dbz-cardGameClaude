@@ -1,0 +1,1792 @@
+{
+"10": {
+"dur": 3.91,
+"vr": 0.45,
+"f_ini": 151,
+"f_mid": 198,
+"f_fim": 281,
+"f_top": 544,
+"pkpos": 0.64,
+"tipo": "fala_longa"
+},
+"100": {
+"dur": 4.74,
+"vr": 0.31,
+"f_ini": 246,
+"f_mid": 153,
+"f_fim": 167,
+"f_top": 410,
+"pkpos": 0.11,
+"tipo": "fala_longa"
+},
+"101": {
+"dur": 2.45,
+"vr": 0.4,
+"f_ini": 593,
+"f_mid": 291,
+"f_fim": 640,
+"f_top": 640,
+"pkpos": 0.23,
+"tipo": "fala_longa"
+},
+"102": {
+"dur": 4.28,
+"vr": 0.34,
+"f_ini": 215,
+"f_mid": 188,
+"f_fim": 132,
+"f_top": 500,
+"pkpos": 0.65,
+"tipo": "fala_longa"
+},
+"103": {
+"dur": 3.87,
+"vr": 0.39,
+"f_ini": 190,
+"f_mid": 195,
+"f_fim": 178,
+"f_top": 364,
+"pkpos": 0.5,
+"tipo": "fala_longa"
+},
+"104": {
+"dur": 4.72,
+"vr": 0.3,
+"f_ini": 155,
+"f_mid": 234,
+"f_fim": 239,
+"f_top": 410,
+"pkpos": 0.71,
+"tipo": "fala_longa"
+},
+"105": {
+"dur": 5.36,
+"vr": 0.41,
+"f_ini": 163,
+"f_mid": 161,
+"f_fim": 198,
+"f_top": 304,
+"pkpos": 0.52,
+"tipo": "fala_longa"
+},
+"106": {
+"dur": 6.18,
+"vr": 0.41,
+"f_ini": 203,
+"f_mid": 162,
+"f_fim": 172,
+"f_top": 276,
+"pkpos": 0.12,
+"tipo": "fala_longa"
+},
+"107": {
+"dur": 7.35,
+"vr": 0.44,
+"f_ini": 212,
+"f_mid": 178,
+"f_fim": 184,
+"f_top": 276,
+"pkpos": 0.19,
+"tipo": "fala_longa"
+},
+"108": {
+"dur": 7.61,
+"vr": 0.39,
+"f_ini": 195,
+"f_mid": 160,
+"f_fim": 187,
+"f_top": 320,
+"pkpos": 0.57,
+"tipo": "fala_longa"
+},
+"109": {
+"dur": 5.22,
+"vr": 0.53,
+"f_ini": 356,
+"f_mid": 381,
+"f_fim": 615,
+"f_top": 696,
+"pkpos": 0.14,
+"tipo": "fala_longa"
+},
+"11": {
+"dur": 4.47,
+"vr": 0.51,
+"f_ini": 258,
+"f_mid": 381,
+"f_fim": 258,
+"f_top": 510,
+"pkpos": 0.65,
+"tipo": "fala_longa"
+},
+"110": {
+"dur": 3.24,
+"vr": 0.43,
+"f_ini": 154,
+"f_mid": 222,
+"f_fim": 381,
+"f_top": 491,
+"pkpos": 0.57,
+"tipo": "fala_longa"
+},
+"111": {
+"dur": 3.82,
+"vr": 0.29,
+"f_ini": 254,
+"f_mid": 173,
+"f_fim": 571,
+"f_top": 640,
+"pkpos": 0.35,
+"tipo": "fala_longa"
+},
+"112": {
+"dur": 3.31,
+"vr": 0.44,
+"f_ini": 219,
+"f_mid": 432,
+"f_fim": 356,
+"f_top": 640,
+"pkpos": 0.73,
+"tipo": "fala_longa"
+},
+"113": {
+"dur": 2.81,
+"vr": 0.55,
+"f_ini": 211,
+"f_mid": 216,
+"f_fim": 211,
+"f_top": 419,
+"pkpos": 0.13,
+"tipo": "fala_longa"
+},
+"114": {
+"dur": 5.11,
+"vr": 0.37,
+"f_ini": 291,
+"f_mid": 485,
+"f_fim": 205,
+"f_top": 533,
+"pkpos": 0.18,
+"tipo": "fala_longa"
+},
+"115": {
+"dur": 4.23,
+"vr": 0.6,
+"f_ini": 165,
+"f_mid": 262,
+"f_fim": 400,
+"f_top": 500,
+"pkpos": 0.7,
+"tipo": "fala_longa"
+},
+"116": {
+"dur": 5.65,
+"vr": 0.43,
+"f_ini": 574,
+"f_mid": 198,
+"f_fim": 216,
+"f_top": 842,
+"pkpos": 0.41,
+"tipo": "fala_longa"
+},
+"117": {
+"dur": 5.45,
+"vr": 0.56,
+"f_ini": 158,
+"f_mid": 262,
+"f_fim": 216,
+"f_top": 457,
+"pkpos": 0.65,
+"tipo": "fala_longa"
+},
+"118": {
+"dur": 4.08,
+"vr": 0.34,
+"f_ini": 250,
+"f_mid": 188,
+"f_fim": 239,
+"f_top": 593,
+"pkpos": 0.59,
+"tipo": "fala_longa"
+},
+"119": {
+"dur": 3.87,
+"vr": 0.45,
+"f_ini": 333,
+"f_mid": 271,
+"f_fim": 348,
+"f_top": 533,
+"pkpos": 0.2,
+"tipo": "fala_longa"
+},
+"12": {
+"dur": 2.31,
+"vr": 0.48,
+"f_ini": 134,
+"f_mid": 239,
+"f_fim": 640,
+"f_top": 640,
+"pkpos": 0.72,
+"tipo": "fala_longa"
+},
+"120": {
+"dur": 2.72,
+"vr": 0.2,
+"f_ini": 246,
+"f_mid": 302,
+"f_fim": 327,
+"f_top": 419,
+"pkpos": 0.43,
+"tipo": "fala_longa"
+},
+"121": {
+"dur": 2.59,
+"vr": 0.31,
+"f_ini": 180,
+"f_mid": 195,
+"f_fim": 516,
+"f_top": 615,
+"pkpos": 0.34,
+"tipo": "fala_longa"
+},
+"122": {
+"dur": 6.71,
+"vr": 0.31,
+"f_ini": 333,
+"f_mid": 299,
+"f_fim": 296,
+"f_top": 566,
+"pkpos": 0.69,
+"tipo": "fala_longa"
+},
+"123": {
+"dur": 5.4,
+"vr": 0.34,
+"f_ini": 327,
+"f_mid": 427,
+"f_fim": 364,
+"f_top": 640,
+"pkpos": 0.72,
+"tipo": "fala_longa"
+},
+"124": {
+"dur": 0.58,
+"vr": 0.27,
+"f_ini": 142,
+"f_mid": 180,
+"f_fim": 571,
+"f_top": 571,
+"pkpos": 0.27,
+"tipo": "respiracao_impacto"
+},
+"125": {
+"dur": 0.49,
+"vr": 0.24,
+"f_ini": 308,
+"f_mid": 432,
+"f_fim": 267,
+"f_top": 432,
+"pkpos": 0.31,
+"tipo": "respiracao_impacto"
+},
+"126": {
+"dur": 0.87,
+"vr": 0.32,
+"f_ini": 348,
+"f_mid": 696,
+"f_fim": 696,
+"f_top": 727,
+"pkpos": 0.55,
+"tipo": "ataque_grito"
+},
+"127": {
+"dur": 1.24,
+"vr": 0.42,
+"f_ini": 727,
+"f_mid": 410,
+"f_fim": 400,
+"f_top": 727,
+"pkpos": 0.47,
+"tipo": "esforco_neutro"
+},
+"128": {
+"dur": 3.03,
+"vr": 0.35,
+"f_ini": 170,
+"f_mid": 533,
+"f_fim": 571,
+"f_top": 609,
+"pkpos": 0.62,
+"tipo": "fala_longa"
+},
+"129": {
+"dur": 4.12,
+"vr": 0.24,
+"f_ini": 158,
+"f_mid": 239,
+"f_fim": 640,
+"f_top": 667,
+"pkpos": 0.92,
+"tipo": "fala_longa"
+},
+"13": {
+"dur": 4.67,
+"vr": 0.32,
+"f_ini": 188,
+"f_mid": 178,
+"f_fim": 147,
+"f_top": 640,
+"pkpos": 0.68,
+"tipo": "fala_longa"
+},
+"130": {
+"dur": 0.79,
+"vr": 0.72,
+"f_ini": 151,
+"f_mid": 225,
+"f_fim": 344,
+"f_top": 348,
+"pkpos": 0.58,
+"tipo": "esforco_neutro"
+},
+"131": {
+"dur": 1.44,
+"vr": 0.66,
+"f_ini": 593,
+"f_mid": 615,
+"f_fim": 500,
+"f_top": 615,
+"pkpos": 0.12,
+"tipo": "frase"
+},
+"132": {
+"dur": 1.58,
+"vr": 0.5,
+"f_ini": 762,
+"f_mid": 500,
+"f_fim": 640,
+"f_top": 800,
+"pkpos": 0.51,
+"tipo": "frase"
+},
+"133": {
+"dur": 2.72,
+"vr": 0.22,
+"f_ini": 216,
+"f_mid": 271,
+"f_fim": 330,
+"f_top": 889,
+"pkpos": 0.58,
+"tipo": "fala_longa"
+},
+"134": {
+"dur": 2.56,
+"vr": 0.01,
+"f_ini": 0,
+"f_mid": 0,
+"f_fim": 0,
+"f_top": 0,
+"pkpos": 0.61,
+"tipo": "fala_longa"
+},
+"135": {
+"dur": 3.57,
+"vr": 0.35,
+"f_ini": 274,
+"f_mid": 125,
+"f_fim": 144,
+"f_top": 307,
+"pkpos": 0.3,
+"tipo": "fala_longa"
+},
+"136": {
+"dur": 1.82,
+"vr": 0.21,
+"f_ini": 281,
+"f_mid": 762,
+"f_fim": 379,
+"f_top": 762,
+"pkpos": 0.21,
+"tipo": "frase"
+},
+"137": {
+"dur": 1.16,
+"vr": 0.52,
+"f_ini": 308,
+"f_mid": 432,
+"f_fim": 628,
+"f_top": 640,
+"pkpos": 0.36,
+"tipo": "ataque_grito"
+},
+"138": {
+"dur": 0.98,
+"vr": 0.47,
+"f_ini": 262,
+"f_mid": 421,
+"f_fim": 615,
+"f_top": 727,
+"pkpos": 0.59,
+"tipo": "ataque_grito"
+},
+"139": {
+"dur": 1.35,
+"vr": 0.24,
+"f_ini": 151,
+"f_mid": 147,
+"f_fim": 593,
+"f_top": 593,
+"pkpos": 0.68,
+"tipo": "frase"
+},
+"14": {
+"dur": 3.51,
+"vr": 0.26,
+"f_ini": 193,
+"f_mid": 434,
+"f_fim": 294,
+"f_top": 569,
+"pkpos": 0.12,
+"tipo": "fala_longa"
+},
+"140": {
+"dur": 1.25,
+"vr": 0.28,
+"f_ini": 356,
+"f_mid": 327,
+"f_fim": 348,
+"f_top": 615,
+"pkpos": 0.39,
+"tipo": "respiracao_impacto"
+},
+"141": {
+"dur": 0.96,
+"vr": 0.3,
+"f_ini": 131,
+"f_mid": 471,
+"f_fim": 506,
+"f_top": 667,
+"pkpos": 0.27,
+"tipo": "ataque_grito"
+},
+"142": {
+"dur": 1.56,
+"vr": 0.2,
+"f_ini": 471,
+"f_mid": 667,
+"f_fim": 640,
+"f_top": 696,
+"pkpos": 0.35,
+"tipo": "frase"
+},
+"143": {
+"dur": 0.59,
+"vr": 0.36,
+"f_ini": 630,
+"f_mid": 427,
+"f_fim": 271,
+"f_top": 696,
+"pkpos": 0.55,
+"tipo": "esforco_neutro"
+},
+"144": {
+"dur": 1.0,
+"vr": 0.54,
+"f_ini": 372,
+"f_mid": 356,
+"f_fim": 533,
+"f_top": 569,
+"pkpos": 0.67,
+"tipo": "ataque_grito"
+},
+"145": {
+"dur": 1.4,
+"vr": 0.62,
+"f_ini": 320,
+"f_mid": 390,
+"f_fim": 533,
+"f_top": 593,
+"pkpos": 0.24,
+"tipo": "frase"
+},
+"146": {
+"dur": 1.46,
+"vr": 0.47,
+"f_ini": 246,
+"f_mid": 252,
+"f_fim": 186,
+"f_top": 552,
+"pkpos": 0.53,
+"tipo": "frase"
+},
+"147": {
+"dur": 1.41,
+"vr": 0.41,
+"f_ini": 195,
+"f_mid": 381,
+"f_fim": 364,
+"f_top": 582,
+"pkpos": 0.64,
+"tipo": "frase"
+},
+"148": {
+"dur": 1.65,
+"vr": 0.19,
+"f_ini": 534,
+"f_mid": 525,
+"f_fim": 571,
+"f_top": 727,
+"pkpos": 0.45,
+"tipo": "frase"
+},
+"149": {
+"dur": 1.23,
+"vr": 0.5,
+"f_ini": 271,
+"f_mid": 400,
+"f_fim": 571,
+"f_top": 800,
+"pkpos": 0.51,
+"tipo": "ataque_grito"
+},
+"15": {
+"dur": 3.09,
+"vr": 0.3,
+"f_ini": 144,
+"f_mid": 185,
+"f_fim": 193,
+"f_top": 667,
+"pkpos": 0.49,
+"tipo": "fala_longa"
+},
+"150": {
+"dur": 2.38,
+"vr": 0.62,
+"f_ini": 451,
+"f_mid": 208,
+"f_fim": 400,
+"f_top": 528,
+"pkpos": 0.61,
+"tipo": "fala_longa"
+},
+"151": {
+"dur": 1.71,
+"vr": 0.15,
+"f_ini": 800,
+"f_mid": 444,
+"f_fim": 552,
+"f_top": 800,
+"pkpos": 0.48,
+"tipo": "frase"
+},
+"152": {
+"dur": 2.77,
+"vr": 0.51,
+"f_ini": 302,
+"f_mid": 291,
+"f_fim": 615,
+"f_top": 842,
+"pkpos": 0.93,
+"tipo": "fala_longa"
+},
+"153": {
+"dur": 1.96,
+"vr": 0.3,
+"f_ini": 160,
+"f_mid": 186,
+"f_fim": 262,
+"f_top": 310,
+"pkpos": 0.48,
+"tipo": "frase"
+},
+"154": {
+"dur": 2.36,
+"vr": 0.44,
+"f_ini": 198,
+"f_mid": 216,
+"f_fim": 485,
+"f_top": 552,
+"pkpos": 0.53,
+"tipo": "fala_longa"
+},
+"155": {
+"dur": 3.8,
+"vr": 0.25,
+"f_ini": 162,
+"f_mid": 229,
+"f_fim": 239,
+"f_top": 471,
+"pkpos": 0.65,
+"tipo": "fala_longa"
+},
+"156": {
+"dur": 3.46,
+"vr": 0.57,
+"f_ini": 281,
+"f_mid": 229,
+"f_fim": 281,
+"f_top": 667,
+"pkpos": 0.71,
+"tipo": "fala_longa"
+},
+"157": {
+"dur": 5.01,
+"vr": 0.27,
+"f_ini": 160,
+"f_mid": 178,
+"f_fim": 258,
+"f_top": 417,
+"pkpos": 0.6,
+"tipo": "fala_longa"
+},
+"158": {
+"dur": 5.08,
+"vr": 0.46,
+"f_ini": 155,
+"f_mid": 186,
+"f_fim": 232,
+"f_top": 260,
+"pkpos": 0.59,
+"tipo": "fala_longa"
+},
+"159": {
+"dur": 2.66,
+"vr": 0.56,
+"f_ini": 232,
+"f_mid": 348,
+"f_fim": 283,
+"f_top": 403,
+"pkpos": 0.32,
+"tipo": "fala_longa"
+},
+"16": {
+"dur": 3.28,
+"vr": 0.14,
+"f_ini": 129,
+"f_mid": 500,
+"f_fim": 381,
+"f_top": 533,
+"pkpos": 0.73,
+"tipo": "fala_longa"
+},
+"160": {
+"dur": 3.68,
+"vr": 0.41,
+"f_ini": 381,
+"f_mid": 302,
+"f_fim": 333,
+"f_top": 578,
+"pkpos": 0.73,
+"tipo": "fala_longa"
+},
+"161": {
+"dur": 2.04,
+"vr": 0.48,
+"f_ini": 432,
+"f_mid": 485,
+"f_fim": 451,
+"f_top": 533,
+"pkpos": 0.39,
+"tipo": "frase"
+},
+"162": {
+"dur": 2.08,
+"vr": 0.64,
+"f_ini": 246,
+"f_mid": 291,
+"f_fim": 400,
+"f_top": 593,
+"pkpos": 0.43,
+"tipo": "frase"
+},
+"163": {
+"dur": 1.76,
+"vr": 0.25,
+"f_ini": 189,
+"f_mid": 378,
+"f_fim": 286,
+"f_top": 588,
+"pkpos": 0.63,
+"tipo": "frase"
+},
+"164": {
+"dur": 1.64,
+"vr": 0.13,
+"f_ini": 281,
+"f_mid": 216,
+"f_fim": 262,
+"f_top": 281,
+"pkpos": 0.48,
+"tipo": "frase"
+},
+"165": {
+"dur": 0.86,
+"vr": 0.0,
+"f_ini": 0,
+"f_mid": 0,
+"f_fim": 0,
+"f_top": 0,
+"pkpos": 0.34,
+"tipo": "respiracao_impacto"
+},
+"166": {
+"dur": 0.92,
+"vr": 0.17,
+"f_ini": 471,
+"f_mid": 372,
+"f_fim": 276,
+"f_top": 479,
+"pkpos": 0.42,
+"tipo": "respiracao_impacto"
+},
+"167": {
+"dur": 1.25,
+"vr": 0.29,
+"f_ini": 219,
+"f_mid": 126,
+"f_fim": 314,
+"f_top": 314,
+"pkpos": 0.31,
+"tipo": "respiracao_impacto"
+},
+"168": {
+"dur": 1.38,
+"vr": 0.44,
+"f_ini": 271,
+"f_mid": 291,
+"f_fim": 224,
+"f_top": 291,
+"pkpos": 0.37,
+"tipo": "frase"
+},
+"169": {
+"dur": 1.35,
+"vr": 0.35,
+"f_ini": 271,
+"f_mid": 271,
+"f_fim": 209,
+"f_top": 296,
+"pkpos": 0.14,
+"tipo": "frase"
+},
+"17": {
+"dur": 3.98,
+"vr": 0.42,
+"f_ini": 160,
+"f_mid": 168,
+"f_fim": 276,
+"f_top": 485,
+"pkpos": 0.57,
+"tipo": "fala_longa"
+},
+"170": {
+"dur": 1.09,
+"vr": 0.54,
+"f_ini": 320,
+"f_mid": 516,
+"f_fim": 327,
+"f_top": 523,
+"pkpos": 0.53,
+"tipo": "ataque_grito"
+},
+"171": {
+"dur": 0.6,
+"vr": 0.55,
+"f_ini": 219,
+"f_mid": 314,
+"f_fim": 314,
+"f_top": 320,
+"pkpos": 0.43,
+"tipo": "esforco_neutro"
+},
+"172": {
+"dur": 1.91,
+"vr": 0.39,
+"f_ini": 193,
+"f_mid": 186,
+"f_fim": 615,
+"f_top": 615,
+"pkpos": 0.63,
+"tipo": "frase"
+},
+"173": {
+"dur": 2.53,
+"vr": 0.48,
+"f_ini": 196,
+"f_mid": 269,
+"f_fim": 410,
+"f_top": 434,
+"pkpos": 0.76,
+"tipo": "fala_longa"
+},
+"174": {
+"dur": 2.37,
+"vr": 0.4,
+"f_ini": 188,
+"f_mid": 198,
+"f_fim": 227,
+"f_top": 441,
+"pkpos": 0.64,
+"tipo": "fala_longa"
+},
+"175": {
+"dur": 3.05,
+"vr": 0.54,
+"f_ini": 271,
+"f_mid": 203,
+"f_fim": 432,
+"f_top": 593,
+"pkpos": 0.37,
+"tipo": "fala_longa"
+},
+"176": {
+"dur": 4.2,
+"vr": 0.48,
+"f_ini": 444,
+"f_mid": 222,
+"f_fim": 457,
+"f_top": 696,
+"pkpos": 0.67,
+"tipo": "fala_longa"
+},
+"177": {
+"dur": 3.02,
+"vr": 0.42,
+"f_ini": 182,
+"f_mid": 164,
+"f_fim": 198,
+"f_top": 305,
+"pkpos": 0.31,
+"tipo": "fala_longa"
+},
+"178": {
+"dur": 1.42,
+"vr": 0.63,
+"f_ini": 364,
+"f_mid": 327,
+"f_fim": 727,
+"f_top": 727,
+"pkpos": 0.48,
+"tipo": "frase"
+},
+"179": {
+"dur": 3.27,
+"vr": 0.55,
+"f_ini": 190,
+"f_mid": 203,
+"f_fim": 308,
+"f_top": 602,
+"pkpos": 0.7,
+"tipo": "fala_longa"
+},
+"18": {
+"dur": 4.86,
+"vr": 0.24,
+"f_ini": 130,
+"f_mid": 127,
+"f_fim": 432,
+"f_top": 521,
+"pkpos": 0.77,
+"tipo": "fala_longa"
+},
+"180": {
+"dur": 3.29,
+"vr": 0.15,
+"f_ini": 571,
+"f_mid": 533,
+"f_fim": 244,
+"f_top": 595,
+"pkpos": 0.95,
+"tipo": "fala_longa"
+},
+"19": {
+"dur": 0.58,
+"vr": 0.42,
+"f_ini": 178,
+"f_mid": 308,
+"f_fim": 432,
+"f_top": 455,
+"pkpos": 0.49,
+"tipo": "ataque_grito"
+},
+"2": {
+"dur": 2.31,
+"vr": 0.48,
+"f_ini": 134,
+"f_mid": 239,
+"f_fim": 640,
+"f_top": 640,
+"pkpos": 0.72,
+"tipo": "fala_longa"
+},
+"20": {
+"dur": 0.25,
+"vr": 0.59,
+"f_ini": 390,
+"f_mid": 485,
+"f_fim": 457,
+"f_top": 485,
+"pkpos": 0.37,
+"tipo": "ataque_grito"
+},
+"21": {
+"dur": 0.46,
+"vr": 0.29,
+"f_ini": 352,
+"f_mid": 440,
+"f_fim": 492,
+"f_top": 500,
+"pkpos": 0.31,
+"tipo": "respiracao_impacto"
+},
+"22": {
+"dur": 0.72,
+"vr": 0.41,
+"f_ini": 615,
+"f_mid": 533,
+"f_fim": 500,
+"f_top": 640,
+"pkpos": 0.38,
+"tipo": "dor_queda"
+},
+"23": {
+"dur": 0.74,
+"vr": 0.69,
+"f_ini": 348,
+"f_mid": 416,
+"f_fim": 500,
+"f_top": 505,
+"pkpos": 0.25,
+"tipo": "ataque_grito"
+},
+"24": {
+"dur": 1.62,
+"vr": 0.42,
+"f_ini": 320,
+"f_mid": 516,
+"f_fim": 640,
+"f_top": 696,
+"pkpos": 0.11,
+"tipo": "frase"
+},
+"25": {
+"dur": 0.78,
+"vr": 0.34,
+"f_ini": 180,
+"f_mid": 314,
+"f_fim": 348,
+"f_top": 428,
+"pkpos": 0.23,
+"tipo": "esforco_neutro"
+},
+"26": {
+"dur": 0.69,
+"vr": 0.8,
+"f_ini": 308,
+"f_mid": 485,
+"f_fim": 552,
+"f_top": 611,
+"pkpos": 0.39,
+"tipo": "ataque_grito"
+},
+"27": {
+"dur": 0.65,
+"vr": 0.56,
+"f_ini": 400,
+"f_mid": 421,
+"f_fim": 464,
+"f_top": 471,
+"pkpos": 0.76,
+"tipo": "ataque_grito"
+},
+"28": {
+"dur": 0.53,
+"vr": 0.4,
+"f_ini": 400,
+"f_mid": 500,
+"f_fim": 673,
+"f_top": 889,
+"pkpos": 0.23,
+"tipo": "ataque_grito"
+},
+"29": {
+"dur": 0.82,
+"vr": 0.59,
+"f_ini": 188,
+"f_mid": 727,
+"f_fim": 762,
+"f_top": 762,
+"pkpos": 0.34,
+"tipo": "ataque_grito"
+},
+"3": {
+"dur": 3.91,
+"vr": 0.45,
+"f_ini": 151,
+"f_mid": 198,
+"f_fim": 281,
+"f_top": 544,
+"pkpos": 0.64,
+"tipo": "fala_longa"
+},
+"30": {
+"dur": 0.7,
+"vr": 0.54,
+"f_ini": 410,
+"f_mid": 352,
+"f_fim": 478,
+"f_top": 696,
+"pkpos": 0.18,
+"tipo": "esforco_neutro"
+},
+"31": {
+"dur": 1.63,
+"vr": 0.31,
+"f_ini": 288,
+"f_mid": 471,
+"f_fim": 640,
+"f_top": 800,
+"pkpos": 0.64,
+"tipo": "frase"
+},
+"32": {
+"dur": 1.07,
+"vr": 0.37,
+"f_ini": 282,
+"f_mid": 556,
+"f_fim": 485,
+"f_top": 696,
+"pkpos": 0.19,
+"tipo": "ataque_grito"
+},
+"33": {
+"dur": 0.75,
+"vr": 0.49,
+"f_ini": 471,
+"f_mid": 516,
+"f_fim": 457,
+"f_top": 516,
+"pkpos": 0.28,
+"tipo": "ataque_grito"
+},
+"34": {
+"dur": 0.9,
+"vr": 0.29,
+"f_ini": 163,
+"f_mid": 745,
+"f_fim": 432,
+"f_top": 762,
+"pkpos": 0.33,
+"tipo": "respiracao_impacto"
+},
+"35": {
+"dur": 0.49,
+"vr": 0.38,
+"f_ini": 500,
+"f_mid": 533,
+"f_fim": 516,
+"f_top": 533,
+"pkpos": 0.49,
+"tipo": "ataque_grito"
+},
+"36": {
+"dur": 0.47,
+"vr": 0.61,
+"f_ini": 174,
+"f_mid": 390,
+"f_fim": 444,
+"f_top": 450,
+"pkpos": 0.3,
+"tipo": "ataque_grito"
+},
+"37": {
+"dur": 0.48,
+"vr": 0.13,
+"f_ini": 181,
+"f_mid": 189,
+"f_fim": 185,
+"f_top": 189,
+"pkpos": 0.38,
+"tipo": "respiracao_impacto"
+},
+"38": {
+"dur": 0.47,
+"vr": 0.39,
+"f_ini": 213,
+"f_mid": 203,
+"f_fim": 390,
+"f_top": 390,
+"pkpos": 0.45,
+"tipo": "esforco_neutro"
+},
+"39": {
+"dur": 0.52,
+"vr": 0.46,
+"f_ini": 485,
+"f_mid": 400,
+"f_fim": 310,
+"f_top": 485,
+"pkpos": 0.17,
+"tipo": "dor_queda"
+},
+"4": {
+"dur": 3.91,
+"vr": 0.45,
+"f_ini": 151,
+"f_mid": 198,
+"f_fim": 281,
+"f_top": 544,
+"pkpos": 0.64,
+"tipo": "fala_longa"
+},
+"40": {
+"dur": 0.27,
+"vr": 0.83,
+"f_ini": 516,
+"f_mid": 432,
+"f_fim": 533,
+"f_top": 533,
+"pkpos": 0.44,
+"tipo": "esforco_neutro"
+},
+"41": {
+"dur": 0.32,
+"vr": 0.39,
+"f_ini": 348,
+"f_mid": 615,
+"f_fim": 552,
+"f_top": 615,
+"pkpos": 0.38,
+"tipo": "ataque_grito"
+},
+"42": {
+"dur": 0.38,
+"vr": 0.34,
+"f_ini": 458,
+"f_mid": 400,
+"f_fim": 640,
+"f_top": 640,
+"pkpos": 0.38,
+"tipo": "esforco_neutro"
+},
+"43": {
+"dur": 0.68,
+"vr": 0.48,
+"f_ini": 246,
+"f_mid": 476,
+"f_fim": 593,
+"f_top": 593,
+"pkpos": 0.44,
+"tipo": "ataque_grito"
+},
+"44": {
+"dur": 0.78,
+"vr": 0.38,
+"f_ini": 142,
+"f_mid": 390,
+"f_fim": 515,
+"f_top": 667,
+"pkpos": 0.34,
+"tipo": "ataque_grito"
+},
+"45": {
+"dur": 0.77,
+"vr": 0.45,
+"f_ini": 193,
+"f_mid": 390,
+"f_fim": 571,
+"f_top": 640,
+"pkpos": 0.42,
+"tipo": "ataque_grito"
+},
+"46": {
+"dur": 0.8,
+"vr": 0.82,
+"f_ini": 400,
+"f_mid": 471,
+"f_fim": 410,
+"f_top": 500,
+"pkpos": 0.18,
+"tipo": "ataque_grito"
+},
+"47": {
+"dur": 1.03,
+"vr": 0.66,
+"f_ini": 372,
+"f_mid": 727,
+"f_fim": 533,
+"f_top": 842,
+"pkpos": 0.21,
+"tipo": "ataque_grito"
+},
+"48": {
+"dur": 0.53,
+"vr": 0.84,
+"f_ini": 327,
+"f_mid": 340,
+"f_fim": 352,
+"f_top": 528,
+"pkpos": 0.48,
+"tipo": "ataque_grito"
+},
+"49": {
+"dur": 0.95,
+"vr": 0.44,
+"f_ini": 400,
+"f_mid": 615,
+"f_fim": 667,
+"f_top": 667,
+"pkpos": 0.47,
+"tipo": "ataque_grito"
+},
+"5": {
+"dur": 2.86,
+"vr": 0.61,
+"f_ini": 222,
+"f_mid": 165,
+"f_fim": 147,
+"f_top": 516,
+"pkpos": 0.61,
+"tipo": "fala_longa"
+},
+"50": {
+"dur": 0.95,
+"vr": 0.51,
+"f_ini": 516,
+"f_mid": 471,
+"f_fim": 552,
+"f_top": 580,
+"pkpos": 0.25,
+"tipo": "esforco_neutro"
+},
+"51": {
+"dur": 1.65,
+"vr": 0.47,
+"f_ini": 372,
+"f_mid": 485,
+"f_fim": 697,
+"f_top": 842,
+"pkpos": 0.05,
+"tipo": "frase"
+},
+"52": {
+"dur": 0.37,
+"vr": 0.18,
+"f_ini": 299,
+"f_mid": 299,
+"f_fim": 286,
+"f_top": 302,
+"pkpos": 0.38,
+"tipo": "respiracao_impacto"
+},
+"53": {
+"dur": 0.75,
+"vr": 0.1,
+"f_ini": 390,
+"f_mid": 390,
+"f_fim": 286,
+"f_top": 590,
+"pkpos": 0.22,
+"tipo": "respiracao_impacto"
+},
+"54": {
+"dur": 1.19,
+"vr": 0.53,
+"f_ini": 333,
+"f_mid": 348,
+"f_fim": 653,
+"f_top": 667,
+"pkpos": 0.42,
+"tipo": "ataque_grito"
+},
+"55": {
+"dur": 0.94,
+"vr": 0.44,
+"f_ini": 200,
+"f_mid": 444,
+"f_fim": 131,
+"f_top": 517,
+"pkpos": 0.41,
+"tipo": "dor_queda"
+},
+"56": {
+"dur": 0.78,
+"vr": 0.37,
+"f_ini": 696,
+"f_mid": 340,
+"f_fim": 387,
+"f_top": 696,
+"pkpos": 0.26,
+"tipo": "esforco_neutro"
+},
+"57": {
+"dur": 0.87,
+"vr": 0.57,
+"f_ini": 265,
+"f_mid": 364,
+"f_fim": 485,
+"f_top": 640,
+"pkpos": 0.68,
+"tipo": "ataque_grito"
+},
+"58": {
+"dur": 0.59,
+"vr": 0.38,
+"f_ini": 533,
+"f_mid": 640,
+"f_fim": 640,
+"f_top": 640,
+"pkpos": 0.26,
+"tipo": "ataque_grito"
+},
+"59": {
+"dur": 1.48,
+"vr": 0.28,
+"f_ini": 390,
+"f_mid": 667,
+"f_fim": 696,
+"f_top": 727,
+"pkpos": 0.12,
+"tipo": "frase"
+},
+"6": {
+"dur": 1.34,
+"vr": 0.47,
+"f_ini": 533,
+"f_mid": 302,
+"f_fim": 296,
+"f_top": 533,
+"pkpos": 0.08,
+"tipo": "frase"
+},
+"60": {
+"dur": 1.03,
+"vr": 0.59,
+"f_ini": 348,
+"f_mid": 444,
+"f_fim": 696,
+"f_top": 727,
+"pkpos": 0.13,
+"tipo": "ataque_grito"
+},
+"61": {
+"dur": 2.04,
+"vr": 0.57,
+"f_ini": 296,
+"f_mid": 356,
+"f_fim": 444,
+"f_top": 576,
+"pkpos": 0.64,
+"tipo": "frase"
+},
+"62": {
+"dur": 1.24,
+"vr": 0.31,
+"f_ini": 232,
+"f_mid": 204,
+"f_fim": 332,
+"f_top": 539,
+"pkpos": 0.09,
+"tipo": "esforco_neutro"
+},
+"63": {
+"dur": 0.92,
+"vr": 0.58,
+"f_ini": 193,
+"f_mid": 296,
+"f_fim": 421,
+"f_top": 421,
+"pkpos": 0.67,
+"tipo": "esforco_neutro"
+},
+"64": {
+"dur": 3.25,
+"vr": 0.63,
+"f_ini": 165,
+"f_mid": 239,
+"f_fim": 294,
+"f_top": 640,
+"pkpos": 0.94,
+"tipo": "fala_longa"
+},
+"65": {
+"dur": 0.87,
+"vr": 0.7,
+"f_ini": 174,
+"f_mid": 320,
+"f_fim": 308,
+"f_top": 356,
+"pkpos": 0.42,
+"tipo": "esforco_neutro"
+},
+"66": {
+"dur": 1.66,
+"vr": 0.33,
+"f_ini": 258,
+"f_mid": 267,
+"f_fim": 286,
+"f_top": 333,
+"pkpos": 0.32,
+"tipo": "frase"
+},
+"67": {
+"dur": 1.24,
+"vr": 0.54,
+"f_ini": 471,
+"f_mid": 457,
+"f_fim": 364,
+"f_top": 485,
+"pkpos": 0.43,
+"tipo": "dor_queda"
+},
+"68": {
+"dur": 0.73,
+"vr": 0.46,
+"f_ini": 229,
+"f_mid": 390,
+"f_fim": 421,
+"f_top": 421,
+"pkpos": 0.46,
+"tipo": "esforco_neutro"
+},
+"69": {
+"dur": 1.27,
+"vr": 0.35,
+"f_ini": 333,
+"f_mid": 305,
+"f_fim": 178,
+"f_top": 333,
+"pkpos": 0.59,
+"tipo": "dor_queda"
+},
+"7": {
+"dur": 2.33,
+"vr": 0.32,
+"f_ini": 437,
+"f_mid": 190,
+"f_fim": 458,
+"f_top": 667,
+"pkpos": 0.64,
+"tipo": "fala_longa"
+},
+"70": {
+"dur": 0.7,
+"vr": 0.5,
+"f_ini": 485,
+"f_mid": 485,
+"f_fim": 485,
+"f_top": 516,
+"pkpos": 0.24,
+"tipo": "ataque_grito"
+},
+"71": {
+"dur": 0.67,
+"vr": 0.24,
+"f_ini": 302,
+"f_mid": 471,
+"f_fim": 188,
+"f_top": 471,
+"pkpos": 0.61,
+"tipo": "respiracao_impacto"
+},
+"72": {
+"dur": 0.93,
+"vr": 0.69,
+"f_ini": 356,
+"f_mid": 478,
+"f_fim": 500,
+"f_top": 500,
+"pkpos": 0.54,
+"tipo": "ataque_grito"
+},
+"73": {
+"dur": 1.22,
+"vr": 0.68,
+"f_ini": 271,
+"f_mid": 333,
+"f_fim": 500,
+"f_top": 593,
+"pkpos": 0.7,
+"tipo": "ataque_grito"
+},
+"74": {
+"dur": 1.61,
+"vr": 0.73,
+"f_ini": 390,
+"f_mid": 485,
+"f_fim": 552,
+"f_top": 552,
+"pkpos": 0.74,
+"tipo": "frase"
+},
+"75": {
+"dur": 0.51,
+"vr": 0.85,
+"f_ini": 356,
+"f_mid": 410,
+"f_fim": 471,
+"f_top": 471,
+"pkpos": 0.19,
+"tipo": "ataque_grito"
+},
+"76": {
+"dur": 1.63,
+"vr": 0.28,
+"f_ini": 348,
+"f_mid": 410,
+"f_fim": 372,
+"f_top": 450,
+"pkpos": 0.63,
+"tipo": "frase"
+},
+"77": {
+"dur": 2.01,
+"vr": 0.11,
+"f_ini": 593,
+"f_mid": 533,
+"f_fim": 552,
+"f_top": 593,
+"pkpos": 0.79,
+"tipo": "frase"
+},
+"78": {
+"dur": 1.6,
+"vr": 0.43,
+"f_ini": 640,
+"f_mid": 157,
+"f_fim": 129,
+"f_top": 640,
+"pkpos": 0.35,
+"tipo": "frase"
+},
+"79": {
+"dur": 1.81,
+"vr": 0.7,
+"f_ini": 250,
+"f_mid": 246,
+"f_fim": 239,
+"f_top": 421,
+"pkpos": 0.44,
+"tipo": "frase"
+},
+"8": {
+"dur": 2.56,
+"vr": 0.29,
+"f_ini": 339,
+"f_mid": 140,
+"f_fim": 500,
+"f_top": 727,
+"pkpos": 0.06,
+"tipo": "fala_longa"
+},
+"80": {
+"dur": 0.94,
+"vr": 0.41,
+"f_ini": 299,
+"f_mid": 400,
+"f_fim": 800,
+"f_top": 800,
+"pkpos": 0.48,
+"tipo": "ataque_grito"
+},
+"81": {
+"dur": 1.52,
+"vr": 0.27,
+"f_ini": 184,
+"f_mid": 471,
+"f_fim": 485,
+"f_top": 571,
+"pkpos": 0.75,
+"tipo": "frase"
+},
+"82": {
+"dur": 1.36,
+"vr": 0.62,
+"f_ini": 276,
+"f_mid": 333,
+"f_fim": 400,
+"f_top": 480,
+"pkpos": 0.79,
+"tipo": "frase"
+},
+"83": {
+"dur": 1.22,
+"vr": 0.39,
+"f_ini": 229,
+"f_mid": 571,
+"f_fim": 457,
+"f_top": 571,
+"pkpos": 0.75,
+"tipo": "ataque_grito"
+},
+"84": {
+"dur": 1.61,
+"vr": 0.55,
+"f_ini": 421,
+"f_mid": 327,
+"f_fim": 667,
+"f_top": 696,
+"pkpos": 0.21,
+"tipo": "frase"
+},
+"85": {
+"dur": 1.72,
+"vr": 0.58,
+"f_ini": 216,
+"f_mid": 235,
+"f_fim": 286,
+"f_top": 341,
+"pkpos": 0.55,
+"tipo": "frase"
+},
+"86": {
+"dur": 1.48,
+"vr": 0.31,
+"f_ini": 457,
+"f_mid": 727,
+"f_fim": 667,
+"f_top": 752,
+"pkpos": 0.26,
+"tipo": "frase"
+},
+"87": {
+"dur": 2.02,
+"vr": 0.3,
+"f_ini": 237,
+"f_mid": 432,
+"f_fim": 154,
+"f_top": 471,
+"pkpos": 0.56,
+"tipo": "frase"
+},
+"88": {
+"dur": 0.6,
+"vr": 0.65,
+"f_ini": 458,
+"f_mid": 352,
+"f_fim": 348,
+"f_top": 476,
+"pkpos": 0.36,
+"tipo": "dor_queda"
+},
+"89": {
+"dur": 0.88,
+"vr": 0.62,
+"f_ini": 500,
+"f_mid": 444,
+"f_fim": 308,
+"f_top": 516,
+"pkpos": 0.15,
+"tipo": "dor_queda"
+},
+"9": {
+"dur": 3.77,
+"vr": 0.48,
+"f_ini": 200,
+"f_mid": 288,
+"f_fim": 250,
+"f_top": 571,
+"pkpos": 0.78,
+"tipo": "fala_longa"
+},
+"90": {
+"dur": 2.3,
+"vr": 0.28,
+"f_ini": 333,
+"f_mid": 356,
+"f_fim": 410,
+"f_top": 468,
+"pkpos": 0.54,
+"tipo": "fala_longa"
+},
+"91": {
+"dur": 4.32,
+"vr": 0.22,
+"f_ini": 151,
+"f_mid": 134,
+"f_fim": 250,
+"f_top": 471,
+"pkpos": 0.55,
+"tipo": "fala_longa"
+},
+"92": {
+"dur": 3.71,
+"vr": 0.32,
+"f_ini": 142,
+"f_mid": 352,
+"f_fim": 215,
+"f_top": 615,
+"pkpos": 0.74,
+"tipo": "fala_longa"
+},
+"93": {
+"dur": 2.44,
+"vr": 0.6,
+"f_ini": 229,
+"f_mid": 229,
+"f_fim": 235,
+"f_top": 552,
+"pkpos": 0.7,
+"tipo": "fala_longa"
+},
+"94": {
+"dur": 2.84,
+"vr": 0.4,
+"f_ini": 144,
+"f_mid": 186,
+"f_fim": 190,
+"f_top": 640,
+"pkpos": 0.53,
+"tipo": "fala_longa"
+},
+"95": {
+"dur": 3.83,
+"vr": 0.37,
+"f_ini": 211,
+"f_mid": 386,
+"f_fim": 229,
+"f_top": 593,
+"pkpos": 0.6,
+"tipo": "fala_longa"
+},
+"96": {
+"dur": 3.08,
+"vr": 0.53,
+"f_ini": 195,
+"f_mid": 211,
+"f_fim": 267,
+"f_top": 333,
+"pkpos": 0.19,
+"tipo": "fala_longa"
+},
+"97": {
+"dur": 3.34,
+"vr": 0.67,
+"f_ini": 193,
+"f_mid": 327,
+"f_fim": 308,
+"f_top": 533,
+"pkpos": 0.59,
+"tipo": "fala_longa"
+},
+"98": {
+"dur": 2.0,
+"vr": 0.4,
+"f_ini": 149,
+"f_mid": 226,
+"f_fim": 230,
+"f_top": 307,
+"pkpos": 0.51,
+"tipo": "frase"
+},
+"99": {
+"dur": 2.44,
+"vr": 0.3,
+"f_ini": 242,
+"f_mid": 147,
+"f_fim": 485,
+"f_top": 533,
+"pkpos": 0.22,
+"tipo": "fala_longa"
+}
+}

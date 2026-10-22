@@ -1,0 +1,108 @@
+SINERGIA DOS ANDROIDES — REGRAS OFICIAIS DO JOGO
+
+Implemente a Sinergia dos Androides no jogo de cartas Dragon Ball seguindo rigorosamente as regras abaixo. Esta sinergia está finalizada e aprovada.
+
+1. CONTAGEM DOS ANDROIDES
+
+- Apenas as cartas de unidades da categoria Androides que estiverem no campo de batalha contam para a sinergia.
+- O herói não conta como uma unidade Android, mesmo que seja um personagem androide.
+- A sinergia deve ser recalculada imediatamente sempre que uma unidade entrar, sair, for derrotada ou deixar de contar para a categoria.
+- Os efeitos são acumulativos: cada nível mantém os bônus dos níveis anteriores, desde que os requisitos desses níveis continuem sendo atendidos.
+
+2. NÍVEIS DA SINERGIA
+
+Nível 2 — Blindagem Aprimorada
+
+Requisito: possuir pelo menos 2 unidades Androides no campo.
+
+Efeito:
+
+- Todas as unidades Androides aliadas no campo recebem 1 ponto de escudo concedido pela sinergia.
+- O escudo absorve o dano recebido antes que ele seja aplicado aos pontos de vida (PV).
+
+Nível 3 — Blindagem Reforçada
+
+Requisito: possuir pelo menos 3 unidades Androides no campo.
+
+Efeito:
+
+- Todas as unidades Androides aliadas no campo recebem mais 3 pontos de escudo.
+- O bônus total passa a ser de 4 pontos de escudo por unidade: 1 do nível 2 + 3 adicionais do nível 3.
+
+REGRAS OBRIGATÓRIAS DO ESCUDO
+
+1. O escudo não é renovado automaticamente no início dos turnos.
+2. O escudo permanece até ser consumido pelo dano ou removido pela alteração da sinergia.
+3. Se a sinergia cair do nível 3 para o nível 2, o escudo de cada unidade Android deve ser ajustado imediatamente de 4 para 1 ponto.
+4. Se a sinergia for desativada por completo, todo o escudo concedido por ela desaparece imediatamente.
+5. Todas as unidades Androides aliadas no campo recebem o benefício enquanto os requisitos da sinergia estiverem ativos.
+6. A alteração do nível da sinergia não deve criar escudos duplicados nem conceder pontos extras indevidos.
+
+Nível 4 — Núcleo Energético
+
+Requisito: possuir pelo menos 4 unidades Androides no campo.
+
+Efeito:
+
+- Concede 1 cristal de energia adicional por turno.
+- O bônus permanece ativo nos turnos seguintes enquanto os requisitos forem atendidos.
+
+Nível 5 — Autorrecuperação
+
+Requisito: possuir pelo menos 5 unidades Androides no campo.
+
+Efeito:
+
+- O herói aliado recupera 1 PV por turno.
+- A recuperação não pode ultrapassar o PV máximo do herói.
+
+Nível 6 — Protocolo de Reparação
+
+Requisito: possuir pelo menos 6 unidades Androides no campo.
+
+Efeito:
+
+- Todas as unidades aliadas no campo recuperam 1 PV por turno.
+- A recuperação não pode ultrapassar o PV máximo de cada unidade.
+- Este efeito é acumulativo com o efeito do nível 5: o herói recupera 1 PV por turno e as unidades aliadas recuperam 1 PV por turno.
+
+Nível 7 — Núcleo Infinito
+
+Requisito: possuir pelo menos 7 unidades Androides no campo.
+
+Efeito:
+
+- Concede mais 2 cristais de energia adicionais por turno.
+- Este bônus se acumula com o cristal adicional do nível 4.
+- Portanto, com os níveis 4 e 7 ativos, a sinergia concede um total de 3 cristais de energia extras por turno.
+- O limite máximo de energia do jogo continua sendo 10. A sinergia não pode ultrapassar esse limite.
+
+3. REGRAS GERAIS DE IMPLEMENTAÇÃO
+
+- Todos os níveis são acumulativos.
+- Cada efeito só funciona enquanto a quantidade necessária de unidades Androides estiver no campo.
+- Se a quantidade de unidades diminuir, os níveis que deixarem de cumprir os requisitos devem ser desativados imediatamente.
+- Os níveis inferiores continuam ativos enquanto seus próprios requisitos forem atendidos.
+- A perda de um nível deve atualizar corretamente os bônus de escudo, energia e recuperação.
+- O sistema não deve duplicar efeitos quando a sinergia for recalculada.
+- A cura nunca pode ultrapassar o PV máximo.
+- A energia nunca pode ultrapassar o limite máximo de 10.
+- A implementação deve respeitar as regras de combate, os efeitos das cartas e os sistemas já existentes no jogo.
+
+4. ORIENTAÇÃO PARA O DESENVOLVIMENTO
+
+Implemente esta sinergia no código existente, integrando-a aos sistemas atuais de unidades, combate, escudo, energia e recuperação.
+
+Não crie sistemas paralelos se já houver sistemas equivalentes no projeto. Não altere as regras das outras sinergias nem invente novas habilidades, custos ou exceções.
+
+Antes de finalizar, verifique os seguintes cenários:
+
+1. Duas unidades Androides ativam o nível 2 e recebem 1 ponto de escudo cada.
+2. Três unidades Androides ativam o nível 3 e passam a ter 4 pontos de escudo cada.
+3. A sinergia cai do nível 3 para o nível 2 e o escudo é ajustado para 1 ponto por unidade.
+4. A sinergia é completamente desativada e todo o escudo concedido por ela desaparece.
+5. Os níveis 4 e 7 concedem, juntos, 3 cristais de energia extras por turno, respeitando o limite de 10.
+6. Os níveis 5 e 6 recuperam corretamente o PV do herói e das unidades aliadas, sem ultrapassar seus máximos.
+7. A entrada ou saída de unidades atualiza a sinergia sem duplicar bônus ou manter efeitos indevidos.
+
+Preserve a arquitetura, o estilo visual e as demais mecânicas já implementadas no projeto.
