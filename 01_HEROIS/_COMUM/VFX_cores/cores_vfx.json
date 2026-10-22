@@ -1,0 +1,14 @@
+{"_regra":"so lendarias; cor segue a arte da carta; override por carta em 'por_carta'",
+"entrada_lendaria":{"cor":"dourado","fonte":"vid-20221027-180357"},
+"atingir":"lendaria entra ja atingindo o combatente inimigo",
+"presets":{
+"goku_base":{"cor":"azul","fonte":"cardgame-color2","modo":"mono_azul"},
+"goku_super_saiyajin":{"cor":"azul+amarelo","fonte":"cardgame-color2","modo":"nativo"},
+"vegeta_base":{"cor":"roxo","fonte":"cardgame-color-4","modo":"nativo"},
+"piccolo_makankosappo":{"cor":"roxo+amarelo/laranja","fonte":"cardgame-color-4","modo":"roxo_amarelo"},
+"piccolo_golpe_amarelo":{"cor":"amarelo","fonte":"cardgame-color","modo":"hue27"},
+"namek_generico":{"cor":"verde","fonte":"cardgame-color","modo":"hue60"},
+"androide_generico":{"cor":"vermelho","fonte":"cardgame-color","modo":"hue0"},
+"freeza_raio_da_morte":{"cor":"vermelho","fonte":"cardgame-color","modo":"hue0"},
+"cell":{"cor":"por_carta","nota":"depende da arte (Kamehameha azul, Makankosappo roxo/amarelo)"}},
+"por_carta":{"GK01":"goku_base"}}
