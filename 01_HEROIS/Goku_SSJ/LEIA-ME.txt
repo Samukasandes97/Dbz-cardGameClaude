@@ -1,0 +1,6 @@
+HEROI Goku_SSJ - Goku Super Saiyajin (Zenkai). Ativa: Kamehameha Explosivo. Transformacao = Zenkai. Comeback: Super Kamehameha.
+Retrato/Base | Retrato/Transformacao | Skins_retrato (troca pelo jogador) | Efeitos_sonoros/{Socos,Chutes,Rush}
+Efeitos_especiais/{Habilidades_ativas,Golpes_assinatura}/<golpe>/{Voz,Efeitos,Video} | Vozes | Entrada | Transformacao | Comeback | Comeback_Dramatico_Finalizacao | Icone_medalhao
+Retrato/_versoes_anteriores_e_extras = retratos originais (nada apagado)
+
+[2026-10-19] Comeback = GENKIDAMA (veio do Goku base por troca decidida por ele). Super_Kamehameha_Comeback mantida em Golpes_assinatura ate ele dizer onde fica.

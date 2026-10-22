@@ -1,0 +1,12 @@
+HEROI Vegeta
+Retrato/Base  = retrato do heroi normal | Retrato/Transformacao = retrato do heroi transformado
+Skins_retrato = retratos alternativos que o JOGADOR podera escolher
+Efeitos_sonoros = Socos, Chutes, Rush (do pacote dele; copias ligadas)
+Efeitos_especiais/Habilidades_ativas/<golpe>/{Voz,Efeitos,Video} e Golpes_assinatura/<golpe>/{Voz,Efeitos,Video} (Video = ele vai mandar)
+Vozes = vozes do heroi | Entrada, Transformacao, Comeback, Comeback_Dramatico_Finalizacao = cenas
+Retrato/_versoes_anteriores_e_extras = tudo que ja existia antes da reorganizacao (nada foi apagado)
+
+[2026-10-20] VEGETA BASE: transformacao = OOZARU (3 de dano dividido gratis); ativa depois = Rajada pela Boca (custo 2, 3 dano, 1x/turno); Comeback = Oozaru soltando a Rajada pela Boca (10 dano direto + 10 PV).
+Transformacao/ = Vegeta_Transformacao_Oozaru_FHD.mp4 (bola de poder -> grito -> Oozaru; vozes Scouter 116+113+117 na ordem dele, eco Fighter Z, efeitos sonoros) | Comeback/ = Vegeta_Comeback_Oozaru_Rajada_FHD.mp4 (Oozaru carrega e atira; Goku REMOVIDO da cena; vozes Great Ape 108 (1) + 112 (2) na ordem da foto dele)
+Vozes/Vegeta_Scouter (forma base) e Vozes/Vegeta_GreatApe (forma Oozaru): TODAS as vozes originais + _por_tipo (classificacao acustica, PROPOSTA); Vozes/eventos_jogo_vegeta.json = quais pools tocam em: ataque/soco/chute, dano, especial (mira = frase; lancar = grito)
+Os mesmos audios do Vegeta tambem estao em 06_COMBATENTES_AUDIO/Vegeta (cartas combatentes); Nappa e Raditz em 06_COMBATENTES_AUDIO/Nappa e /Raditz

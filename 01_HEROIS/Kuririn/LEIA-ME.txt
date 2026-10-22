@@ -1,0 +1,7 @@
+HEROI Kuririn
+Retrato/Base  = retrato do heroi normal | Retrato/Transformacao = retrato do heroi transformado
+Skins_retrato = retratos alternativos que o JOGADOR podera escolher
+Efeitos_sonoros = Socos, Chutes, Rush (do pacote dele; copias ligadas)
+Efeitos_especiais/Habilidades_ativas/<golpe>/{Voz,Efeitos,Video} e Golpes_assinatura/<golpe>/{Voz,Efeitos,Video} (Video = ele vai mandar)
+Vozes = vozes do heroi | Entrada, Transformacao, Comeback, Comeback_Dramatico_Finalizacao = cenas
+Retrato/_versoes_anteriores_e_extras = tudo que ja existia antes da reorganizacao (nada foi apagado)
