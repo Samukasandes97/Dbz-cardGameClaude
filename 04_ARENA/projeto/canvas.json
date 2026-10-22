@@ -1,0 +1,13 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-11T13:10:00Z" },
+  "title": "Arena Dragon Ball Card Game",
+  "launch": { "view": "focused", "file": "Main.dc.html" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1280, "h": 720, "title": "Arena – primeira versão" }
+  },
+  "order": ["Main.dc.html"],
+  "notes": {},
+  "designSystems": []
+}

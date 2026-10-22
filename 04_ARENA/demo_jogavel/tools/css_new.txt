@@ -1,0 +1,35 @@
+/* unidades (carta inteira em vidro translúcido) */
+.u{position:absolute;left:0;top:0;width:118px;height:169px;translate:var(--x,0) var(--y,0);transition:translate .35s cubic-bezier(.2,.8,.3,1);will-change:translate}
+.u .in{position:absolute;left:0;top:0;width:118px;height:169px;transform-origin:50% 60%}
+.u .in.surge{animation:surge .55s ease-out both}
+.u .glass{position:absolute;left:-9px;top:-9px;right:-9px;bottom:-9px;pointer-events:none;clip-path:polygon(15px 0,calc(100% - 15px) 0,100% 15px,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 calc(100% - 15px),0 15px);background:linear-gradient(155deg,rgba(255,255,255,.2),rgba(255,255,255,.04) 42%,rgba(255,255,255,.12));box-shadow:inset 0 0 0 2px rgba(255,255,255,.28)}
+.u .glass::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 0 3px var(--g,#fff),inset 0 0 24px 7px var(--g,#fff);opacity:0}
+.u.syn .glass::after{animation:glowP 1.7s ease-in-out infinite}
+.u .glow{position:absolute;left:-10px;top:-10px;right:-10px;bottom:-10px;border-radius:16px;box-shadow:0 0 20px 8px var(--g,#fff);opacity:0;pointer-events:none}
+.u.syn .glow{animation:glowP 1.7s ease-in-out infinite}
+.u .cardimg{position:absolute;left:0;top:0;width:118px;height:169px;border-radius:8px;display:block;box-shadow:0 5px 12px rgba(0,0,0,.6)}
+.u .rdyr{position:absolute;left:-3px;top:-3px;right:-3px;bottom:-3px;border-radius:10px;border:3px solid var(--rc,#6dff9a);box-shadow:0 0 12px 3px var(--rc,#6dff9a);opacity:0;pointer-events:none}
+.u.ready .rdyr{opacity:1}
+.u.entry .rdyr{--rc:#ffd45a;opacity:1;animation:glowP 1s ease-in-out infinite}
+.u.tgt .glow{--g:#ff4a3a;animation:glowP .6s ease-in-out infinite}
+.u.sel .glow{--g:#fff;opacity:1;animation:none}
+.u.sel .in{transform:translateY(-10px) scale(1.04)}
+.u.dying{pointer-events:none;transition:opacity .35s,scale .35s;opacity:0;scale:1.25}
+.u .bd{position:absolute;bottom:-10px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:3}
+.u .bd.a{left:-11px}.u .bd.h{right:-11px}
+.u .bd svg{position:absolute;left:0;top:0;width:100%;height:100%;filter:drop-shadow(0 2px 3px rgba(0,0,0,.75))}
+.u .bd b{position:relative;font:400 25px var(--display);color:#fff;-webkit-text-stroke:3.5px #1a0a05;paint-order:stroke fill;text-shadow:0 2px 3px #000a;line-height:1;margin-top:1px}
+.u .bd.up b{color:#ffe066}.u .bd.dn b{color:#ff9a8a}
+.u .zz{position:absolute;left:78px;top:6px;font:700 12px var(--body);background:rgba(10,14,30,.88);border-radius:9px;padding:0 5px;color:#9fd0ff;pointer-events:none;z-index:3}
+.dome{position:absolute;left:-22px;top:46px;width:162px;height:138px;pointer-events:none;mix-blend-mode:screen;opacity:.8;animation:domeP 2.4s ease-in-out infinite;z-index:2;background:url(a/vfx/dome.webp) center/100% 100% no-repeat}
+.dome::after{content:'';position:absolute;inset:0;-webkit-mask:url(a/vfx/dome.webp) center/100% 100% no-repeat;mask:url(a/vfx/dome.webp) center/100% 100% no-repeat;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.95) 50%,transparent 62%) 0 0/260% 100%;animation:domeS 2.8s linear infinite}
+#vfx{position:absolute;left:0;top:0;width:1280px;height:720px;z-index:42;pointer-events:none;overflow:hidden}
+#flare{position:absolute;left:820px;top:-190px;width:520px;height:520px;background:url(a/vfx/flare.webp) center/100% 100% no-repeat;mix-blend-mode:screen;opacity:0;pointer-events:none;display:none}
+#flare.on{display:block;animation:flareA 46s linear infinite}
+#vs{position:absolute;inset:0;z-index:85;display:none;overflow:hidden;background:#05061a}
+#vs .vbg{position:absolute;inset:0;background:url(a/vfx/versus.webp) center/cover no-repeat;animation:vsZoom 3s ease-out forwards}
+#vs .vp{position:absolute;top:150px;width:360px;height:360px;border-radius:10px;background-size:cover;background-position:center;box-shadow:0 0 0 3px #fff,0 0 34px 10px var(--vc);opacity:0}
+#vs .vp.l{left:90px;--vc:#3a8dff;animation:vsL .7s cubic-bezier(.2,.9,.3,1) .15s forwards}
+#vs .vp.r{left:830px;--vc:#ff3a6a;animation:vsR .7s cubic-bezier(.2,.9,.3,1) .15s forwards}
+#vs .vn{position:absolute;top:540px;width:420px;display:flex;justify-content:center;opacity:0;animation:vsN .5s ease-out .75s forwards}
+#vs .vn.l{left:60px}#vs .vn.r{left:800px}

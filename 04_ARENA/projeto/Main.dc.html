@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Arena de batalha</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Rubik:wght@500;700&display=swap" rel="stylesheet">
+<style>
+@keyframes rdrSweep{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes rdrPing{0%{transform:translate(-50%,-50%) scale(.1);opacity:.85}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+@keyframes rdrBlip{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 0 rgba(255,245,160,.0);opacity:.85}12%{transform:translate(-50%,-50%) scale(1.6);box-shadow:0 0 6px 3px rgba(255,245,160,.95);opacity:1}45%{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 4px 1px rgba(255,245,160,.35);opacity:.9}}
+@keyframes rdrCore{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.25)}}
+.rdr-sweep{position:absolute;left:50%;top:50%;width:150%;height:150%;border-radius:50%;background:conic-gradient(from 0deg,rgba(190,255,200,0) 0deg,rgba(190,255,200,0) 255deg,rgba(190,255,200,.10) 285deg,rgba(190,255,200,.38) 335deg,rgba(220,255,225,.8) 358deg,rgba(220,255,225,0) 360deg);animation:rdrSweep 2.4s linear infinite;transform:translate(-50%,-50%)}
+.rdr-ping{position:absolute;left:50%;top:50%;width:100%;height:100%;border-radius:50%;border:1.5px solid rgba(190,255,200,.9);animation:rdrPing 2.2s ease-out infinite;transform:translate(-50%,-50%) scale(.1)}
+.rdr-blip{position:absolute;width:9%;height:7.4%;border-radius:50%;background:#fff6a8;animation:rdrBlip 2.4s ease-in-out infinite;transform:translate(-50%,-50%)}
+.rdr-core{position:absolute;width:9%;height:6%;background:#b80000;clip-path:polygon(50% 0,100% 100%,0 100%);animation:rdrCore 1.2s ease-in-out infinite;transform:translate(-50%,-50%)}
+@keyframes surge{0%{opacity:0;transform:translateY(26px) scale(.85);filter:brightness(2.2)}60%{opacity:1;transform:translateY(-4px) scale(1.04);filter:brightness(1.5)}100%{opacity:1;transform:none;filter:none}}
+@keyframes moedaGira{0%{transform:translateY(0) rotateY(0)}50%{transform:translateY(-34px) rotateY(900deg)}100%{transform:translateY(0) rotateY(1800deg)}}
+@keyframes moedaPousaA{0%{transform:translateY(40px) rotateY(0)}45%{transform:translateY(-60px) rotateY(1000deg)}100%{transform:translateY(0) rotateY(1800deg)}}
+@keyframes moedaPousaB{0%{transform:translateY(40px) rotateY(0)}45%{transform:translateY(-60px) rotateY(1080deg)}100%{transform:translateY(0) rotateY(1980deg)}}
+@keyframes radarSweep{to{transform:rotate(360deg)}}
+@keyframes radarPing{0%{transform:scale(.08);opacity:.9}100%{transform:scale(1);opacity:0}}
+@keyframes radarBlip{0%{opacity:1;transform:scale(2.1)}35%{opacity:.85;transform:scale(1.2)}100%{opacity:.18;transform:scale(1)}}
+@keyframes radarGlow{0%,100%{filter:drop-shadow(0 0 2px rgba(109,255,160,.25))}50%{filter:drop-shadow(0 0 8px rgba(109,255,160,.85))}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:0.001s!important;animation-iteration-count:1!important}}
+@keyframes surgeDica{0%{opacity:0}100%{opacity:1}}
+@keyframes sinPulse{0%,100%{filter:drop-shadow(0 0 3px var(--g)) brightness(1)}50%{filter:drop-shadow(0 0 16px var(--g)) drop-shadow(0 0 7px var(--g)) brightness(1.28)}}
+@keyframes sinTab{0%,100%{box-shadow:0 0 6px 1px var(--c1),inset 0 0 8px var(--c1);border-color:var(--c1)}33%{box-shadow:0 0 22px 7px var(--c2),inset 0 0 12px var(--c2);border-color:var(--c2)}66%{box-shadow:0 0 22px 7px var(--c3),inset 0 0 12px var(--c3);border-color:var(--c3)}}
+@keyframes dicaPulse{0%,100%{box-shadow:0 0 6px 1px var(--dc),0 0 0 1px var(--dc)}50%{box-shadow:0 0 20px 7px var(--dc),0 0 0 2px var(--dc)}}
+@keyframes dicaBadge{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.hc{transition:transform .24s cubic-bezier(.2,.8,.3,1.15);cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.hc:hover{transform:translateY(-86px) rotate(0deg) scale(1.1)!important;z-index:30!important}
+.insp{transition:opacity .2s ease 0s}
+#hc-1:active~*{}
+body:has(#hc-1:active) #insp-1,body:has(#hc-2:active) #insp-2,body:has(#hc-3:active) #insp-3,body:has(#hc-4:active) #insp-4{opacity:1!important;transition:opacity .25s ease 1.1s}
+@keyframes zpulse{0%,100%{filter:brightness(1);transform:scale(1)}50%{filter:brightness(1.35);transform:scale(1.07)}}
+@keyframes auraPulso{0%,100%{filter:brightness(1) saturate(1)}50%{filter:brightness(1.4) saturate(1.25)}}
+@keyframes ringExp{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.32);opacity:0}}
+@keyframes redPulse{0%,100%{opacity:.30}50%{opacity:1}}
+@keyframes transNovo{0%{opacity:0}23.9%{opacity:0}24%{opacity:1}99.9%{opacity:1}100%{opacity:0}}
+@keyframes transBranco{0%{opacity:.95}7%{opacity:0}18%{opacity:0}23%{opacity:1}27%{opacity:0}96%{opacity:0}100%{opacity:.95}}
+@keyframes transRedFlash{0%{opacity:.95}7%{opacity:0}18%{opacity:0}22%{opacity:1}26%{opacity:.9}40%{opacity:.35}56%{opacity:0}96%{opacity:0}100%{opacity:.95}}
+@keyframes transVermelho{0%{opacity:0}24%{opacity:0}28%{opacity:.85}46%{opacity:0}100%{opacity:0}}
+@keyframes novoTarde{0%,39.9%{opacity:0}40%,100%{opacity:1}}
+@keyframes cenaVig{0%{opacity:0}100%{opacity:1}}
+@keyframes cenaPreto{0%{opacity:0}100%{opacity:1}}
+@keyframes cenaBoom{0%{opacity:0}6%{opacity:1}100%{opacity:0}}
+@keyframes novoUmaVez{0%{opacity:0}23.9%{opacity:0}24%{opacity:1}100%{opacity:1}}
+@keyframes amUmaVez{0%{opacity:0}8%{opacity:.75}22%{opacity:1}30%{opacity:.55}55%{opacity:0}100%{opacity:0}}
+@keyframes redUmaVez{0%{opacity:0}14%{opacity:.5}22%{opacity:1}28%{opacity:.9}50%{opacity:.35}80%{opacity:0}100%{opacity:0}}
+.tfNovoSeu,.auraY,.raioY{opacity:0}
+#tfSeu:checked ~ .tfNovoSeu,#tfSeu:checked ~ * .tfNovoSeu{animation:novoTarde 2.4s linear forwards}
+#tfSeu:checked ~ .fxSeu .auraBase,#tfSeu:checked ~ * .fxSeu .auraBase{opacity:0!important}
+#tfSeu:checked ~ .fxSeu2 .auraY,#tfSeu:checked ~ * .fxSeu2 .auraY{opacity:1;transition:opacity .2s linear 1.05s}
+#tfSeu:checked ~ .fxSeu2 .raioY,#tfSeu:checked ~ * .fxSeu2 .raioY{opacity:1;transition:opacity .2s linear 1.1s}
+@keyframes tremorDano{0%,100%{transform:translate(0,0)}15%{transform:translate(-5px,3px)}30%{transform:translate(4px,-4px)}45%{transform:translate(-4px,-2px)}60%{transform:translate(5px,3px)}75%{transform:translate(-3px,2px)}}
+body{margin:0}
+button{font-family:'Rubik',sans-serif;cursor:pointer}
+</style>
+</helmet>
+<div style="width:1280px;height:720px;position:relative;overflow:hidden;font-family:'Rubik',sans-serif;color:#fff;background:linear-gradient(180deg,#171d36 0%,#2c3a63 22%,#7d6a4a 40%,#b98f55 62%,#6c4f2c 100%)">
+<input type="checkbox" id="tfSeu" aria-hidden="true" tabindex="-1" style="position:absolute;left:-20px;top:0;width:1px;height:1px;opacity:0;pointer-events:none">
+
+<!-- arquibancada -->
+<div style="position:absolute;left:0;top:0;width:1280px;height:110px;background:repeating-linear-gradient(90deg,rgba(255,255,255,0.05) 0 6px,rgba(0,0,0,0.12) 6px 14px)"></div>
+<!-- piso da arena -->
+<div style="position:absolute;left:286px;top:114px;width:850px;height:438px;border-radius:24px;background:radial-gradient(ellipse at 50% 50%,rgba(255,225,160,0.38),rgba(90,60,25,0.25) 70%);border:2px solid rgba(255,240,200,0.25)"></div>
+<!-- AURAS ATRÁS DOS HERÓIS: nascem na base do quadro e sobem só um pouco para fora dele -->
+<div aria-hidden="true" style="position:absolute;left:0;top:0;width:290px;height:212px;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 88%,transparent 100%);mask-image:linear-gradient(180deg,#000 88%,transparent 100%)">
+  <img src="{{auraInim.src}}" alt="" style="position:absolute;left:{{auraInim.left}}px;top:{{auraInim.top}}px;width:{{auraInim.size}}px;height:{{auraInim.size}}px;opacity:{{auraInim.op}};transition:opacity .6s,width .6s,height .6s,left .6s,top .6s;filter:{{auraInim.filtro}};animation:{{auraInim.anim}}">
+  <sc-if value="{{auraInim.ring}}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:34px;top:12px;width:190px;height:190px;border-radius:8px;border:4px solid {{auraInim.ringCor}};box-shadow:0 0 14px 3px {{auraInim.ringCor}};animation:ringExp 1.8s ease-out infinite"></div></sc-if>
+</div>
+<div aria-hidden="true" style="position:absolute;left:0;top:268px;width:290px;height:270px;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 14%,#000 88%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 14%,#000 88%,transparent 100%)">
+  <img src="{{auraSeu.src}}" alt="" style="position:absolute;left:{{auraSeu.left}}px;top:{{auraSeu.top}}px;width:{{auraSeu.size}}px;height:{{auraSeu.size}}px;opacity:{{auraSeu.op}};transition:opacity .6s,width .6s,height .6s,left .6s,top .6s;filter:{{auraSeu.filtro}};animation:{{auraSeu.anim}}">
+  <sc-if value="{{auraSeu.ring}}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:34px;top:70px;width:190px;height:190px;border-radius:8px;border:4px solid {{auraSeu.ringCor}};box-shadow:0 0 14px 3px {{auraSeu.ringCor}};animation:ringExp 1.8s ease-out infinite"></div></sc-if>
+</div>
+
+<!-- sombra da área da mão -->
+<div style="position:absolute;left:0;top:500px;width:1280px;height:220px;background:linear-gradient(180deg,rgba(10,12,24,0),rgba(10,12,24,0.78))"></div>
+
+<!-- TIMER: Uranai Baba com o tempo dentro da bola de cristal -->
+<div style="position:absolute;left:639px;top:-2px;width:144px;height:122px;filter:drop-shadow(0 3px 5px rgba(0,0,0,0.55))" role="timer" aria-label="Tempo do turno: {{timeText}}">
+  <img src="baba.png" style="position:absolute;left:30px;top:0;width:78px;height:121px;display:block" alt="">
+  <div style="position:absolute;left:40px;top:76px;width:58px;height:36px;display:flex;align-items:center;justify-content:center;"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{timeL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+</div>
+
+<!-- MÃO DO INIMIGO (cartas viradas para baixo) -->
+<div style="position:absolute;left:340px;top:-16px;width:260px;height:130px;display:flex;justify-content:center;align-items:flex-start" role="img" aria-label="Mão do inimigo: 5 cartas">
+  <sc-for list="{{enemyHand}}" as="e" hint-placeholder-count="5">
+    <div style="width:64px;height:90px;box-sizing:border-box;margin:0 -6px;border-radius:10px;border:3px solid #ffd45a;background:radial-gradient(circle at 50% 50%,#ff9a3a,#d4540f 70%,#8a2c06);transform:rotate({{e.rot}}deg);transform-origin:50% -60%;position:relative;top:{{e.drop}}px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(0,0,0,0.45)">
+      <div style="width:40px;height:40px;border-radius:20px;background:radial-gradient(circle at 35% 30%,#ffe9a8,#f2a62a);border:2px solid #7a2e06;display:flex;align-items:center;justify-content:center">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L14.6 9 L22 9.4 L16.2 14 L18.2 21.4 L12 17.2 L5.8 21.4 L7.8 14 L2 9.4 L9.4 9 Z" fill="#c4281a"/></svg>
+      </div>
+    </div>
+  </sc-for>
+</div>
+<!-- LINHA DO MEIO: BASTÃO MÁGICO -->
+<div role="img" aria-label="Bastão Mágico, marca o tempo do turno" style="position:absolute;left:306px;top:316px;width:810px;height:18px;border-radius:9px;background:rgba(0,0,0,0.45);border:2px solid #3a1a12;box-sizing:border-box;overflow:hidden">
+  <div style="height:100%;width:{{bastaoW}};background:linear-gradient(180deg,#ff6a4a,#c4281a 60%,#8a1a10);border-radius:7px"></div>
+</div>
+<div style="position:absolute;left:288px;top:312px;width:16px;height:26px;border-radius:5px;background:linear-gradient(180deg,#ffe28a,#c8962a)"></div>
+<div style="position:absolute;left:1118px;top:312px;width:16px;height:26px;border-radius:5px;background:linear-gradient(180deg,#ffe28a,#c8962a)"></div>
+
+<!-- UNIDADES INIMIGAS -->
+<div style="position:absolute;left:296px;top:118px;width:830px;display:flex;justify-content:center;gap:8px">
+  <sc-for list="{{enemyUnits}}" as="u" hint-placeholder-count="7">
+    <div style="width:108.6px;height:190px;position:relative;flex:none;animation:surge .55s ease-out both"><div style="width:92px;height:161px;position:absolute;left:0;top:0;transform:scale(1.18);transform-origin:0 0;--g:{{u.pcor}};animation:{{u.pulse}}" role="group" aria-label="{{u.name}}, {{u.type}}, ATQ {{u.atk}}, PV {{u.hp}}">
+      <div style="position:absolute;left:12px;top:20.2px;width:68.1px;height:98.4px;overflow:hidden;border-radius:2px;background:#101a30">
+        <div style="position:absolute;left:0;top:0;width:100%;height:66px;background:radial-gradient(circle at 50% 45%,#3b4a74,#18203a 80%);display:flex;align-items:center;justify-content:center;font-family:'Russo One',sans-serif;font-size:28px;color:rgba(255,255,255,0.5)">{{u.initial}}</div>
+        <div style="position:absolute;left:0;top:66px;width:100%;height:14px;background:linear-gradient(180deg,#2f6a63,#214d49);display:flex;align-items:center;justify-content:center;overflow:hidden"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.nameL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+        <div style="position:absolute;left:2px;top:81px;width:64.1px;height:16px;border-radius:4px;overflow:hidden;border:1px solid #1a0c06;display:flex"><div style="flex:1;background:linear-gradient(180deg,#d8432b,#8f2112);display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.atkL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div><div style="flex:1;background:linear-gradient(180deg,#2fae58,#17673a);display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.hpL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div></div>
+      </div>
+      <img src="plat_{{u.tint}}.png" alt="" style="position:absolute;left:-6.44px;top:-6.44px;width:104.9px;height:173.9px;pointer-events:none">
+      <div style="position:absolute;left:3px;top:10px;width:19px;height:19px;border-radius:10px;background:radial-gradient(circle at 35% 30%,#5ab0ff,#1456b8);border:2px solid #dff0ff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.6)"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.costL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      <div style="position:absolute;left:23px;top:13px;width:46px;height:12px;background:linear-gradient(180deg,#1c3e6e,#0e2447);border:1.5px solid {{u.ring}};clip-path:polygon(8% 0,92% 0,100% 50%,92% 100%,8% 100%,0 50%);display:flex;align-items:center;justify-content:center;overflow:hidden" aria-hidden="true"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.typeL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      <sc-if value="{{u.shield}}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:70px;top:10px;width:19px;height:19px;border-radius:10px;background:radial-gradient(circle at 35% 30%,#8ad0ff,#2a74c8);border:2px solid #dff0ff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0;box-shadow:0 2px 4px rgba(0,0,0,.6)"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.shieldL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      </sc-if>
+    </div></div>
+  </sc-for>
+</div>
+
+<!-- UNIDADES DO JOGADOR -->
+<div style="position:absolute;left:296px;top:342px;width:830px;display:flex;justify-content:center;gap:8px">
+  <sc-for list="{{playerUnits}}" as="u" hint-placeholder-count="7">
+    <div style="width:108.6px;height:190px;position:relative;flex:none;animation:surge .55s ease-out both"><div style="width:92px;height:161px;position:absolute;left:0;top:0;transform:scale(1.18);transform-origin:0 0;--g:{{u.pcor}};animation:{{u.pulse}}" role="group" aria-label="{{u.name}}, {{u.type}}, ATQ {{u.atk}}, PV {{u.hp}}">
+      <div style="position:absolute;left:12px;top:20.2px;width:68.1px;height:98.4px;overflow:hidden;border-radius:2px;background:#101a30">
+        <div style="position:absolute;left:0;top:0;width:100%;height:66px;background:radial-gradient(circle at 50% 45%,#3b4a74,#18203a 80%);display:flex;align-items:center;justify-content:center;font-family:'Russo One',sans-serif;font-size:28px;color:rgba(255,255,255,0.5)">{{u.initial}}</div>
+        <div style="position:absolute;left:0;top:66px;width:100%;height:14px;background:linear-gradient(180deg,#2f6a63,#214d49);display:flex;align-items:center;justify-content:center;overflow:hidden"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.nameL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+        <div style="position:absolute;left:2px;top:81px;width:64.1px;height:16px;border-radius:4px;overflow:hidden;border:1px solid #1a0c06;display:flex"><div style="flex:1;background:linear-gradient(180deg,#d8432b,#8f2112);display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.atkL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div><div style="flex:1;background:linear-gradient(180deg,#2fae58,#17673a);display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.hpL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div></div>
+      </div>
+      <img src="plat_{{u.tint}}.png" alt="" style="position:absolute;left:-6.44px;top:-6.44px;width:104.9px;height:173.9px;pointer-events:none">
+      <div style="position:absolute;left:3px;top:10px;width:19px;height:19px;border-radius:10px;background:radial-gradient(circle at 35% 30%,#5ab0ff,#1456b8);border:2px solid #dff0ff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.6)"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.costL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      <div style="position:absolute;left:23px;top:13px;width:46px;height:12px;background:linear-gradient(180deg,#1c3e6e,#0e2447);border:1.5px solid {{u.ring}};clip-path:polygon(8% 0,92% 0,100% 50%,92% 100%,8% 100%,0 50%);display:flex;align-items:center;justify-content:center;overflow:hidden" aria-hidden="true"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.typeL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      <sc-if value="{{u.shield}}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:70px;top:10px;width:19px;height:19px;border-radius:10px;background:radial-gradient(circle at 35% 30%,#8ad0ff,#2a74c8);border:2px solid #dff0ff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:0;box-shadow:0 2px 4px rgba(0,0,0,.6)"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{u.shieldL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      </sc-if>
+    </div></div>
+  </sc-for>
+</div>
+
+<!-- HERÓI INIMIGO -->
+<div style="position:absolute;left:0;top:0;width:290px;height:720px;pointer-events:none;animation:{{tremorInim}}">
+<img src="{{cellSrc}}" alt="Herói inimigo: Cell" style="position:absolute;left:34px;top:12px;width:190px;height:190px;border-radius:8px;box-shadow:0 0 0 3px #ffb03a,0 0 0 7px #c4281a,0 0 0 9px #5a0f0a,0 0 22px 8px rgba(255,110,20,.55),0 8px 14px rgba(0,0,0,.6)">
+<div aria-hidden="true" style="position:absolute;left:34px;top:12px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <sc-if value="{{transInim2.on}}" hint-placeholder-val="{{ false }}"><img src="heroi_cell_2.jpg" alt="" style="position:absolute;left:0;top:0;width:190px;height:190px;animation:novoTarde 2.4s linear forwards"></sc-if>
+</div>
+<div aria-hidden="true" style="position:absolute;left:34px;top:12px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <sc-if value="{{transInim.on}}" hint-placeholder-val="{{ false }}"><img src="{{transInim.novo}}" alt="" style="position:absolute;left:0;top:0;width:190px;height:190px;animation:{{transInim.anim}}"></sc-if>
+  <sc-if value="{{vermInim}}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;border-radius:8px;background:radial-gradient(ellipse at 50% 50%,rgba(255,0,0,0) 42%,rgba(255,25,10,.55) 100%);box-shadow:inset 0 0 22px 6px rgba(255,0,0,.75);animation:redPulse 1s ease-in-out infinite"></div></sc-if>
+</div>
+<div aria-hidden="true" style="position:absolute;left:34px;top:12px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <img src="{{auraInim.src}}" alt="" style="position:absolute;left:{{auraInim.inLeft}}px;top:{{auraInim.inTop}}px;width:400px;height:400px;mix-blend-mode:screen;opacity:{{auraInim.inOp}};filter:brightness(1.25) saturate(1.25);-webkit-mask-image:radial-gradient(ellipse 58% 62% at 50% 52%,rgba(0,0,0,.5) 30%,#000 100%);mask-image:radial-gradient(ellipse 58% 62% at 50% 52%,rgba(0,0,0,.5) 30%,#000 100%)">
+</div>
+
+<div aria-hidden="true" style="position:absolute;left:34px;top:12px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <sc-if value="{{raioInim.on}}" hint-placeholder-val="{{ false }}"><img src="{{raioInim.src}}" alt="" style="position:absolute;left:0;top:0;width:190px;height:190px;mix-blend-mode:screen"></sc-if>
+</div>
+
+</div>
+<div style="position:absolute;left:34px;top:214px;width:190px">
+  <div style="display:flex;align-items:center;gap:6px" aria-label="Vida do herói inimigo">
+    <svg width="20" height="18" viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21 C1 13 2 3 7.5 2 C10 1.6 12 3.6 12 5 C12 3.6 14 1.6 16.5 2 C22 3 23 13 12 21 Z" fill="#e8222a" stroke="#000" stroke-width="1.8"/></svg>
+    <div style="flex:1;height:10px;border-radius:5px;background:rgba(0,0,0,0.5);overflow:hidden"><div style="width:{{pvInimPct}};height:100%;background:linear-gradient(90deg,#d63a3a,#ff7a5a)"></div></div>
+    <span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{pvInimL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span>
+  </div>
+</div>
+<button aria-label="Habilidade ativa do herói inimigo" style="position:absolute;left:34px;top:244px;width:56px;height:56px;border-radius:28px;border:3px solid #b6a1ff;background:radial-gradient(circle at 40% 35%,#6a55c9,#2a2058);padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{abAtaqueL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{abPerfeitoL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></button>
+<div aria-label="Bônus de ataque" style="position:absolute;left:34px;top:303px;width:56px;height:22px;border-radius:11px;background:rgba(10,14,28,0.8);border:2px solid #ffb03a;display:flex;align-items:center;justify-content:center;gap:4px"><span style="font-size:13px">&#9994;</span><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{bonusInL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+<button aria-label="Transformação do herói inimigo" style="position:absolute;left:100px;top:236px;width:84px;height:84px;padding:0;border:0;background:none;border-radius:50%">
+  <div style="position:absolute;inset:0;border-radius:50%;background:{{zRing}};box-shadow:{{zRingGlow}};animation:{{zAnim}}"></div>
+  <div style="position:absolute;inset:6px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#2b3146,#10131f 75%);box-shadow:inset 0 0 10px rgba(0,0,0,.85)"></div>
+  <img src="z_vazio.png" alt="" style="position:absolute;left:14px;top:20px;width:56px;height:45px">
+  <img src="{{zFullSrc}}" alt="" style="position:absolute;left:14px;top:20px;width:56px;height:45px;clip-path:inset({{zClip}} 0 0 0)">
+</button>
+
+<!-- HERÓI DO JOGADOR -->
+<div style="position:absolute;left:0;top:0;width:290px;height:720px;pointer-events:none;animation:{{tremorSeu}}">
+<img src="{{seuHeroiSrc}}" alt="Seu herói: Gohan" style="position:absolute;left:34px;top:338px;width:190px;height:190px;border-radius:8px;box-shadow:0 0 0 3px #ffb03a,0 0 0 7px #c4281a,0 0 0 9px #5a0f0a,0 0 22px 8px rgba(255,110,20,.55),0 8px 14px rgba(0,0,0,.6)">
+<div class="fxSeu" aria-hidden="true" style="position:absolute;left:34px;top:338px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <img class="auraBase" src="{{auraSeu.src}}" alt="" style="position:absolute;left:{{auraSeu.inLeft}}px;top:{{auraSeu.inTop}}px;width:400px;height:400px;mix-blend-mode:screen;opacity:{{auraSeu.inOp}};filter:brightness(1.25) saturate(1.25);-webkit-mask-image:radial-gradient(ellipse 58% 62% at 50% 52%,rgba(0,0,0,.5) 30%,#000 100%);mask-image:radial-gradient(ellipse 58% 62% at 50% 52%,rgba(0,0,0,.5) 30%,#000 100%)">
+</div>
+<div aria-hidden="true" style="position:absolute;left:34px;top:338px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <sc-if value="{{transSeu.on}}" hint-placeholder-val="{{ false }}"><img src="{{transSeu.novo}}" alt="" style="position:absolute;left:0;top:0;width:190px;height:190px;animation:{{transSeu.anim}}"></sc-if>
+  <sc-if value="{{vermSeu}}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;border-radius:8px;background:radial-gradient(ellipse at 50% 50%,rgba(255,0,0,0) 42%,rgba(255,25,10,.55) 100%);box-shadow:inset 0 0 22px 6px rgba(255,0,0,.75);animation:redPulse 1s ease-in-out infinite"></div></sc-if>
+</div>
+
+<div aria-hidden="true" style="position:absolute;left:34px;top:338px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <sc-if value="{{raioSeu.on}}" hint-placeholder-val="{{ false }}"><img src="{{raioSeu.src}}" alt="" style="position:absolute;left:0;top:0;width:190px;height:190px;mix-blend-mode:screen"></sc-if>
+</div>
+
+<img class="tfNovoSeu" src="heroi_gohan.jpg" alt="" aria-hidden="true" style="position:absolute;left:34px;top:338px;width:190px;height:190px;border-radius:8px;pointer-events:none">
+<div class="fxSeu2" aria-hidden="true" style="position:absolute;left:34px;top:338px;width:190px;height:190px;border-radius:8px;overflow:hidden;pointer-events:none">
+  <img class="auraY" src="aura_amarela_agitada.webp" alt="" style="position:absolute;left:-105px;top:-187px;width:400px;height:400px;mix-blend-mode:screen;filter:brightness(1.25) saturate(1.25);-webkit-mask-image:radial-gradient(ellipse 58% 62% at 50% 52%,rgba(0,0,0,.5) 30%,#000 100%);mask-image:radial-gradient(ellipse 58% 62% at 50% 52%,rgba(0,0,0,.5) 30%,#000 100%)">
+  <img class="raioY" src="raio_dentro_fraco.webp" alt="" style="position:absolute;left:0;top:0;width:190px;height:190px;mix-blend-mode:screen">
+</div>
+</div>
+<div style="position:absolute;left:34px;top:542px;width:190px">
+  <div style="display:flex;align-items:center;gap:6px" aria-label="Vida do seu herói">
+    <svg width="20" height="18" viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21 C1 13 2 3 7.5 2 C10 1.6 12 3.6 12 5 C12 3.6 14 1.6 16.5 2 C22 3 23 13 12 21 Z" fill="#e8222a" stroke="#000" stroke-width="1.8"/></svg>
+    <div style="flex:1;height:10px;border-radius:5px;background:rgba(0,0,0,0.5);overflow:hidden"><div style="width:{{pvSeuPct}};height:100%;background:linear-gradient(90deg,#1fb35c,#6dffa0)"></div></div>
+    <span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{pvSeuL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span>
+  </div>
+</div>
+<button aria-label="{{abSeuNome}}" style="position:absolute;left:34px;top:582px;width:56px;height:56px;border-radius:28px;border:3px solid #7fd7ff;background:radial-gradient(circle at 40% 35%,#3fa8e8,#123c70);padding:0;display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{abSeuL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></button>
+<div aria-label="Bônus de ataque" style="position:absolute;left:34px;top:640px;width:56px;height:22px;border-radius:11px;background:rgba(10,14,28,0.8);border:2px solid #ffb03a;display:flex;align-items:center;justify-content:center;gap:4px"><span style="font-size:13px">&#9994;</span><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{bonusSeuL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+<div style="position:absolute;left:24px;top:666px;width:76px;display:flex;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{esf3L}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+<button aria-label="Transformação, liberada só no turno 10" style="position:absolute;left:104px;top:572px;width:84px;height:84px;padding:0;border:0;background:none;border-radius:50%">
+  <div style="position:absolute;inset:0;border-radius:50%;background:{{zRing}};box-shadow:{{zRingGlow}};animation:{{zAnim}}"></div>
+  <div style="position:absolute;inset:6px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#2b3146,#10131f 75%);box-shadow:inset 0 0 10px rgba(0,0,0,.85)"></div>
+  <img src="z_vazio.png" alt="" style="position:absolute;left:14px;top:20px;width:56px;height:45px">
+  <img src="{{zFullSrc}}" alt="" style="position:absolute;left:14px;top:20px;width:56px;height:45px;clip-path:inset({{zClip}} 0 0 0)">
+</button>
+<sc-if value="{{mostraBtnTf}}" hint-placeholder-val="{{ false }}"><label for="tfSeu" onClick="{{iniciaTf}}" aria-label="Transformar" style="position:absolute;left:104px;top:572px;width:84px;height:84px;border-radius:50%;cursor:pointer;z-index:5"></label></sc-if>
+<div style="position:absolute;left:92px;top:664px;width:116px;display:flex;flex-direction:column;align-items:center;gap:2px;filter:{{zLabelFilter}}"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{zL1}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{zL2}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+
+<!-- BOTÃO PASSAR -->
+<button style="position:absolute;left:636px;top:562px;width:150px;height:44px;border-radius:22px;border:3px solid #ffe28a;background:linear-gradient(180deg,#f0a43a,#b86a14);display:flex;align-items:center;justify-content:center;padding:0"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{passarL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></button>
+
+<!-- MÃO EM LEQUE (recolhida: metade da carta fica fora da tela; sobe ao tocar; segurar abre a carta inteira) -->
+<div style="position:absolute;left:411px;top:580px;width:600px;height:200px;display:flex;justify-content:center;align-items:flex-end">
+  <sc-for list="{{hand}}" as="c" hint-placeholder-count="4">
+    <div class="hc" id="hc-{{c.n}}" role="button" aria-label="{{c.name}}, {{c.type}}, custo {{c.cost}}, ATQ {{c.atk}}, PV {{c.hp}}" style="--dc:{{c.dicaCor}};width:104px;height:146px;box-sizing:border-box;margin:0 -8px;border-radius:12px;padding:5px;background:linear-gradient(180deg,#2b3550,#161c30);border:3px solid #b8c0cc;transform:{{c.tf}};z-index:{{c.z}};filter:{{c.dimF}};transform-origin:50% 120%;position:relative;top:{{c.drop}}px;animation:{{c.dicaAnim}}">
+      <sc-if value="{{c.dica}}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:50%;margin-left:-11px;top:-13px;width:22px;height:22px;border-radius:11px;background:var(--dc);border:2px solid #fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px var(--dc);animation:dicaBadge 1.6s ease-in-out infinite"><img src="s_plus.png" alt="" style="height:12px;display:block;filter:drop-shadow(0 0 1px #000)"></div>
+      </sc-if>
+      <div style="display:flex;justify-content:space-between;align-items:center;height:22px">
+        <div style="width:22px;height:22px;border-radius:11px;background:#2b79e0;border:1px solid #bcd8ff;display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{c.costL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+        <span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{c.typeL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span>
+      </div>
+      <div style="height:48px;border-radius:8px;background:linear-gradient(135deg,#3b4668,#222a44);display:flex;align-items:center;justify-content:center;font-family:'Russo One',sans-serif;font-size:24px;color:rgba(255,255,255,0.55)">{{c.initial}}</div>
+      <div style="display:flex;justify-content:center;margin-top:5px"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{c.nameL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px">
+        <div style="background:#a8321f;border-radius:10px;padding:2px 8px;display:flex;align-items:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{c.atkL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+        <div style="background:#1f7a3c;border-radius:10px;padding:2px 8px;display:flex;align-items:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{c.hpL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      </div>
+    </div>
+  </sc-for>
+</div>
+
+<!-- CARTA INTEIRA (aparece ao segurar a carta por alguns segundos) -->
+<sc-for list="{{inspList}}" as="k" hint-placeholder-count="4">
+  <div id="insp-{{k.n}}" class="insp" style="position:absolute;left:0;top:0;width:1280px;height:720px;display:flex;align-items:center;justify-content:center;padding-left:142px;box-sizing:border-box;background:rgba(6,8,20,0.74);opacity:{{k.op}};pointer-events:none;z-index:90">
+    <div style="width:312px;height:438px;box-sizing:border-box;border-radius:36px;padding:15px;background:linear-gradient(180deg,#2b3550,#161c30);border:9px solid #b8c0cc;box-shadow:0 0 40px 8px {{k.cor}},0 24px 40px rgba(0,0,0,.6)">
+      <div style="display:flex;justify-content:space-between;align-items:center;height:66px">
+        <div style="width:66px;height:66px;border-radius:33px;background:#2b79e0;border:3px solid #bcd8ff;display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{k.costL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+        <span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{k.typeL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span>
+      </div>
+      <div style="height:162px;margin-top:6px;border-radius:24px;background:linear-gradient(135deg,#3b4668,#222a44);display:flex;align-items:center;justify-content:center;font-family:'Russo One',sans-serif;font-size:72px;color:rgba(255,255,255,0.55)">{{k.initial}}</div>
+      <div style="display:flex;justify-content:center;margin-top:14px"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{k.nameL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      <div style="display:flex;justify-content:space-between;margin-top:18px">
+        <div style="background:#a8321f;border-radius:30px;padding:6px 24px;display:flex;align-items:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{k.atkL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+        <div style="background:#1f7a3c;border-radius:30px;padding:6px 24px;display:flex;align-items:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{k.hpL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+      </div>
+    </div>
+  </div>
+</sc-for>
+
+<!-- BARALHO -->
+<div style="position:absolute;left:1040px;top:590px;width:88px;height:110px;border-radius:10px;background:linear-gradient(135deg,#243a7a,#0f1b44);border:3px solid #7fa4ff;box-shadow:5px 5px 0 -1px #14224f,9px 9px 0 -2px #0c1636;display:flex;flex-direction:column;align-items:center;justify-content:center">
+  <div style="margin-bottom:6px"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{baralhoL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{deckL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span>
+</div>
+
+<!-- SINERGIAS (gaveta recolhida, esquerda) -->
+<button aria-label="Abrir gaveta de sinergias" style="--c1:{{sinC1}};--c2:{{sinC2}};--c3:{{sinC3}};animation:{{sinAnim}};position:absolute;left:0;top:256px;width:30px;height:150px;border-radius:0 14px 14px 0;border:2px solid rgba(255,255,255,0.35);border-left:none;background:rgba(10,14,28,0.7);padding:0;display:flex;align-items:center;justify-content:center"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap;transform:rotate(90deg)"><sc-for list="{{sinergiasL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></button>
+
+<!-- RADAR DO DRAGÃO (animado: sonar girando, pulsos e blips) -->
+<button aria-label="Radar do Dragão, histórico da partida" style="position:absolute;left:1096px;top:4px;width:64px;height:78px;padding:0;border:0;background:none;animation:radarGlow 3.2s ease-in-out infinite">
+  <img src="radar.png" alt="" style="position:absolute;left:0;top:0;width:64px;height:78px;display:block">
+  <div style="position:absolute;left:9.56%;top:27%;width:80.7%;height:65%;border-radius:50%;overflow:hidden;pointer-events:none">
+    <div style="position:absolute;left:-2%;top:-2%;width:104%;height:104%;border-radius:50%;background:conic-gradient(from 0deg at 50% 50%,rgba(150,255,170,0) 0deg,rgba(150,255,170,0) 235deg,rgba(150,255,170,.16) 290deg,rgba(170,255,185,.5) 350deg,rgba(235,255,240,.95) 360deg);animation:radarSweep 3.2s linear infinite;mix-blend-mode:screen"></div>
+    <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(190,255,200,.8);animation:radarPing 3.2s ease-out infinite"></div>
+    <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(190,255,200,.8);animation:radarPing 3.2s ease-out 1.6s infinite"></div>
+  </div>
+  <span style="position:absolute;left:63.7%;top:49.3%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:radial-gradient(circle,#fffbd0 0,#ffe46a 45%,rgba(255,228,106,0) 75%);animation:radarBlip 3.2s ease-out .44s infinite;pointer-events:none"></span>
+  <span style="position:absolute;left:67.8%;top:82.4%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:radial-gradient(circle,#fffbd0 0,#ffe46a 45%,rgba(255,228,106,0) 75%);animation:radarBlip 3.2s ease-out 1.32s infinite;pointer-events:none"></span>
+  <span style="position:absolute;left:22.7%;top:76.1%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:radial-gradient(circle,#fffbd0 0,#ffe46a 45%,rgba(255,228,106,0) 75%);animation:radarBlip 3.2s ease-out 2.07s infinite;pointer-events:none"></span>
+</button>
+<div style="position:absolute;left:1086px;top:86px;width:88px;display:flex;flex-direction:column;align-items:center;gap:2px"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{radar1L}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{radar2L}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+
+<!-- ESFERAS (gaveta, direita) -->
+<button aria-label="Recolher gaveta de esferas" style="position:absolute;left:1166px;top:290px;width:20px;height:80px;border-radius:10px 0 0 10px;border:2px solid rgba(255,255,255,0.35);border-right:none;background:rgba(10,14,28,0.7);color:#fff;font-size:14px;padding:0">&#8250;</button>
+<div style="position:absolute;left:1186px;top:10px;width:84px;height:640px;box-sizing:border-box;border-radius:16px 0 0 16px;background:rgba(10,14,28,0.62);border:2px solid rgba(255,255,255,0.25);border-right:none;padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:5px">
+  <span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{esferasTitL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span>
+  <sc-for list="{{spheres}}" as="s" hint-placeholder-count="10">
+    <img src="esfera_{{s.n}}.png" alt="Esfera {{s.n}}" style="width:46px;height:46px;display:block;flex:none;opacity:{{s.opacity}};filter:{{s.filter}}">
+  </sc-for>
+  <div style="margin-top:4px"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{esferasL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div><div style="margin-top:2px"><span style="display:inline-flex;align-items:flex-end;white-space:nowrap"><sc-for list="{{turnoL}}" as="g"><img src="{{g.s}}" alt="" style="height:{{g.h}}px;margin-right:{{g.m}}px;margin-bottom:{{g.b}}px;display:block;flex:none;filter:{{g.f}}"></sc-for></span></div>
+</div>
+
+<!-- PRÉ-CARREGAMENTO das imagens transformadas (ficam prontas antes do turno 10) -->
+<img src="heroi_gohan.jpg" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none"><img src="heroi_cell_2.jpg" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none"><img src="heroi_cell_perfeito.jpg" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none"><img src="raio_fraco.webp" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none"><img src="raio_forte.webp" alt="" aria-hidden="true" style="position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none">
+
+<!-- CLARÃO DA TRANSFORMAÇÃO: cobre o jogo todo enquanto a imagem troca -->
+<!-- MOEDA DO SORTEIO (Dragão = começa primeiro; Esfera 2 = começa em segundo) -->
+<div style="position:absolute;left:0;top:0;width:1280px;height:720px;display:{{moedaDisplay}};align-items:center;justify-content:center;flex-direction:column;padding-left:142px;box-sizing:border-box;background:rgba(6,8,20,0.62);pointer-events:none" role="img" aria-label="{{moedaTxt}}">
+  <div style="width:230px;height:230px;perspective:900px;filter:drop-shadow(0 14px 14px rgba(0,0,0,0.6))">
+    <div style="position:relative;width:230px;height:230px;transform-style:preserve-3d;animation:{{moedaAnim}}">
+      <img src="moeda_dragao.png" alt="" style="position:absolute;left:0;top:0;width:230px;height:230px;backface-visibility:hidden;-webkit-backface-visibility:hidden">
+      <img src="moeda_esfera.png" alt="" style="position:absolute;left:0;top:0;width:230px;height:230px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg)">
+    </div>
+  </div>
+  <img src="{{moedaTxtSrc}}" alt="{{moedaTxt}}" style="margin-top:30px;height:{{moedaTxtH}}px;display:block;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.7))">
+</div>
+
+<div aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:720px;pointer-events:none;opacity:{{claraoOp}};background:radial-gradient(circle at 12% 62%,#ffffff 0,#fff6b0 30%,#ffd23a 60%,#ffffff 100%)"></div>
+<!-- CLARÃO VERMELHO DE PERIGO: quando o PV chega a 10 ou menos (uma vez, ao entrar no Comeback) -->
+<sc-if value="{{comebackI}}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:720px;pointer-events:none;opacity:0;background:radial-gradient(circle at 12% 15%,#ff6a55 0,#e80000 32%,#9a0000 66%,#2a0000 100%);animation:redUmaVez 2.4s linear forwards"></div></sc-if>
+<sc-if value="{{comebackS}}" hint-placeholder-val="{{ false }}"><div aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:720px;pointer-events:none;opacity:0;background:radial-gradient(circle at 12% 62%,#ff6a55 0,#e80000 32%,#9a0000 66%,#2a0000 100%);animation:redUmaVez 2.4s linear forwards"></div></sc-if>
+
+
+<!-- CENA DE TRANSFORMAÇÃO: escurece em gradiente -> relâmpago -> BOOM -> vídeo MP4 em tela cheia -->
+<sc-if value="{{cena.escuro}}" hint-placeholder-val="{{ false }}">
+  <div aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:720px;z-index:60;pointer-events:none;opacity:0;background:radial-gradient(ellipse at 50% 55%,rgba(0,0,0,0) 0,rgba(0,0,0,.6) 48%,#000 100%);animation:cenaVig .5s ease-in forwards"></div>
+  <div aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:720px;z-index:61;pointer-events:none;opacity:0;background:#000;animation:cenaPreto .55s ease-in .3s forwards"></div>
+</sc-if>
+<sc-if value="{{cena.raio}}" hint-placeholder-val="{{ false }}"><video playsinline preload="auto" ref="{{cena.setVid}}" aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:720px;z-index:62;pointer-events:none;object-fit:cover;mix-blend-mode:screen;background:#000"><source src="Relampago_transformacao.webm" type="video/webm"><source src="Relampago_transformacao_FHD.mp4" type="video/mp4"></video></sc-if>
+<sc-if value="{{cena.video}}" hint-placeholder-val="{{ false }}">
+  <video playsinline preload="auto" ref="{{cena.setVid}}" aria-label="Cena de transformação" style="position:absolute;left:0;top:0;width:1280px;height:720px;z-index:62;pointer-events:none;object-fit:cover;background:#000;opacity:{{cena.vidOp}};transition:opacity .6s ease-out"><source src="{{cena.webm}}" type="video/webm"><source src="{{cena.mp4}}" type="video/mp4"></video>
+  <div aria-hidden="true" style="position:absolute;left:0;top:0;width:1280px;height:720px;z-index:63;pointer-events:none;opacity:0;background:#fff;animation:cenaBoom .55s ease-out forwards"></div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tempoRestante":{"editor":"range","default":52,"min":0,"max":75,"step":1,"unit":"s","section":"Timer do turno"},"unidadesInimigo":{"editor":"range","default":7,"min":0,"max":7,"step":1,"section":"Cartas no tabuleiro (inimigo)"},"esferasGastas":{"editor":"range","default":0,"min":0,"max":10,"step":1,"section":"Esferas gastas neste turno"},"unidadesSeu":{"editor":"range","default":7,"min":0,"max":7,"step":1,"section":"Cartas no tabuleiro (você)"},"bonusAtqSeu":{"editor":"range","default":2,"min":0,"max":10,"step":1,"section":"Punho: bônus de ataque (você)"},"bonusAtqInimigo":{"editor":"range","default":0,"min":0,"max":10,"step":1,"section":"Punho: bônus de ataque (inimigo)"},"moeda":{"editor":"range","default":0,"min":0,"max":4,"step":1,"section":"Moeda (0 oculta, 1 girando, 2 Dragão começa, 3 Esfera 2 em segundo, 4 SORTEIO ALEATÓRIO)"},"novoSorteio":{"editor":"range","default":0,"min":0,"max":99,"step":1,"section":"Número do sorteio (mude para sortear de novo)"},"cartaFoco":{"editor":"range","default":0,"min":0,"max":4,"step":1,"section":"Mão: carta levantada (0 = tudo recolhido)"},"inspecionar":{"editor":"range","default":0,"min":0,"max":4,"step":1,"section":"Mão: carta aberta inteira (segurando)"},"turno":{"editor":"range","default":7,"min":1,"max":10,"step":1,"section":"Turno da partida"},"seuHeroiTransformado":{"editor":"range","default":0,"min":0,"max":1,"step":1,"section":"Transformação (0 = base, 1 = transformado)"},"pvSeu":{"editor":"range","default":42,"min":1,"max":50,"step":1,"section":"PV do seu herói (Comeback em 10 ou menos)"},"pvInimigo":{"editor":"range","default":50,"min":1,"max":50,"step":1,"section":"PV do herói inimigo (Cell Perfeito em 10 ou menos)"},"inimigoTransformado":{"editor":"range","default":0,"min":0,"max":1,"step":1,"section":"Cell: 0 = 1ª forma, 1 = 2ª forma"},"danoSeu":{"editor":"range","default":0,"min":0,"max":1,"step":1,"section":"Tremor: seu herói tomando dano"},"danoInimigo":{"editor":"range","default":0,"min":0,"max":1,"step":1,"section":"Tremor: herói inimigo tomando dano"},"mostrarAuras":{"editor":"range","default":1,"min":0,"max":1,"step":1,"section":"Auras e raios (0 = ocultar)"},"auraPorFora":{"editor":"range","default":0,"min":0,"max":1,"step":1,"section":"Aura também por fora do quadro (0 = só por dentro, 1 = um pouquinho para fora)"},"clarao":{"editor":"range","default":0,"min":0,"max":100,"step":1,"unit":"%","section":"Clarão da transformação"},"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  // ===== CENA DE TRANSFORMAÇÃO (relâmpago + MP4) =====
+  componentDidMount() { this._tm = []; this._rodou = {}; this.checaInimigo(true); }
+  componentDidUpdate(prev) { this.checaInimigo(false); }
+  componentWillUnmount() { (this._tm || []).forEach(clearTimeout); }
+  checaInimigo(montagem) {
+    const pvI = Number(this.props.pvInimigo ?? 50), t = Number(this.props.inimigoTransformado) === 1;
+    if (pvI <= 10) { if (!this._rodou.cb) { this._rodou.cb = true; this.rodar('cb'); } }
+    else { this._rodou.cb = false; }
+    const pvS = Number(this.props.pvSeu ?? 42), tS = Number(this.props.seuHeroiTransformado) === 1;
+    if (pvS <= 10 && tS) { if (!this._rodou.cbs) { this._rodou.cbs = true; this.rodar('cbs'); } }
+    else { this._rodou.cbs = false; }
+    if (t && pvI > 10) { if (!this._rodou.inim) { this._rodou.inim = true; this.rodar('inim'); } }
+    else if (!t) { this._rodou.inim = false; }
+  }
+  rodar(quem) {
+    const dur = { seu: 9266, inim: 2240, cb: 10000, cbs: 11200 }[quem];
+    const dark = quem !== 'cb' && quem !== 'cbs';           // transformação: preto + relâmpago; Comeback: vermelho de perigo já existente
+    const tVid = dark ? 2100 : 1000;      // instante do BOOM
+    (this._tm || (this._tm = [])).forEach(clearTimeout); this._tm = [];
+    const go = (f, ms) => this._tm.push(setTimeout(() => this.setState({ quem, f }), ms));
+    this.setState({ quem, f: dark ? 1 : 0 });
+    if (dark) go(2, 550);
+    go(3, tVid); go(4, tVid + dur + 80); go(5, tVid + dur + 800);
+  }
+  iniciaTf = () => { if (!this.state || !this.state.f) this.rodar('seu'); this._feitoSeu = true; this.setState({ feitoSeu: true }); };
+  renderVals() {
+    // LETTERING do Dragon Ball: cada letra é uma imagem (l_X.png / d_N.png / s_*.png); px = altura das maiúsculas
+    const abrev = (t) => t === 'Namekuseijin' ? 'Namek' : t; // abreviação para caber nas etiquetas
+    const GH = {"l_K": 125.0, "l_I": 124.0, "l_D": 126.0, "l_Q": 124.0, "l_L": 125.0, "l_J": 124.0, "l_O": 94.0, "l_Y": 125.0, "l_S": 123.0, "l_P": 124.0, "l_C": 124.0, "l_M": 126.0, "l_X": 125.0, "l_H": 125.0, "l_G": 124.0, "l_W": 125.0, "l_E": 125.0, "l_V": 125.0, "l_N": 125.0, "l_Z": 124.0, "l_A": 125.0, "l_U": 125.0, "l_T": 124.0, "l_F": 125.0, "l_R": 127.0, "l_B": 124.0, "d_6": 127.6, "d_1": 124.3, "d_3": 126.5, "d_0": 127.6, "d_9": 127.6, "d_5": 124.58, "d_8": 127.6, "d_7": 125.4, "d_4": 124.3, "d_2": 124.3, "l_ATIL": 155.0, "l_CCED": 172.0, "s_slash": 125.0, "s_plus": 125.0, "s_excl": 125.0};
+    const L = (txt, px, gap = -5) => {
+      const k = px / 125, out = [];
+      for (const ch of String(txt).toUpperCase()) {
+        if (ch === ' ') { if (out.length) out[out.length - 1].m += 44 * k; continue; }
+        const f = ch === 'Ã' ? 'l_ATIL' : ch === 'Ç' ? 'l_CCED' : /[0-9]/.test(ch) ? 'd_' + ch : ch === '/' ? 's_slash' : ch === '+' ? 's_plus' : ch === '!' ? 's_excl' : (/[A-Z]/.test(ch) ? 'l_' + ch : null);
+        if (!f) continue;
+        out.push({ f: /^d_[6-90]$/.test(f) ? 'drop-shadow(0 0 1.3px #fff) drop-shadow(0 0 1px #fff)' : 'none', s: f + '.png', h: +(GH[f] * k).toFixed(2), m: +(gap * k).toFixed(2), b: f === 'l_CCED' ? -48 * k : f === 'l_O' ? +((125 - 94) / 2 * k).toFixed(2) : 0 });
+      }
+      if (out.length) out[out.length - 1].m = 0;
+      return out;
+    };
+    // SORTEIO DA MOEDA: aleatório de verdade (CSPRNG), probabilidades por jogador
+    const PROB = { dragao: 0.5, esfera2: 0.5 }; // cada jogador tem 50% de começar primeiro; sempre justo
+    const rolar = () => {
+      const u = new Uint32Array(1); (globalThis.crypto || window.crypto).getRandomValues(u);
+      return (u[0] / 4294967296) < PROB.dragao ? 2 : 3; // 2 = Dragão (começa), 3 = Esfera 2 (espera)
+    };
+    const moedaProp = Number(this.props.moeda ?? 0);
+    let moedaE = moedaProp;
+    if (moedaProp === 4) {
+      const chave = Number(this.props.novoSorteio ?? 0);
+      if (this._sorteioChave !== chave) { this._sorteioChave = chave; this._sorteioRes = rolar(); }
+      moedaE = this._sorteioRes;
+    }
+    const t = Math.max(0, Math.min(75, Number(this.props.tempoRestante ?? 52)));
+    const cores = {
+      neutro: { ring: '#B8C0CC', glow: 'rgba(200,210,225,0.5)' },
+      humano: { ring: '#FFFFFF', glow: 'rgba(255,255,255,0.55)' },
+      saiyajin: { ring: '#FF8A1F', glow: 'rgba(255,138,31,0.6)' },
+      namek: { ring: '#3FBF4A', glow: 'rgba(63,191,74,0.6)' },
+      androide: { ring: '#3A8DFF', glow: 'rgba(58,141,255,0.6)' },
+      vilao: { ring: '#9B4DDB', glow: 'rgba(155,77,219,0.6)' }
+    };
+    const mk = (name, type, key, cost, atk, hp, shield) => ({
+      name, type, cost, atk, hp, shield: shield || 0,
+      initial: name.slice(-1),
+      nameL: L(name, 8.5, -4), typeL: L(abrev(type), 6.5, -2), costL: L(cost, 10, -2), atkL: L('ATQ ' + atk, 8, -3), hpL: L('PV ' + hp, 8, -3), shieldL: L(shield || '', 9, -2),
+      ring: cores[key].ring, glow: cores[key].glow, tint: key, pulse: key === 'neutro' ? 'none' : 'sinPulse 1.3s ease-in-out infinite', pcor: cores[key].ring === '#FFFFFF' ? '#cfe8ff' : cores[key].ring
+    });
+    const enemyUnits = [
+      mk('Unidade A', 'Vilão', 'vilao', 3, 4, 3),
+      mk('Unidade B', 'Vilão', 'vilao', 2, 3, 4),
+      mk('Unidade C', 'Androide', 'androide', 4, 5, 5, 1),
+      mk('Unidade D', 'Vilão', 'vilao', 5, 6, 4),
+      mk('Unidade E', 'Androide', 'androide', 3, 4, 6, 1),
+      mk('Unidade F', 'Saiyajin', 'neutro', 2, 3, 2),
+      mk('Unidade G', 'Humano', 'neutro', 1, 2, 3)
+    ];
+    const playerUnits = [
+      mk('Unidade H', 'Saiyajin', 'saiyajin', 3, 5, 4),
+      mk('Unidade I', 'Saiyajin', 'saiyajin', 2, 4, 3),
+      mk('Unidade J', 'Humano', 'humano', 2, 3, 4),
+      mk('Unidade K', 'Saiyajin', 'saiyajin', 4, 6, 5),
+      mk('Unidade L', 'Humano', 'humano', 1, 2, 2),
+      mk('Unidade M', 'Androide', 'neutro', 3, 4, 5),
+      mk('Unidade N', 'Namekuseijin', 'neutro', 2, 3, 3)
+    ];
+    const nSinP = Math.max(0, Math.min(7, Number(this.props.unidadesSeu ?? 7)));
+    const sinAtivas = [...new Set(playerUnits.slice(0, nSinP).filter(u => u.tint !== 'neutro').map(u => u.pcor))];
+    const sinC = (i) => sinAtivas.length ? sinAtivas[i % sinAtivas.length] : 'rgba(255,255,255,0.35)';
+    const hand = [
+      { name: 'Carta 1', type: 'Humano', cost: 2, atk: 3, hp: 3, rot: -9, drop: 14 },
+      { name: 'Carta 2', type: 'Androide', cost: 4, atk: 5, hp: 6, rot: -3, drop: 4 },
+      { name: 'Carta 3', type: 'Saiyajin', cost: 3, atk: 4, hp: 4, rot: 3, drop: 4 },
+      { name: 'Carta 4', type: 'Vilão', cost: 5, atk: 6, hp: 5, rot: 9, drop: 14 }
+    ].map((c, idx) => ({ ...c, n: idx + 1, initial: c.name.slice(-1), nameL: L(c.name, 11, -4), costL: L(c.cost, 13, -2), typeL: L(abrev(c.type), 8, -3), atkL: L('ATQ ' + c.atk, 11, -3), hpL: L('PV ' + c.hp, 11, -3) })).map(c => {
+      const tipoKey = { 'Humano': 'humano', 'Saiyajin': 'saiyajin', 'Androide': 'androide', 'Namekuseijin': 'namek', 'Vilão': 'vilao' }[c.type] || 'neutro';
+      const nPlayer = Math.max(0, Math.min(7, Number(this.props.unidadesSeu ?? 7)));
+      // DICA DE SINERGIA: a carta da mão tem o mesmo tipo de uma unidade já no tabuleiro, então jogar ela aumenta aquela sinergia
+      const doTipo = playerUnits.slice(0, nPlayer).filter(u => u.type === c.type).length;
+      // só indica se a carta ajuda a sinergia do tipo (já há unidade desse tipo, a sinergia ainda tem nível para subir e sobra espaço no tabuleiro); senão fica normal, sem indicativo
+      const dica = doTipo >= 1 && doTipo < 7 && nPlayer < 7;
+      const foco = Number(this.props.cartaFoco ?? 0) === c.n;
+      // ENERGIA: esferas disponíveis = esferas do turno (1 a 10) menos as gastas; sem esferas suficientes a carta escurece
+      const energia = Math.max(0, Math.min(10, Number(this.props.turno ?? 7)) - Number(this.props.esferasGastas ?? 0));
+      const semEnergia = c.cost > energia;
+      return { ...c, dica: dica && !semEnergia, dicaCor: '#FFD22E', dimF: semEnergia ? 'brightness(0.42) saturate(0.55)' : 'none', dicaAnim: (dica && !semEnergia) ? 'dicaPulse 1.6s ease-in-out infinite' : 'none',
+        tf: foco ? 'translateY(-86px) rotate(0deg) scale(1.1)' : 'rotate(' + c.rot + 'deg)', z: foco ? 30 : 1 };
+    });
+    const inspSel = Number(this.props.inspecionar ?? 0);
+    const inspList = hand.map(c => ({ n: c.n, op: inspSel === c.n ? 1 : 0, cor: (c.dica) ? '#FFD22E' : 'rgba(0,0,0,0)', initial: c.initial,
+      nameL: L(c.name, 34, -6), costL: L(c.cost, 40, -4), typeL: L(abrev(c.type), 22, -5), atkL: L('ATQ ' + c.atk, 30, -5), hpL: L('PV ' + c.hp, 30, -5) }));
+    const enemyHand = [-12, -6, 0, 6, 12].map(r => ({ rot: r, drop: Math.round(Math.abs(r) * 1.1) }));
+    const turno = Math.max(1, Math.min(10, Number(this.props.turno ?? 7)));
+
+    // ===== AURAS E RAIOS =====
+    const pvS = Math.max(1, Math.min(50, Number(this.props.pvSeu ?? 42))), pvI = Math.max(1, Math.min(50, Number(this.props.pvInimigo ?? 50)));
+    const seuTransf = Number(this.props.seuHeroiTransformado) === 1, inimTransf = Number(this.props.inimigoTransformado) === 1;
+    const comebackS = pvS <= 10, comebackI = pvI <= 10;
+    const mostrar = Number(this.props.mostrarAuras ?? 1) === 1, porFora = Number(this.props.auraPorFora ?? 0) === 1;
+    const nivel = (transf, comeback) => (comeback || transf) ? 'agitada' : turno >= 10 ? 'maxima' : 't' + turno;
+    const escala = { agitada: 2.02, maxima: 1.9 }, opac = { agitada: 1, maxima: 1 };
+    for (let k = 1; k <= 9; k++) { escala['t' + k] = 1.45 + 0.05 * k; opac['t' + k] = 0.6 + 0.04 * k; }
+    const mkAura = (cor, lvl, topRet, wrapTop, wrapH) => {
+      const size = Math.round(190 * escala[lvl]), cx = 34 + 95;
+      return { src: 'aura_' + cor + '_' + lvl + '.webp', size, left: Math.round(cx - size / 2), top: Math.round(wrapH - 8 - size),
+        op: (mostrar && porFora) ? opac[lvl] : 0, inLeft: Math.round(-105), inTop: Math.round(190 * 1.12 - 400), inOp: mostrar ? 1 : 0,
+        filtro: 'drop-shadow(0 0 7px ' + (cor === 'amarela' ? 'rgba(255,190,40,.9)' : 'rgba(110,170,255,.95)') + ')', anim: lvl === 'agitada' ? 'auraPulso .7s ease-in-out infinite' : 'none', ring: (lvl === 'maxima' || lvl === 'agitada') && mostrar && porFora, ringCor: cor === 'amarela' ? 'rgba(255,225,110,.9)' : 'rgba(215,235,255,.95)' };
+    };
+    const lvlS = nivel(seuTransf, comebackS), lvlI = nivel(inimTransf, comebackI);
+    const demo = Number(this.props.demoTransformacao ?? 0);
+    const demoI = demo === 1 || demo === 3, demoS = demo === 2 || demo === 3, demoIFlash = demoI || demo === 4;
+    
+    const cellSrc = 'heroi_cell_1.jpg';
+    const raioSeu = seuTransf ? (comebackS ? 'forte' : 'fraco') : null, raioInim = comebackI ? 'forte' : null;
+    const mkRaio = (nivelR) => ({ on: mostrar && !!nivelR, src: 'raio_dentro_' + (nivelR || 'fraco') + '.webp' });
+    const auraSeu = mkAura(seuTransf ? 'amarela' : 'branca', lvlS, 338, 268, 270), auraInim = mkAura('amarela', lvlI, 12, 0, 212);
+    const raioSeuO = mkRaio(raioSeu), raioInimO = mkRaio(raioInim);
+    const pronto = turno >= 10;
+    const spheres = [];
+    for (let i = 1; i <= 10; i++) spheres.push({ n: i, opacity: i <= turno ? 1 : 0.45, filter: i <= turno ? 'drop-shadow(0 0 4px rgba(255,170,40,0.7))' : 'grayscale(0.7) brightness(0.55)' });
+    return {
+      sinC1: sinC(0), sinC2: sinC(1), sinC3: sinC(2), sinAnim: sinAtivas.length ? 'sinTab ' + (1.2 * Math.max(2, Math.min(3, sinAtivas.length))) + 's ease-in-out infinite' : 'none',
+      abSeuL: L(seuTransf ? 'FURIA' : 'MASENKO', 10, -2), abSeuNome: seuTransf ? 'Fúria, ataque físico, custo 3 esferas' : 'Masenko, custo 3 esferas',
+      bonusSeuL: L('+' + Number(this.props.bonusAtqSeu ?? 2), 14, -3), bonusInL: L('+' + Number(this.props.bonusAtqInimigo ?? 0), 14, -3),
+      timeL: L(Math.round(t), 24, -3), timeText: Math.round(t) + 's',
+      pvInimL: L(pvI + '/50', 15, -3), pvSeuL: L(pvS + '/50', 15, -3),
+      abAtaqueL: L('Ataque', 9, -2), abPerfeitoL: L('Perfeito', 9, -2), abMasenkoL: L('Masenko', 10, -2), esf3L: L('3 esferas', 11, -2),
+      zL1: pronto ? L('Transformar!', 11, -2) : L('Transformação', 9, -2), zL2: pronto ? [] : L('turno 10', 9, -2),
+      zLabelFilter: pronto ? 'drop-shadow(0 0 5px rgba(255,200,60,0.8))' : 'grayscale(1) brightness(0.75)',
+      passarL: L('Passar', 22, -3), baralhoL: L('Baralho', 12, -2), deckL: L('26', 34, -3), sinergiasL: L('Sinergias', 13, -3),
+      radar1L: L('Radar do', 10, -2), radar2L: L('Dragão', 10, -2),
+      esferasTitL: L('Esferas', 12, -2), esferasL: L(turno + '/10', 22, -3), turnoL: L('Turno ' + turno, 11, -2),
+      bastaoW: (t / 75 * 100) + '%',
+      inspList,
+      enemyUnits: enemyUnits.slice(0, Math.max(0, Math.min(7, Number(this.props.unidadesInimigo ?? 7)))), playerUnits: playerUnits.slice(0, Math.max(0, Math.min(7, Number(this.props.unidadesSeu ?? 7)))), hand, enemyHand, spheres,
+      turnoN: turno, esferasTxt: turno + '/10',
+      zClip: (100 - turno * 10) + '%',
+      zFullSrc: pronto ? 'z_gold.png' : 'z_cheio.png',
+      zRing: pronto ? 'conic-gradient(#ff3b0a,#ffb01f,#fff176,#ff6a0a,#ff3b0a,#ffd23a,#ff3b0a)' : 'conic-gradient(#9aa1b3,#5e6577,#aab1c2,#4a5060,#9aa1b3)',
+      zRingGlow: pronto ? '0 0 14px 4px rgba(255,140,20,.85),0 0 32px 10px rgba(255,70,10,.5)' : '0 3px 6px rgba(0,0,0,.6)',
+      zAnim: pronto ? 'zpulse 1.2s ease-in-out infinite' : 'none',
+      zLabel: pronto ? 'TRANSFORMAR!' : 'TRANSFORMAÇÃO<br>turno 10',
+      zLabelColor: pronto ? '#ffe07a' : '#9aa1b0',
+      seuHeroiSrc: (seuTransf && !demoS) ? 'heroi_gohan.jpg' : 'heroi_gohan_base.jpg', cellSrc,
+      transInim2: { on: inimTransf }, inimTransf, transInim: { on: comebackI, novo: 'heroi_cell_perfeito.jpg', anim: 'novoTarde 2.4s linear forwards' },  transSeu: { on: false, novo: 'heroi_gohan.jpg', anim: 'none' }, comebackI, comebackS, prontoTf: pronto, vermInim: comebackI && mostrar, vermSeu: comebackS && mostrar,
+      mostraBtnTf: pronto && !(this.state && this.state.feitoSeu), iniciaTf: this.iniciaTf,
+      cena: (() => { const st = this.state || {}, f = st.f || 0, q = st.quem || 'seu';
+        const nome = { seu: 'Gohan_SSJ2_transformacao', inim: 'Cell_2a_forma_transformacao', cb: 'Cell_Comeback', cbs: 'Gohan_SSJ2_Comeback' }[q];
+        const setVid = (el) => { if (el && !el._ok) { el._ok = true; const p = el.play(); if (p && p.catch) p.catch(() => { el.muted = true; el.play().catch(() => {}); }); } };
+        return { escuro: q !== 'cb' && q !== 'cbs' && f >= 1 && f <= 3, raio: q !== 'cb' && q !== 'cbs' && f === 2, video: f === 3 || f === 4, vidOp: f === 3 ? 1 : 0, webm: nome + '.webm', mp4: nome + '_FHD.mp4', setVid }; })(),
+      auraSeu, auraInim, raioSeu: raioSeuO, raioInim: raioInimO,
+      tremorSeu: Number(this.props.danoSeu) === 1 ? 'tremorDano .45s linear infinite' : 'none', tremorInim: Number(this.props.danoInimigo) === 1 ? 'tremorDano .45s linear infinite' : 'none',
+      pvSeuPct: (pvS / 50 * 100) + '%', pvInimPct: (pvI / 50 * 100) + '%',
+      moedaDisplay: moedaE > 0 ? 'flex' : 'none',
+      moedaAnim: ({1:'moedaGira 1.2s linear infinite',2:'moedaPousaA 1.8s cubic-bezier(.2,.7,.3,1) forwards',3:'moedaPousaB 1.8s cubic-bezier(.2,.7,.3,1) forwards'})[moedaE] || 'none',
+      moedaTxt: ({1:'Sorteando',2:'Começa primeiro',3:'Aguarde'})[moedaE] || '',
+      moedaTxtSrc: ({1:'txt_sorteando.png',2:'txt_comeca.png',3:'txt_aguarde.png'})[moedaE] || 'txt_sorteando.png',
+      moedaTxtH: moedaE === 1 ? 46 : 58,
+      claraoOp: Math.max(0, Math.min(100, Number(this.props.clarao ?? 0))) / 100
+    };
+  }
+}
+</script>
+</body>
+</html>
